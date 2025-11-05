@@ -19,10 +19,11 @@
 
     <section class="job-search">
         <h2>Find Your Next Project</h2>
+        <p class="section-subtitle">Explore thousands of opportunities and find the perfect project to match your skills and ambitions.</p>
         <div class="filters">
-            <input type="text" placeholder="Search by keyword (e.g., 'logo design')" id="search">
-            <select>
-                <option value="" disabled selected>Filter by Category</option>
+            <input type="text" placeholder="Search by keyword (e.g., 'logo design')" id="search-input">
+            <select id="category-filter">
+                <option value="">All Categories</option>
                 <option>Website</option>
                 <option>Software</option>
                 <option>Art</option>
@@ -30,23 +31,10 @@
                 <option>Videography</option>
                 <option>Other</option>
             </select>
+            <button id="filter-btn" class="btn btn-primary">Search</button>
         </div>
-        <div class="jobs">
-            <div class="job">
-                <h3>Modern Website for a Startup</h3>
-                <p>We need a skilled web developer to create a responsive and modern website for our new tech startup. Experience with React is a plus.</p>
-                <button class="btn-primary">View Details & Apply</button>
-            </div>
-            <div class="job">
-                <h3>Logo Design for a Coffee Shop</h3>
-                <p>Looking for a creative graphic designer to create a unique and memorable logo for our new coffee shop brand.</p>
-                <button class="btn-primary">View Details & Apply</button>
-            </div>
-            <div class="job">
-                <h3>Animated Explainer Video</h3>
-                <p>We need an animator to create a 60-second explainer video for our new mobile app. Must have a strong portfolio.</p>
-                <button class="btn-primary">View Details & Apply</button>
-            </div>
+        <div class="jobs" id="job-listings">
+            <!-- Job listings will be dynamically inserted here -->
         </div>
     </section>
 
