@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Kadam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Kadam</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="verification.html">Verification</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="dashboard">
+        <h2>Profile Management Dashboard</h2>
+
+        <div class="user-type">
+            <button onclick="showDashboard('student')">Student</button>
+            <button onclick="showDashboard('employer')">Employer</button>
+        </div>
+
+        <div id="student-dashboard" class="dashboard-content hidden">
+            <h3>Student Profile</h3>
+            <form>
+                <input type="text" placeholder="Name">
+                <input type="file" accept="image/*" placeholder="Profile picture">
+                <input type="email" placeholder="Email">
+                <input type="tel" placeholder="Phone">
+                <input type="text" placeholder="Social Media">
+                <textarea placeholder="Bio (20 words)"></textarea>
+                <textarea placeholder="About (200 words)"></textarea>
+                <textarea placeholder="Skills (up to 15)"></textarea>
+                <input type="text" placeholder="Level Details">
+                <input type="file" multiple placeholder="Work demos">
+                <textarea placeholder="Tags (20)"></textarea>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+
+        <div id="employer-dashboard" class="dashboard-content hidden">
+            <h3>Employer Profile</h3>
+            <div id="individual-emp" class="hidden">
+                <form>
+                    <input type="text" placeholder="Name">
+                    <input type="file" accept="image/*" placeholder="Profile picture">
+                    <input type="email" placeholder="Email">
+                    <input type="tel" placeholder="Phone">
+                    <input type="text" placeholder="Social Media">
+                    <textarea placeholder="Bio (20 words)"></textarea>
+                    <textarea placeholder="About (200 words)"></textarea>
+                    <input type="text" placeholder="Level Details">
+                    <textarea placeholder="Search Tags (20)"></textarea>
+                    <textarea placeholder="Active Vacancies"></textarea>
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+            <div id="company-emp" class="hidden">
+                <form>
+                    <input type="text" placeholder="Company Name">
+                    <input type="file" accept="image/*" placeholder="Profile picture">
+                    <input type="email" placeholder="Email">
+                    <input type="tel" placeholder="Phone">
+                    <input type="text" placeholder="Social Media">
+                    <textarea placeholder="Bio (20 words)"></textarea>
+                    <textarea placeholder="About (200 words)"></textarea>
+                    <input type="text" placeholder="Level Details">
+                    <textarea placeholder="Search Tags (20)"></textarea>
+                    <textarea placeholder="Active Vacancies"></textarea>
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+            <select onchange="showEmployerDashboard(this.value)">
+                <option value="">Select type</option>
+                <option value="individual">Individual</option>
+                <option value="company">Company</option>
+            </select>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        function showDashboard(type) {
+            document.getElementById('student-dashboard').classList.add('hidden');
+            document.getElementById('employer-dashboard').classList.add('hidden');
+            document.getElementById(type + '-dashboard').classList.remove('hidden');
+        }
+
+        function showEmployerDashboard(type) {
+            document.getElementById('individual-emp').classList.add('hidden');
+            document.getElementById('company-emp').classList.add('hidden');
+            if (type) {
+                document.getElementById(type + '-emp').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

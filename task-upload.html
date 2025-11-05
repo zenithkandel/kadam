@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Upload - Kadam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Kadam</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="task-upload">
+        <h2>Task Upload</h2>
+        <form>
+            <input type="text" placeholder="Task title (15 words)" required>
+            <textarea placeholder="Detailed description (200 words)" required></textarea>
+            <select required>
+                <option value="">Task Category</option>
+                <option>Website</option>
+                <option>Software</option>
+                <option>Computer Hardware</option>
+                <option>Art</option>
+                <option>Music</option>
+                <option>Decoration</option>
+                <option>Custom Jewelry</option>
+                <option>Graphics Design</option>
+                <option>Logo Making</option>
+                <option>Thumbnail Making</option>
+                <option>Advertisement</option>
+                <option>Videography</option>
+                <option>English Literature</option>
+                <option>Nepali Literature</option>
+                <option>Song Writing</option>
+                <option>Other</option>
+            </select>
+            <input type="number" placeholder="Number of workers" required>
+            <input type="text" placeholder="Estimated time" required>
+            <input type="number" placeholder="Net amount" required>
+            <input type="file" accept="image/*" placeholder="Related image">
+            <input type="text" placeholder="Contact info" required>
+            <input type="date" placeholder="Deadline" required>
+            <button type="submit">Upload Task</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

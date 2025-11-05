@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Kadam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Kadam</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="signup">
+        <h2>Signup</h2>
+        <div class="user-type">
+            <button onclick="showForm('student')">Student</button>
+            <button onclick="showForm('employer')">Employer</button>
+        </div>
+
+        <form id="student-form" class="form hidden">
+            <h3>Student Signup</h3>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="tel" placeholder="Phone" required>
+            <input type="text" placeholder="Username" required>
+            <input type="text" placeholder="Address" required>
+            <button type="submit">Signup</button>
+        </form>
+
+        <form id="employer-form" class="form hidden">
+            <h3>Employer Signup</h3>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="tel" placeholder="Phone" required>
+            <input type="text" placeholder="Address" required>
+            <select required>
+                <option value="">Are you a company or individual?</option>
+                <option value="company">Company</option>
+                <option value="individual">Individual</option>
+            </select>
+            <button type="submit">Signup</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        function showForm(type) {
+            document.getElementById('student-form').classList.add('hidden');
+            document.getElementById('employer-form').classList.add('hidden');
+            document.getElementById(type + '-form').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

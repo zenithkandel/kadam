@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Verification - Kadam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Kadam</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="verification">
+        <h2>Account Verification</h2>
+        <p>Please complete the verification process. This takes 2-3 business days.</p>
+
+        <div class="user-type">
+            <button onclick="showVerification('student')">Student</button>
+            <button onclick="showVerification('employer')">Employer</button>
+        </div>
+
+        <div id="student-verification" class="verification-form hidden">
+            <h3>Student Verification</h3>
+            <form>
+                <input type="email" placeholder="Email for verification">
+                <input type="tel" placeholder="Phone for verification">
+                <input type="file" accept="image/*" placeholder="Profile picture">
+                <textarea placeholder="Abilities and expertise (max 15)"></textarea>
+                <input type="file" multiple placeholder="Evidence">
+                <input type="file" accept=".pdf,.doc" placeholder="CV">
+                <input type="number" placeholder="Age">
+                <input type="file" accept="image/*" placeholder="ID card">
+                <input type="file" accept="image/*" placeholder="Guardian approval (if under 18)">
+                <input type="tel" placeholder="Guardian contact">
+                <label><input type="checkbox"> Agree to terms</label>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div id="employer-verification" class="verification-form hidden">
+            <h3>Employer Verification</h3>
+            <div id="company-verification" class="hidden">
+                <form>
+                    <input type="text" placeholder="Company Name">
+                    <input type="file" accept="image/*" placeholder="Logo">
+                    <input type="email" placeholder="Email">
+                    <input type="tel" placeholder="Phone">
+                    <input type="file" accept=".pdf" placeholder="Application letter">
+                    <input type="tel" placeholder="Executive phone">
+                    <input type="tel" placeholder="Technical phone">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div id="individual-verification" class="hidden">
+                <form>
+                    <input type="email" placeholder="Email">
+                    <input type="tel" placeholder="Phone">
+                    <input type="file" accept="image/*" placeholder="Profile picture">
+                    <input type="file" accept="image/*" placeholder="ID card">
+                    <input type="file" accept="image/*" placeholder="Signed agreement">
+                    <input type="file" accept="image/*" placeholder="Registration letter">
+                    <label><input type="checkbox"> Digital agreement</label>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <select onchange="showEmployerType(this.value)">
+                <option value="">Select type</option>
+                <option value="company">Company</option>
+                <option value="individual">Individual</option>
+            </select>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        function showVerification(type) {
+            document.getElementById('student-verification').classList.add('hidden');
+            document.getElementById('employer-verification').classList.add('hidden');
+            document.getElementById(type + '-verification').classList.remove('hidden');
+        }
+
+        function showEmployerType(type) {
+            document.getElementById('company-verification').classList.add('hidden');
+            document.getElementById('individual-verification').classList.add('hidden');
+            if (type) {
+                document.getElementById(type + '-verification').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
