@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
-    --primary-color: #6A11CB;
-    --secondary-color: #2575FC;
-    --accent-color: #FF6B6B;
-    --text-color: #343A40;
-    --bg-light: #F8F9FA;
-    --bg-white: #FFFFFF;
-    --border-color: #E9ECEF;
+    --primary-color: #8A2BE2;  /* A brighter purple for dark mode */
+    --secondary-color: #4169E1; /* Royal Blue */
+    --accent-color: #32CD32;   /* Lime Green for highlights */
+    --text-color: #EAEAEA;
+    --bg-dark: #121212;
+    --bg-light: #1E1E1E;
+    --border-color: #333333;
 }
 
 * {
@@ -20,12 +20,12 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.7;
     color: var(--text-color);
-    background-color: var(--bg-light);
+    background-color: var(--bg-dark);
 }
 
 header {
-    background: var(--bg-white);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    background: var(--bg-light);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     position: fixed;
     width: 100%;
     top: 0;
@@ -46,6 +46,7 @@ nav {
     font-size: 2rem;
     font-weight: 700;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -88,7 +89,7 @@ nav ul li a:hover::after {
 }
 
 .hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(135deg, #000000 0%, #1C1C1C 100%);
     color: var(--bg-white);
     padding: 150px 5% 80px;
     text-align: center;
@@ -108,14 +109,14 @@ nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .hero h1 {
     font-size: 4.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .hero p {
@@ -131,29 +132,31 @@ nav ul li a:hover::after {
     border-radius: 50px;
     font-weight: 600;
     transition: all 0.3s;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
     border: none;
     cursor: pointer;
 }
 
 .btn-primary {
-    background: var(--bg-white);
-    color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
 }
 
 .btn-primary:hover {
-    background: var(--bg-light);
     transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--bg-white);
+    background: transparent;
+    color: var(--text-color);
+    border: 2px solid var(--primary-color);
 }
 
 .btn-secondary:hover {
+    background: var(--primary-color);
+    color: #fff;
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
 section {
@@ -161,7 +164,7 @@ section {
 }
 
 section:nth-of-type(even) {
-    background-color: var(--bg-white);
+    background-color: var(--bg-light);
 }
 
 h2 {
@@ -175,7 +178,7 @@ h2 {
 .section-subtitle {
     text-align: center;
     font-size: 1.1rem;
-    color: #777;
+    color: #aaa;
     margin-bottom: 4rem;
     max-width: 600px;
     margin-left: auto;
@@ -189,10 +192,10 @@ h2 {
 }
 
 .testimonial, .how-it-works-card {
-    background: var(--bg-white);
+    background: var(--bg-light);
     padding: 2.5rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     text-align: left;
     border-top: 4px solid;
     border-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) 1;
@@ -201,12 +204,13 @@ h2 {
 
 .testimonial:hover, .how-it-works-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 }
 
 .testimonial p {
     font-style: italic;
     margin-bottom: 1.5rem;
+    color: #ccc;
 }
 
 .testimonial footer {
@@ -219,10 +223,10 @@ form {
     flex-direction: column;
     max-width: 700px;
     margin: 0 auto;
-    background: var(--bg-white);
+    background: var(--bg-light);
     padding: 3rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 input, textarea, select {
@@ -233,18 +237,20 @@ input, textarea, select {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     transition: all 0.3s;
+    background-color: #2c2c2c;
+    color: var(--text-color);
 }
 
 input:focus, textarea:focus, select:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.4);
 }
 
 button[type="submit"] {
     padding: 1.2rem;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--bg-white);
+    color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -254,13 +260,13 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     transform: translateY(-3px);
 }
 
 footer {
-    background: var(--text-color);
-    color: var(--bg-light);
+    background: #000;
+    color: var(--text-color);
     padding: 4rem 5% 2rem;
 }
 
@@ -274,7 +280,7 @@ footer {
 .footer-grid h4 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
-    color: var(--bg-white);
+    color: #fff;
 }
 
 .footer-grid ul {
@@ -292,12 +298,12 @@ footer {
 }
 
 .footer-grid a:hover {
-    color: var(--bg-white);
+    color: #fff;
 }
 
 .footer-bottom {
     text-align: center;
-    border-top: 1px solid #555;
+    border-top: 1px solid #444;
     padding-top: 2rem;
 }
 
@@ -322,9 +328,9 @@ footer {
 }
 
 .job {
-    background: var(--bg-white);
+    background: var(--bg-light);
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     transition: all 0.3s;
     display: flex;
     flex-direction: column;
@@ -334,7 +340,7 @@ footer {
 
 .job:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 }
 
 .job-content {
@@ -350,7 +356,7 @@ footer {
 
 .job-footer {
     padding: 1rem 1.5rem;
-    background: var(--bg-light);
+    background: #2c2c2c;
     border-top: 1px solid var(--border-color);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -367,10 +373,10 @@ footer {
     gap: 1.5rem;
     margin-bottom: 3rem;
     justify-content: center;
-    background: var(--bg-white);
+    background: var(--bg-light);
     padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
 }
 
 .filters input, .filters select {
@@ -379,11 +385,11 @@ footer {
 }
 
 .faq details {
-    background: var(--bg-white);
+    background: var(--bg-light);
     padding: 1.5rem;
     margin-bottom: 1rem;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
     border-left: 3px solid var(--primary-color);
 }
 
@@ -397,6 +403,7 @@ footer {
     font-size: 3rem;
     margin-bottom: 1rem;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

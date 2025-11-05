@@ -22,29 +22,114 @@
     </header>
 
     <section id="home" class="hero">
-        <h1>Find Your Next Opportunity</h1>
-        <p>A platform designed to connect talented students with employers for freelance projects.</p>
-        <a href="signup.html" class="btn btn-primary">Get Started</a>
+        <h1>Unlock Your Potential. Find Your Opportunity.</h1>
+        <p>Kadam is the ultimate platform connecting ambitious students with innovative employers for freelance projects that build careers.</p>
+        <div class="hero-buttons">
+            <a href="job-search.html" class="btn btn-primary">Find Work</a>
+            <a href="task-upload.html" class="btn btn-secondary">Post a Job</a>
+        </div>
+    </section>
+
+    <section id="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3 class="counter" data-target="1200">0</h3>
+                <p>Projects Completed</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter" data-target="850">0</h3>
+                <p>Happy Students</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter" data-target="450">0</h3>
+                <p>Active Employers</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter" data-target="98">0</h3>
+                <p>Success Rate (%)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works">
+        <h2>How Kadam Works</h2>
+        <p class="section-subtitle">A simple, streamlined process for students and employers to connect and collaborate effectively.</p>
+        <div class="how-it-works-grid">
+            <div class="how-it-works-card">
+                <div class="icon">1</div>
+                <h3>Create Your Profile</h3>
+                <p>Sign up as a student or employer and build a detailed profile to showcase your skills or your company's needs.</p>
+            </div>
+            <div class="how-it-works-card">
+                <div class="icon">2</div>
+                <h3>Find or Post a Job</h3>
+                <p>Students can browse and apply for thousands of jobs. Employers can post detailed project descriptions to attract top talent.</p>
+            </div>
+            <div class="how-it-works-card">
+                <div class="icon">3</div>
+                <h3>Collaborate Securely</h3>
+                <p>Use our platform to manage proposals, communicate, and handle milestone payments securely from start to finish.</p>
+            </div>
+            <div class="how-it-works-card">
+                <div class="icon">4</div>
+                <h3>Achieve Greatness</h3>
+                <p>Complete the project, get paid, and build your reputation with reviews. Level up your career or business with every successful task.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="featured-jobs">
+        <h2>Featured Jobs</h2>
+        <p class="section-subtitle">Check out some of the exciting opportunities available right now on Kadam.</p>
+        <div class="jobs">
+            <!-- Job items will be dynamically inserted here by script.js -->
+        </div>
+        <div class="text-center" style="margin-top: 3rem;">
+            <a href="job-search.html" class="btn btn-primary">Explore All Jobs</a>
+        </div>
+    </section>
+
+    <section id="featured-students">
+        <h2>Top Student Talent</h2>
+        <p class="section-subtitle">Meet some of our highly-rated students who are ready to take on your next project.</p>
+        <div class="testimonial-grid">
+             <div class="testimonial">
+                <p>"A creative and reliable web developer with a passion for building beautiful and functional user interfaces."</p>
+                <footer>- John Doe, Web Developer</footer>
+            </div>
+            <div class="testimonial">
+                <p>"Expert in creating memorable brands. My design philosophy is clean, modern, and user-centric."</p>
+                <footer>- Jane Smith, Graphics & Brand Designer</footer>
+            </div>
+            <div class="testimonial">
+                <p>"I bring stories to life through compelling video content. Proficient in Adobe Premiere Pro and After Effects."</p>
+                <footer>- Mike Johnson, Video Editor & Animator</footer>
+            </div>
+        </div>
     </section>
 
     <section id="about">
-        <h2>About Kadam</h2>
-        <p>Kadam is a revolutionary platform dedicated to bridging the gap between students seeking practical experience and employers looking for fresh talent. We provide a space for students to showcase their skills and for employers to find the right fit for their projects.</p>
+        <h2>Why Choose Kadam?</h2>
+        <p class="section-subtitle">We are more than just a freelance marketplace. We are a community dedicated to growth and opportunity.</p>
+        <div class="about-content">
+            <p>Kadam is a revolutionary platform dedicated to bridging the gap between students seeking practical experience and employers looking for fresh talent. We provide a space for students to showcase their skills and for employers to find the right fit for their projects. Our mission is to empower the next generation of professionals by providing them with real-world experience and to help businesses thrive with access to a pool of motivated and skilled individuals.</p>
+        </div>
     </section>
 
     <section id="testimonials">
         <h2>What Our Users Say</h2>
+        <p class="section-subtitle">Real stories from people who have found success on our platform.</p>
         <div class="testimonial-grid">
             <div class="testimonial">
                 <p>"Kadam helped me find my first freelance gig. The platform is intuitive and easy to use!"</p>
                 <footer>- Alex, Student Developer</footer>
             </div>
             <div class="testimonial">
-                <p>"We found an amazing designer for our project in just a few days. Highly recommended!"</p>
-                <footer>- Sarah, Project Manager</footer>
+                <p>"We found an amazing designer for our project in just a few days. The quality of talent is exceptional. Highly recommended!"</p>
+                <footer>- Sarah, Project Manager at TechCorp</footer>
             </div>
             <div class="testimonial">
-                <p>"A great way to build a portfolio and earn money while studying."</p>
+                <p>"A great way to build a portfolio and earn money while studying. The secure payment system gave me peace of mind."</p>
                 <footer>- Mike, Graphic Design Student</footer>
             </div>
         </div>
@@ -52,32 +137,77 @@
 
     <section id="contact">
         <h2>Get In Touch</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" rows="5" required></textarea>
+        <p class="section-subtitle">Have questions? Our team is here to help. Reach out to us anytime.</p>
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
             <button type="submit">Send Message</button>
         </form>
     </section>
 
     <section id="faq">
         <h2>Frequently Asked Questions</h2>
+        <p class="section-subtitle">Quick answers to common questions.</p>
         <details>
             <summary>What is Kadam?</summary>
-            <p>Kadam is a freelance platform connecting students with employers for project-based work.</p>
+            <p>Kadam is a freelance platform connecting students with employers for project-based work. We aim to provide students with valuable experience and businesses with access to emerging talent.</p>
         </details>
         <details>
             <summary>How do I sign up?</summary>
-            <p>You can sign up as a student or an employer through our <a href="signup.html">signup page</a>.</p>
+            <p>You can sign up as a student or an employer through our <a href="signup.html">signup page</a>. The process is quick and easy!</p>
         </details>
         <details>
             <summary>Is there a fee to use Kadam?</summary>
-            <p>Kadam takes a small percentage of the transaction as a platform fee to maintain and improve our services.</p>
+            <p>It's free to sign up and browse jobs or talent. Kadam takes a small percentage of the transaction as a platform fee once a project is completed to maintain and improve our services.</p>
+        </details>
+        <details>
+            <summary>How do I get paid as a student?</summary>
+            <p>Payments are handled securely through our platform. Once you complete a project and the employer approves it, the funds are transferred to your Kadam account, which you can then withdraw.</p>
         </details>
     </section>
 
     <footer>
-        <p>&copy; 2025 Kadam</p>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4>Kadam</h4>
+                <p>Empowering the next generation of professionals.</p>
+            </div>
+            <div class="footer-column">
+                <h4>For Students</h4>
+                <ul>
+                    <li><a href="job-search.html">Find Jobs</a></li>
+                    <li><a href="dashboard.html">My Dashboard</a></li>
+                    <li><a href="#">How to Succeed</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>For Employers</h4>
+                <ul>
+                    <li><a href="#">Find Talent</a></li>
+                    <li><a href="task-upload.html">Post a Job</a></li>
+                    <li><a href="#">Employer Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+             <div class="footer-column">
+                <h4>Connect</h4>
+                <div class="social-media">
+                    <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Kadam. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script src="script.js"></script>
