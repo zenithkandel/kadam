@@ -22,58 +22,96 @@
         <h2>Profile Management Dashboard</h2>
 
         <div class="user-type">
-            <button onclick="showDashboard('student')">Student</button>
-            <button onclick="showDashboard('employer')">Employer</button>
+            <button onclick="showDashboard('student')" class="btn btn-primary">Student Dashboard</button>
+            <button onclick="showDashboard('employer')" class="btn btn-secondary">Employer Dashboard</button>
         </div>
 
         <div id="student-dashboard" class="dashboard-content hidden">
             <h3>Student Profile</h3>
+            <div class="dashboard-grid">
+                <div class="dashboard-widget">
+                    <h4>Profile Completion</h4>
+                    <p>Complete your profile to attract more employers.</p>
+                    <!-- Progress bar placeholder -->
+                </div>
+                <div class="dashboard-widget">
+                    <h4>Earnings Overview</h4>
+                    <p>Total Earned: $1,250</p>
+                    <!-- Chart placeholder -->
+                </div>
+                <div class="dashboard-widget">
+                    <h4>Active Projects</h4>
+                    <p>You have 2 active projects.</p>
+                    <a href="#" class="btn btn-secondary">Manage Projects</a>
+                </div>
+                 <div class="dashboard-widget">
+                    <h4>Recent Applications</h4>
+                    <p>You have applied to 5 jobs this week.</p>
+                    <a href="#" class="btn btn-secondary">View Applications</a>
+                </div>
+            </div>
             <form>
-                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Name" value="John Doe">
                 <input type="file" accept="image/*" placeholder="Profile picture">
-                <input type="email" placeholder="Email">
-                <input type="tel" placeholder="Phone">
-                <input type="text" placeholder="Social Media">
-                <textarea placeholder="Bio (20 words)"></textarea>
-                <textarea placeholder="About (200 words)"></textarea>
-                <textarea placeholder="Skills (up to 15)"></textarea>
-                <input type="text" placeholder="Level Details">
+                <input type="email" placeholder="Email" value="john.doe@example.com">
+                <input type="tel" placeholder="Phone" value="+1234567890">
+                <input type="text" placeholder="Social Media" value="linkedin.com/in/johndoe">
+                <textarea placeholder="Bio (20 words)">Creative web developer passionate about building beautiful and functional user interfaces.</textarea>
+                <textarea placeholder="About (200 words)">I am a final year computer science student with a strong foundation in web development technologies like HTML, CSS, JavaScript, and React. I am eager to apply my skills to real-world projects and contribute to meaningful work.</textarea>
+                <textarea placeholder="Skills (up to 15)">HTML, CSS, JavaScript, React, Node.js, Git, Figma</textarea>
+                <input type="text" placeholder="Level Details" value="Level 5 - Expert">
                 <input type="file" multiple placeholder="Work demos">
-                <textarea placeholder="Tags (20)"></textarea>
-                <button type="submit">Update</button>
+                <textarea placeholder="Tags (20)">web developer, frontend, react, javascript, UI/UX</textarea>
+                <button type="submit">Update Profile</button>
             </form>
         </div>
 
         <div id="employer-dashboard" class="dashboard-content hidden">
             <h3>Employer Profile</h3>
+             <div class="dashboard-grid">
+                <div class="dashboard-widget">
+                    <h4>Active Job Postings</h4>
+                    <p>You have 3 active job postings.</p>
+                    <a href="#" class="btn btn-secondary">Manage Postings</a>
+                </div>
+                <div class="dashboard-widget">
+                    <h4>Proposals Received</h4>
+                    <p>You have received 15 new proposals.</p>
+                    <a href="#" class="btn btn-secondary">View Proposals</a>
+                </div>
+                <div class="dashboard-widget">
+                    <h4>Recently Hired</h4>
+                    <p>You have hired 2 students this month.</p>
+                </div>
+            </div>
             <div id="individual-emp" class="hidden">
                 <form>
-                    <input type="text" placeholder="Name">
+                    <input type="text" placeholder="Name" value="Jane Smith">
                     <input type="file" accept="image/*" placeholder="Profile picture">
-                    <input type="email" placeholder="Email">
-                    <input type="tel" placeholder="Phone">
-                    <input type="text" placeholder="Social Media">
-                    <textarea placeholder="Bio (20 words)"></textarea>
-                    <textarea placeholder="About (200 words)"></textarea>
-                    <input type="text" placeholder="Level Details">
-                    <textarea placeholder="Search Tags (20)"></textarea>
-                    <textarea placeholder="Active Vacancies"></textarea>
-                    <button type="submit">Update</button>
+                    <input type="email" placeholder="Email" value="jane.smith@example.com">
+                    <input type="tel" placeholder="Phone" value="+1987654321">
+                    <input type="text" placeholder="Social Media" value="linkedin.com/in/janesmith">
+                    <textarea placeholder="Bio (20 words)">Project manager at a tech startup looking for fresh talent.</textarea>
+                    <textarea placeholder="About (200 words)">I am a project manager at TechCorp, a fast-growing startup in the AI space. We are always on the lookout for motivated and skilled students to join our team for exciting projects.</textarea>
+                    <input type="text" placeholder="Level Details" value="Level 3 - Verified Employer">
+                    <textarea placeholder="Search Tags (20)">tech, AI, project management, hiring</textarea>
+                    <textarea placeholder="Active Vacancies">Frontend Developer, UI/UX Designer</textarea>
+                    <button type="submit">Update Profile</button>
                 </form>
             </div>
             <div id="company-emp" class="hidden">
                 <form>
-                    <input type="text" placeholder="Company Name">
+                    <input type="text" placeholder="Company Name" value="TechCorp">
                     <input type="file" accept="image/*" placeholder="Profile picture">
-                    <input type="email" placeholder="Email">
-                    <input type="tel" placeholder="Phone">
-                    <input type="text" placeholder="Social Media">
-                    <textarea placeholder="Bio (20 words)"></textarea>
-                    <textarea placeholder="About (200 words)"></textarea>
-                    <input type="text" placeholder="Level Details">
-                    <textarea placeholder="Search Tags (20)"></textarea>
-                    <textarea placeholder="Active Vacancies"></textarea>
-                    <button type="submit">Update</button>
+                    <input type="email" placeholder="Email" value="contact@techcorp.com">
+                    <input type="tel" placeholder="Phone" value="+1122334455">
+                    <input type="text" placeholder="Social Media" value="linkedin.com/company/techcorp">
+                    <textarea placeholder="Bio (20 words)">A fast-growing startup in the AI space.</textarea>
+                    <textarea placeholder="About (200 words)">TechCorp is a leading innovator in artificial intelligence solutions. We are passionate about nurturing the next generation of tech talent and frequently collaborate with students on groundbreaking projects.</textarea>
+                    <input type="text" placeholder="Level Details" value="Level 4 - Corporate Partner">
+                    <textarea placeholder="Search Tags (20)">AI, machine learning, software, hiring, tech startup</textarea>
+                    <textarea placeholder="Active Vacancies">AI Research Intern, Backend Developer</textarea>
+                    <button type="submit">Update Profile</button>
                 </form>
             </div>
             <select onchange="showEmployerDashboard(this.value)">
