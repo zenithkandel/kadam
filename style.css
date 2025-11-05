@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,32 +7,34 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: #333;
+    background-color: #f4f7f6;
 }
 
 header {
     background: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    max-width: 1200px;
+    padding: 1rem 5%;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #667eea;
 }
 
 nav ul {
@@ -39,91 +43,153 @@ nav ul {
 }
 
 nav ul li {
-    margin-left: 2rem;
+    margin-left: 2.5rem;
 }
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: #555;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #667eea;
 }
 
 .hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 100px 2rem 50px;
+    padding: 120px 5% 60px;
     text-align: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 4rem;
+    font-weight: 700;
     margin-bottom: 1rem;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
 }
 
 .btn {
     display: inline-block;
-    padding: 0.8rem 2rem;
+    padding: 0.8rem 2.5rem;
     background: #fff;
     color: #667eea;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .btn:hover {
     background: #f0f0f0;
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #5a6fd8;
+    color: white;
 }
 
 section {
-    padding: 4rem 2rem;
+    padding: 6rem 5%;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #333;
 }
 
 .about, .testimonials, .contact, .faq {
     text-align: center;
 }
 
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
 .testimonial {
-    margin: 2rem 0;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.testimonial p {
+    font-style: italic;
+}
+
+.testimonial footer {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #667eea;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
-input, textarea {
-    margin: 0.5rem 0;
-    padding: 0.8rem;
+input, textarea, select {
+    margin-bottom: 1rem;
+    padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
 }
 
-button {
-    padding: 0.8rem;
+button[type="submit"] {
+    padding: 1rem;
     background: #667eea;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+    background: #5a6fd8;
 }
 
 footer {
     background: #333;
     color: white;
     text-align: center;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .hidden {
@@ -135,28 +201,50 @@ footer {
 }
 
 .user-type {
+    text-align: center;
     margin: 2rem 0;
 }
 
 .user-type button {
     margin: 0 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1.5rem;
     background: #667eea;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+.user-type button:hover {
+    background: #5a6fd8;
+    transform: translateY(-3px);
 }
 
 .jobs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
     margin-top: 2rem;
 }
 
 .job {
-    border: 1px solid #ddd;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 5px;
+    background: white;
+    border: 1px solid #eee;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+}
+
+.job:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+}
+
+.job h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
 }
 
 .admin-options button {
@@ -166,5 +254,29 @@ footer {
     color: white;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.login, .signup, .verification, .dashboard, .task-upload, .job-search, .admin, .logout {
+    padding-top: 120px;
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.faq details {
+    background: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.faq summary {
+    font-weight: 600;
     cursor: pointer;
 }

@@ -18,34 +18,34 @@
     </header>
 
     <section class="signup">
-        <h2>Signup</h2>
+        <h2>Create Your Account</h2>
         <div class="user-type">
-            <button onclick="showForm('student')">Student</button>
-            <button onclick="showForm('employer')">Employer</button>
+            <button onclick="showForm('student')" class="btn-primary">I'm a Student</button>
+            <button onclick="showForm('employer')" class="btn-primary">I'm an Employer</button>
         </div>
 
         <form id="student-form" class="form hidden">
             <h3>Student Signup</h3>
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="tel" placeholder="Phone" required>
-            <input type="text" placeholder="Username" required>
-            <input type="text" placeholder="Address" required>
-            <button type="submit">Signup</button>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <input type="text" placeholder="Choose a Username" required>
+            <input type="text" placeholder="Your Address" required>
+            <button type="submit">Create Student Account</button>
         </form>
 
         <form id="employer-form" class="form hidden">
             <h3>Employer Signup</h3>
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="tel" placeholder="Phone" required>
+            <input type="text" placeholder="Full Name / Company Name" required>
+            <input type="email" placeholder="Business Email" required>
+            <input type="tel" placeholder="Contact Phone" required>
             <input type="text" placeholder="Address" required>
             <select required>
-                <option value="">Are you a company or individual?</option>
+                <option value="" disabled selected>Are you a company or individual?</option>
                 <option value="company">Company</option>
                 <option value="individual">Individual</option>
             </select>
-            <button type="submit">Signup</button>
+            <button type="submit">Create Employer Account</button>
         </form>
     </section>
 
