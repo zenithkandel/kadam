@@ -52,7 +52,21 @@ document.addEventListener('DOMContentLoaded', function() {
         { title: 'Animated Explainer Video', category: 'Videography', description: 'We need an animator to create a 60-second explainer video for our new mobile app. Must have a strong portfolio.' },
         { title: 'Database Optimization for a SaaS', category: 'Software', description: 'Seeking an expert in SQL and database architecture to optimize our production database for performance and scalability.' },
         { title: 'Illustrations for a Children\'s Book', category: 'Art', description: 'We are looking for a talented illustrator to create 20 beautiful illustrations for a new children\'s book.' },
-        { title: 'Content Writer for a Tech Blog', category: 'Other', description: 'Hiring a skilled writer to produce high-quality articles on topics related to AI and machine learning.' }
+        { title: 'Content Writer for a Tech Blog', category: 'Other', description: 'Hiring a skilled writer to produce high-quality articles on topics related to AI and machine learning.' },
+        { title: 'Social Media Manager for a Fashion Brand', category: 'Other', description: 'Manage our social media presence across Instagram, TikTok, and Facebook. Must have a proven track record of growing engagement.' },
+        { title: 'Mobile App UI/UX Design', category: 'Graphics Design', description: 'Redesign our existing mobile app to improve user experience and create a modern, intuitive interface. Figma skills are a must.' },
+        { title: 'Build a REST API with Node.js', category: 'Software', description: 'Develop a secure and scalable REST API for our new mobile application. Experience with Express and MongoDB is required.' },
+        { title: 'Custom WordPress Theme Development', category: 'Website', description: 'Create a custom WordPress theme from scratch based on our design mockups. Must be proficient in PHP, HTML, CSS, and JS.' },
+        { title: 'Product Photography for an E-commerce Store', category: 'Videography', description: 'We need high-quality product photos for our new line of handmade jewelry. Experience with studio lighting is essential.' },
+        { title: 'Abstract Oil Painting Commission', category: 'Art', description: 'Commission a large-scale abstract oil painting for our new office lobby. We are looking for a bold and colorful style.' },
+        { title: 'Data Analysis with Python', category: 'Software', description: 'Analyze a large dataset to identify trends and insights. Must be proficient in Pandas, NumPy, and Matplotlib.' },
+        { title: 'SEO Audit and Strategy', category: 'Other', description: 'Conduct a comprehensive SEO audit of our website and develop a strategy to improve our search engine rankings.' },
+        { title: 'Frontend Development with Vue.js', category: 'Website', description: 'Join our team to build new features for our web application using Vue.js. Strong JavaScript skills are required.' },
+        { title: 'Character Design for a Video Game', category: 'Art', description: 'Create unique and compelling character designs for our upcoming indie video game. A strong portfolio is a must.' },
+        { title: 'Video Editing for a YouTube Channel', category: 'Videography', description: 'Edit raw footage into engaging YouTube videos. Must be proficient in Adobe Premiere Pro or Final Cut Pro.' },
+        { title: 'Brand Identity and Style Guide', category: 'Graphics Design', description: 'Develop a complete brand identity, including a logo, color palette, and typography, along with a comprehensive style guide.' },
+        { title: 'Develop a Small Business Website', category: 'Website', description: 'Create a professional and responsive website for a local bakery. The site should include a menu, photo gallery, and contact form.' },
+        { title: 'Technical Support Specialist', category: 'Software', description: 'Provide technical support to our customers via email and chat. Excellent communication skills are required.' }
     ];
 
     // Populate job listings
