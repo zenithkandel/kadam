@@ -144,17 +144,64 @@ a.	Login System:
 - Admin Users will manually be defined in the code so that no security breach is possible.
 - Logs will be made for every login
 b.	Main Dashboard:
-i.	Home stats page
+i.	 Home Stats Page
 1.	Total active employers
 2.	Total active students
 3.	Total daily views
 4.	Total ongoing tasks
 5.	Total completed tasks
 6.	Total pending tasks
-7.	Total Verification Requests
-8.	Total Unverified employers
+7.	Total verification requests
+8.	Total unverified employers
 9.	Total unverified students
 10.	Total admin accounts
-11.	Admin logs
+11.	Admin logs (sortable and downloadable)
 12.	Report requests
-13.	
+13.	Total revenue generated (platform fees collected)
+14.	Active support tickets
+15.	Recent logins and activities
+ii.	Verification Management
+1.	View, verify, or reject student and employer verification requests.
+2.	Inspect uploaded documents and mark verification as pending, approved, or denied with remarks.
+3.	Send automated emails regarding verification status.
+4.	Maintain a history log of all verifications for transparency and audit purposes.
+iii.	User Management
+1.	View, search, edit, suspend, or delete any student or employer account.
+2.	Reset user passwords and manage access levels.
+3.	Filter users based on verification status, activity, or report counts.
+4.	Assign “trusted” or “flagged” labels to specific users.
+5.	Export user data in CSV format for records or analysis.
+iv.	 Task Management
+1.	View and manage all posted tasks (active, ongoing, completed, or reported).
+2.	Force-close or freeze tasks in case of disputes or violations.
+3.	Analyze task statistics (category-wise, time-based, or income-based).
+4.	Approve or deny reported tasks after investigation.
+v.	Reports & Violations
+1.	View all reported users or tasks submitted by community members.
+2.	Investigate reports with evidence (screenshots, chat logs, etc.).
+3.	Take appropriate actions (warnings, suspension, ban).
+4.	Maintain a strike count system for users.
+5.	Generate weekly or monthly violation summaries.
+vi.	Payment Management
+1.	Monitor all payment transactions and platform fees.
+2.	View pending, completed, and disputed payments.
+3.	Handle refund or compensation requests manually.
+4.	Export payment logs for accounting and compliance.
+vii.	Communication & Notifications
+1.	Send system-wide announcements, notifications, or updates to users.
+2.	Manage FAQs and automated message templates.
+3.	Broadcast urgent alerts (e.g., downtime, maintenance, new policy).
+viii.	Analytics & Insights
+1.	View graphical charts of user growth, task trends, revenue, and engagement.
+2.	Filter analytics by date range, region, or category.
+3.	Export charts and statistics for administrative reports.
+ix.	Security & Logs
+1.	View and clear detailed admin activity logs.
+2.	Monitor failed login attempts, suspicious IPs, or abnormal user behaviors.
+3.	Enable/disable security features (2FA, session limits, password policies).
+4.	Backup and restore system data securely.
+x.	 System Settings
+1.	Manage platform configurations such as fee percentage, minimum rates, deadlines, and storage limits.
+2.	Manage content (FAQs, Terms & Conditions, Privacy Policy).
+3.	Update logos, contact info, or global site details.
+4.	Create, edit, or delete admin roles with tiered access (e.g., Super Admin, Moderator, Verifier, Accountant).
