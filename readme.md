@@ -1,3 +1,41 @@
+<p align="center">
+  <img src="https://via.placeholder.com/1200x300/121212/EAEAEA?text=Kadam+%E2%80%94+Student+Freelance+Platform" alt="Kadam Banner" />
+</p>
+
+<h1 align="center">Kadam</h1>
+<p align="center"><strong>Modern, minimal, dark-themed frontend (HTML • CSS • JS)</strong></p>
+
+<p align="center">
+  <img alt="HTML" src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white"> 
+  <img alt="CSS" src="https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white"> 
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000"> 
+  <img alt="Status" src="https://img.shields.io/badge/Status-Prototype-success?logo=vercel&logoColor=white"> 
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-informational"> 
+</p>
+
+<p align="center">
+  <img alt="Dark Theme" src="https://img.shields.io/badge/Theme-Dark-6A11CB?logo=apachespark&logoColor=white"> 
+  <img alt="Responsive" src="https://img.shields.io/badge/Responsive-Yes-00C853?logo=android&logoColor=white"> 
+  <img alt="Performance" src="https://img.shields.io/badge/Optimized-Frontend-blueviolet?logo=googlechrome&logoColor=white"> 
+  <img alt="Stack" src="https://img.shields.io/badge/Stack-HTML%20%7C%20CSS%20%7C%20JS-0A84FF"> 
+</p>
+
+---
+
+## 📚 Table of Contents
+
+- Overview
+- Screenshots
+- Quick Links
+- Tags
+- Original Specification
+
+---
+
+## 🔎 Overview
+
+<div align="left" style="font-size: 1.05rem; line-height: 1.75;">
+
 Here is a brief description of the pages of the site:
 
 - **Landing page**
@@ -139,7 +177,7 @@ Here is a brief description of the pages of the site:
     \- Then, after accepting from both parties, another digital agreement is signed and the task will be started by the candidate after 10% advance payment from the employer.  
     \- Finally, after all the works is done and received, the employer sends the remaining 90% of the cost.  
 
-- **Admin Panel:**
+-- **Admin Panel:**
   - Login System:  
         \- Admin Users will manually be defined in the code so that no security breach is possible.  
         \- Logs will be made for every login
@@ -205,3 +243,51 @@ Here is a brief description of the pages of the site:
       - Manage content (FAQs, Terms & Conditions, Privacy Policy).
       - Update logos, contact info, or global site details.
       - Create, edit, or delete admin roles with tiered access (e.g., Super Admin, Moderator, Verifier, Accountant).
+
+</div>
+
+---
+
+## 🖼️ Screenshots (Placeholders)
+
+> Replace these placeholder images with real screenshots when available.
+
+| Landing | Signup | Dashboard |
+|---|---|---|
+| ![Landing](https://via.placeholder.com/900x520/1E1E1E/EAEAEA?text=Landing+Page) | ![Signup](https://via.placeholder.com/900x520/1E1E1E/EAEAEA?text=Signup+Page) | ![Dashboard](https://via.placeholder.com/900x520/1E1E1E/EAEAEA?text=Dashboard) |
+
+| Verification | Job Search | Task Upload |
+|---|---|---|
+| ![Verification](https://via.placeholder.com/900x520/1E1E1E/EAEAEA?text=Verification) | ![Job+Search](https://via.placeholder.com/900x520/1E1E1E/EAEAEA?text=Job+Search) | ![Task+Upload](https://via.placeholder.com/900x520/1E1E1E/EAEAEA?text=Task+Upload) |
+
+---
+
+## 🔗 Quick Links
+
+- ▶️ Live Entry Point: `index.html`
+- 👤 Signup: `signup.html`
+- 🔐 Login: `login.html`
+- ✅ Verification: `verification.html`
+- 🧭 Dashboard: `dashboard.html`
+- 📤 Post a Task: `task-upload.html`
+- 🔎 Job Search: `job-search.html`
+- 🛡️ Admin: `admin.html`
+
+---
+
+## 🏷️ Tags
+
+<p>
+  <img alt="Tag" src="https://img.shields.io/badge/Frontend-Only-6A11CB"> 
+  <img alt="Tag" src="https://img.shields.io/badge/Dark-Theme-333333"> 
+  <img alt="Tag" src="https://img.shields.io/badge/Minimal-Design-444"> 
+  <img alt="Tag" src="https://img.shields.io/badge/Student-Freelance-00C853"> 
+  <img alt="Tag" src="https://img.shields.io/badge/Responsive-Design-0A84FF"> 
+  <img alt="Tag" src="https://img.shields.io/badge/Vanilla-JS-F7DF1E"> 
+</p>
+
+---
+
+<p align="center">
+  <sub>© 2025 Kadam — Built with ❤️ using plain HTML, CSS, and JavaScript.</sub>
+</p>
