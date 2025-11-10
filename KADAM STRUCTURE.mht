@@ -1,3 +1,6 @@
+KADAM is a platform designed to connect Students who have skills with Employers (either companies or individuals) who need tasks done. The main goal is to create a win-win situation. Students, who are talented in areas like art, website making, writing, or design, get a chance to use their skills for real-world tasks. This helps them earn pocket money, build a portfolio with real work samples, and get motivated. For employers, it's a way to get quality work done for a much lower price than hiring a full-time professional.
+To ensure everyone is genuine and to build trust, both the students and the employers must go through a background check and a verification process. This step is important so that employers can trust they are hiring real students with proven skills, and students feel safe knowing they are working for legitimate employers.
+When an employer wants to get a task done, they have two simple options. The first way is to post the task on their profile, where students can browse and apply for the job. The employer can then review the applicants and their profiles to choose the best candidate. The second way is for the employer to directly request a specific student to do their task. If the student accepts the direct request, the task is assigned. For both methods, a digital agreement is signed, and a 10% advance payment is made to the student to begin the work. KADAM takes a small 9.5% platform fee from the employer's total offer, which is how the platform is maintained, while still ensuring the student receives most of the payment.
 
 Here is a brief description of the pages of the site:
 1.	Landing page
@@ -107,7 +110,7 @@ i.	Task:
 5.	Estimated time required
 6.	Net amount
 -Minimum net amount is automatically calculated depending on the estimated time required. (1 hour = 100rs minimum)
-- Kadam takes 8% of your offer as platform fees.
+- Kadam takes 9.5% of your offer as platform fees.
 - You can easily calculate within the platform about the fees for the platform as well as the student. (Student’s Income= Your offer - platform fees)
 7.	Related Image
 - An image which represents your work the best. If no such image is available, the platform automatically assigns a placeholder image depending on the task category.
