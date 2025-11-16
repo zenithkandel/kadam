@@ -53,6 +53,20 @@
             --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --text-primary: #e8e8e8;
+            --text-secondary: #a8a8a8;
+            --bg-white: #1e1e1e;
+            --bg-light: #121212;
+            --bg-cream: #1a1a1a;
+            --border-color: #3a3a3a;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
         body {
             font-family: 'Roboto', sans-serif;
             background: var(--bg-light);
@@ -65,17 +79,46 @@
             overflow-x: hidden;
         }
 
-        /* Subtle Background Pattern */
-        body::before {
-            content: '';
+
+
+        /* Dark Mode Button */
+        .theme-toggle {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212, 165, 116, 0.02) 35px, rgba(212, 165, 116, 0.02) 70px);
-            z-index: -1;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: var(--bg-white);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition-base);
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        .theme-toggle:hover i {
+            color: white;
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .theme-toggle i {
+            font-size: 20px;
+            color: var(--primary-color);
+            transition: var(--transition-base);
         }
 
         .login-container {
@@ -438,6 +481,17 @@
             .login-form {
                 padding: 30px 20px;
             }
+
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .theme-toggle i {
+                font-size: 18px;
+            }
         }
 
         /* Accessibility */
@@ -466,6 +520,11 @@
 <body>
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-sun"></i>
+    </button>
 
     <main id="main-content" class="login-container">
         <!-- Header -->
@@ -539,6 +598,43 @@
     </main>
 
     <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            // Add rotation animation
+            themeToggle.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                themeToggle.style.transform = '';
+            }, 300);
+
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                themeToggle.setAttribute('aria-label', 'Switch to light mode');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+            }
+        }
+
         // Form Elements
         const loginForm = document.getElementById('loginForm');
         const emailInput = document.getElementById('email');
