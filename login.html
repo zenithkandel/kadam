@@ -318,30 +318,28 @@
       }
       /* Theme-specific overrides removed to ensure only colors change; all visuals derive from variables above. */
       @media (max-width: 560px) {
-        :root { --mobile-x-pad: 1.1rem; }
+        :root { --mobile-x-pad: 1rem; }
+        body { min-height: 100svh; background-attachment: scroll; }
         .login-shell {
           grid-template-columns: 1fr;
           justify-items: center;
           align-items: center;
-          gap: 1.25rem;
-          padding: 1.25rem 1rem 4.5rem; /* extra bottom to avoid toggle overlap */
+          gap: 0.9rem;
+          padding: 1rem var(--mobile-x-pad);
         }
         .brand-block,
         .card {
           width: 100%;
-          max-width: 420px;
+          max-width: 360px;
         }
-        .brand-block {
-          text-align: center;
-          padding-inline: var(--mobile-x-pad);
-        }
-        .brand-block p {
-          margin-left: auto;
-          margin-right: auto;
-        }
-        .card {
-          padding: 1.4rem var(--mobile-x-pad) 1.2rem;
-        }
+        .brand-block { text-align: center; padding-inline: 0; }
+        .brand-block h1 { font-size: 1.6rem; }
+        .brand-block p { margin: 0 auto; font-size: 0.9rem; }
+        .card { padding: 1rem var(--mobile-x-pad) 0.9rem; }
+        .card h2 { font-size: 1.1rem; }
+        input[type="text"], input[type="email"], input[type="password"] { padding: 0.78rem 0.85rem; }
+        button[type="submit"] { padding: 0.78rem 0.9rem; }
+        .theme-toggle { bottom: calc(12px + env(safe-area-inset-bottom)); }
       }
     </style>
   </head>
