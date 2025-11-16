@@ -101,7 +101,7 @@
         }
 
         .login-header {
-            background: var(--primary-gradient);
+            background: var(--primary-color);
             padding: 40px 30px;
             text-align: center;
             position: relative;
@@ -115,7 +115,7 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
         }
 
@@ -243,12 +243,12 @@
 
         input:focus {
             background: var(--bg-white);
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.15);
         }
 
         input:focus + .input-icon {
-            color: #667eea;
+            color: var(--primary-color);
             transform: scale(1.1);
         }
 
@@ -268,8 +268,8 @@
         }
 
         .password-toggle:hover {
-            color: #667eea;
-            background: rgba(102, 126, 234, 0.1);
+            color: var(--primary-color);
+            background: rgba(212, 165, 116, 0.1);
         }
 
         .password-toggle:active {
