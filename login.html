@@ -48,19 +48,15 @@
 		.logo {
 			display: flex;
 			flex-direction: column;
-			gap: 4px;
+			gap: 6px;
+			align-items: flex-start;
 		}
 
-		.logo span:first-child {
-			font-size: 14px;
-			letter-spacing: 0.5em;
-			text-transform: uppercase;
-			color: var(--text-muted);
-		}
-
-		.logo span:last-child {
-			font-size: 34px;
+		.logo .brand {
+			font-size: 32px;
 			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
 		}
 
 		.login-header {
@@ -179,8 +175,7 @@
 <body>
 	<main class="login-wrapper" role="main">
 		<div class="logo" aria-label="Kadam brand">
-			<span>kadam</span>
-			<span>Welcome Back</span>
+			<span class="brand">Kadam</span>
 		</div>
 
 		<section class="login-header">
