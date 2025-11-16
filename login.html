@@ -7,15 +7,69 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">Kadam</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="signup.html">Signup</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Navigation removed per request for a cleaner, simpler login page -->
+    <style>
+        /* Light, calm overrides for login page only */
+        body {
+            background: #f5f7fa;
+            color: #333;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+        .login {
+            padding-top: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .login h2 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.6rem;
+            color: #1f2937;
+        }
+        .login form {
+            background: #ffffff;
+            padding: 2rem 2.25rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .login input {
+            width: 100%;
+            background: #f9fafb;
+            color: #111;
+            border: 1px solid #cbd5e1;
+            padding: 0.85rem 0.9rem;
+            border-radius: 8px;
+            margin-bottom: 0.85rem;
+            font-size: 0.95rem;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        .login input:focus {
+            outline: 2px solid #3b82f6;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.25);
+        }
+        .login button {
+            width: 100%;
+            background: #2563eb;
+            border: none;
+            color: #fff;
+            padding: 0.9rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+        .login button:hover {
+            background: #1d4ed8;
+        }
+    </style>
 
     <section class="login">
         <h2>Welcome Back!</h2>
