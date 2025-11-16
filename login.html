@@ -120,23 +120,10 @@
 
 		.options-row {
 			display: flex;
-			justify-content: space-between;
+			justify-content: flex-end;
 			align-items: center;
-			gap: 16px;
 			font-size: 13px;
 			color: var(--text-muted);
-		}
-
-		.remember-me {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-		}
-
-		.remember-me input {
-			width: 16px;
-			height: 16px;
-			accent-color: var(--accent);
 		}
 
 		.link {
@@ -165,44 +152,6 @@
 		button[type="submit"]:hover {
 			transform: translateY(-2px);
 			box-shadow: 0 14px 30px rgba(10, 18, 38, 0.35);
-		}
-
-		.divider {
-			display: flex;
-			align-items: center;
-			gap: 12px;
-			color: var(--text-muted);
-			font-size: 13px;
-		}
-
-		.divider::before,
-		.divider::after {
-			content: "";
-			flex: 1;
-			height: 1px;
-			background: rgba(255, 255, 255, 0.18);
-		}
-
-		.social-login {
-			display: flex;
-			gap: 12px;
-		}
-
-		.social-login button {
-			flex: 1;
-			border: 1px solid rgba(255, 255, 255, 0.22);
-			border-radius: 12px;
-			background: transparent;
-			color: var(--text-primary);
-			padding: 12px 0;
-			cursor: pointer;
-			font-size: 14px;
-			transition: border 0.2s ease, background 0.2s ease;
-		}
-
-		.social-login button:hover {
-			border-color: var(--accent);
-			background: rgba(255, 255, 255, 0.08);
 		}
 
 		.signup-text {
