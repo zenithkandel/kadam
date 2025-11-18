@@ -140,48 +140,19 @@
             top: 0;
         }
 
-        /* Header/Navigation */
-        .navbar {
-            background: var(--surface-color);
-            padding: 15px 0;
-            box-shadow: var(--shadow-sm);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
+        /* Buttons */
         .btn {
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px 24px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition-base);
             border: none;
             cursor: pointer;
             font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-primary {
@@ -207,22 +178,28 @@
         }
 
         .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
             background: var(--surface-color);
             border: 2px solid var(--border-color);
             color: var(--text-primary);
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: var(--transition-base);
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
         }
 
         .theme-toggle:hover {
             background: var(--primary-light);
             border-color: var(--primary-color);
+            transform: scale(1.1);
         }
 
         /* Profile Hero Section */
@@ -370,16 +347,19 @@
         }
 
         .profile-actions {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 12px;
-            flex-wrap: wrap;
             margin-top: 20px;
+            width: 100%;
         }
 
         .btn-icon {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
+            white-space: nowrap;
         }
 
         .social-links {
@@ -954,6 +934,17 @@
         }
 
         @media (max-width: 768px) {
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .profile-hero {
+                padding: 50px 20px 100px;
+            }
+
             .profile-header {
                 padding: 30px 20px;
                 flex-direction: column;
@@ -963,6 +954,7 @@
 
             .profile-info {
                 align-items: center;
+                width: 100%;
             }
 
             .profile-name {
@@ -972,87 +964,76 @@
 
             .profile-stats {
                 justify-content: center;
-                gap: 20px;
+                gap: 25px;
+                width: 100%;
+            }
+
+            .stat-item {
+                flex: 0 0 auto;
             }
 
             .profile-actions {
+                grid-template-columns: 1fr;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+
+            .social-links {
                 justify-content: center;
             }
 
             .level-section {
-                padding: 20px;
+                padding: 25px 20px;
             }
 
             .portfolio-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 15px;
             }
-        }
 
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 0 15px;
+            .section {
+                padding: 25px 20px;
             }
 
-            .logo {
-                font-size: 20px;
+            .rating-summary {
+                flex-direction: column;
+                align-items: stretch;
             }
 
-            .nav-actions {
-                gap: 10px;
+            .rating-score {
+                padding-bottom: 15px;
+                border-bottom: 1px solid var(--border-color);
             }
 
-            .btn {
-                padding: 8px 14px;
-                font-size: 13px;
-            }
-
-            .btn-outline {
-                display: none;
-            }
-
-            .theme-toggle {
-                width: 38px;
-                height: 38px;
+            .rating-breakdown {
+                padding-top: 15px;
             }
         }
 
         @media (max-width: 480px) {
-            .nav-container {
-                flex-wrap: nowrap;
-                gap: 8px;
-                padding: 0 10px;
-            }
-
-            .logo {
-                font-size: 18px;
-            }
-
-            .nav-actions {
-                gap: 8px;
-            }
-
-            .btn {
-                padding: 7px 12px;
-                font-size: 12px;
-                white-space: nowrap;
-            }
-
-            .btn-outline {
-                display: none;
-            }
-
             .theme-toggle {
-                width: 36px;
-                height: 36px;
-            }
-
-            .theme-toggle i {
-                font-size: 16px;
+                top: 12px;
+                right: 12px;
+                width: 42px;
+                height: 42px;
             }
 
             .profile-hero {
                 padding: 40px 15px 100px;
+            }
+
+            .profile-card {
+                padding: 0 15px;
+            }
+
+            .profile-header {
+                padding: 25px 15px;
             }
 
             .profile-image {
@@ -1060,12 +1041,53 @@
                 height: 120px;
             }
 
+            .verification-badge {
+                width: 36px;
+                height: 36px;
+            }
+
             .profile-name {
-                font-size: 24px;
+                font-size: 22px;
+            }
+
+            .profile-bio {
+                font-size: 14px;
+            }
+
+            .profile-stats {
+                gap: 20px;
+            }
+
+            .stat-value {
+                font-size: 22px;
+            }
+
+            .stat-label {
+                font-size: 12px;
+            }
+
+            .profile-actions {
+                max-width: 100%;
+            }
+
+            .btn {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+
+            .social-link {
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
+            }
+
+            .level-section {
+                padding: 20px 15px;
             }
 
             .section {
                 padding: 20px 15px;
+                margin-bottom: 20px;
             }
 
             .section-title {
@@ -1074,54 +1096,84 @@
 
             .portfolio-grid {
                 grid-template-columns: 1fr 1fr;
+                gap: 12px;
             }
 
-            .stat-item {
-                flex: 1 1 30%;
+            .skill-tag {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .task-card {
+                padding: 12px;
             }
 
             .task-meta {
                 flex-direction: column;
                 gap: 5px;
             }
-        }
 
-        @media (max-width: 360px) {
-            .nav-container {
-                padding: 0 8px;
+            .info-item {
+                gap: 10px;
             }
 
-            .logo {
-                font-size: 16px;
+            .info-icon {
+                width: 38px;
+                height: 38px;
             }
 
-            .nav-actions {
+            .tags-grid {
                 gap: 6px;
             }
 
-            .btn {
-                padding: 6px 10px;
+            .tag {
                 font-size: 11px;
+                padding: 5px 10px;
             }
 
-            .theme-toggle {
-                width: 34px;
-                height: 34px;
+            .rating-summary {
+                padding: 20px 15px;
             }
 
-            .theme-toggle i {
-                font-size: 14px;
+            .rating-number {
+                font-size: 42px;
             }
+
+            .review-card {
+                padding: 15px;
+            }
+
+            .completed-task-card {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
             body {
                 font-size: 14px;
             }
 
-            .logo {
-                font-size: 20px;
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                width: 38px;
+                height: 38px;
+            }
+
+            .theme-toggle i {
+                font-size: 16px;
             }
 
             .profile-hero {
-                padding: 30px 10px 90px;
+                padding: 30px 10px 80px;
+            }
+
+            .profile-card {
+                padding: 0 10px;
+            }
+
+            .profile-header {
+                padding: 20px 12px;
             }
 
             .profile-image {
@@ -1132,7 +1184,7 @@
             .verification-badge {
                 width: 32px;
                 height: 32px;
-                font-size: 14px;
+                font-size: 13px;
             }
 
             .profile-name {
@@ -1140,8 +1192,12 @@
             }
 
             .user-type-badge {
-                font-size: 11px;
-                padding: 4px 10px;
+                font-size: 10px;
+                padding: 4px 8px;
+            }
+
+            .profile-bio {
+                font-size: 13px;
             }
 
             .stat-value {
@@ -1152,16 +1208,44 @@
                 font-size: 11px;
             }
 
-            .section {
-                padding: 15px 10px;
+            .btn {
+                padding: 11px 14px;
+                font-size: 13px;
             }
 
-            .section-title {
+            .social-link {
+                width: 38px;
+                height: 38px;
                 font-size: 16px;
             }
 
+            .level-section {
+                padding: 18px 12px;
+            }
+
+            .level-badge {
+                font-size: 16px;
+            }
+
+            .xp-text {
+                font-size: 12px;
+            }
+
+            .section {
+                padding: 18px 12px;
+                margin-bottom: 18px;
+            }
+
+            .section-title {
+                font-size: 17px;
+            }
+
+            .about-text {
+                font-size: 14px;
+            }
+
             .skill-tag {
-                padding: 8px 12px;
+                padding: 7px 11px;
                 font-size: 12px;
             }
 
@@ -1173,6 +1257,47 @@
                 width: 35px;
                 height: 35px;
             }
+
+            .info-label {
+                font-size: 11px;
+            }
+
+            .info-value {
+                font-size: 13px;
+            }
+
+            .tag {
+                font-size: 10px;
+                padding: 4px 8px;
+            }
+
+            .task-card {
+                padding: 10px;
+            }
+
+            .task-title {
+                font-size: 13px;
+            }
+
+            .rating-number {
+                font-size: 38px;
+            }
+
+            .rating-stars {
+                font-size: 18px;
+            }
+
+            .review-card {
+                padding: 12px;
+            }
+
+            .reviewer-name {
+                font-size: 14px;
+            }
+
+            .review-text {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -1180,19 +1305,10 @@
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
     
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">KADAM</a>
-            <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
-                <a href="#" class="btn btn-outline">Back to Search</a>
-                <a href="dashboard.html" class="btn btn-primary">Dashboard</a>
-            </div>
-        </div>
-    </nav>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+    </button>
 
     <!-- Profile Hero -->
     <div class="profile-hero"></div>
