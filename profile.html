@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - KADAM Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #d4a574;
+            --primary-dark: #c49565;
+            --primary-light: #e8d5c4;
+            --secondary-color: #8b7355;
+            --background-color: #faf8f6;
+            --surface-color: #ffffff;
+            --text-primary: #2c2c2c;
+            --text-secondary: #666666;
+            --border-color: #e0d5cc;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --error-color: #f44336;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #d4a574;
+            --primary-dark: #e8d5c4;
+            --primary-light: #8b7355;
+            --secondary-color: #a88968;
+            --background-color: #1a1a1a;
+            --surface-color: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-color: #404040;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition-base);
+        }
+
+        /* Header/Navigation */
+        .navbar {
+            background: var(--surface-color);
+            padding: 15px 0;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-base);
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: var(--surface-color);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-color);
+        }
+
+        /* Profile Hero Section */
+        .profile-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 60px 20px 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            max-width: 1200px;
+            margin: -80px auto 40px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card {
+            background: var(--surface-color);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .profile-header {
+            padding: 40px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .profile-image-container {
+            position: relative;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 5px solid var(--surface-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .verification-badge {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: var(--success-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--surface-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-name {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-type-badge {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .profile-username {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .profile-bio {
+            color: var(--text-primary);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn-icon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--background-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-base);
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Level Progress */
+        .level-section {
+            padding: 30px 40px;
+            background: var(--background-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .level-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .level-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .level-badge i {
+            font-size: 24px;
+        }
+
+        .xp-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+            border-radius: 20px;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Content Sections */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+
+        .main-content {
+            min-width: 0;
+        }
+
+        .sidebar {
+            min-width: 0;
+        }
+
+        .section {
+            background: var(--surface-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--primary-color);
+        }
+
+        /* About Section */
+        .about-text {
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        /* Skills Section */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: var(--background-color);
+            color: var(--text-primary);
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            border: 2px solid var(--border-color);
+            transition: var(--transition-base);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .skill-tag i {
+            color: var(--primary-color);
+            font-size: 12px;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 15px;
+            opacity: 0;
+            transition: var(--transition-base);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-title {
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Sidebar Sections */
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--background-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Tags */
+        .tags-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Active Tasks */
+        .task-card {
+            background: var(--background-color);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border: 2px solid var(--border-color);
+            transition: var(--transition-base);
+        }
+
+        .task-card:hover {
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .task-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .task-meta i {
+            color: var(--primary-color);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            color: var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                padding: 30px 20px;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile-info {
+                align-items: center;
+            }
+
+            .profile-name {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .profile-stats {
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .profile-actions {
+                justify-content: center;
+            }
+
+            .level-section {
+                padding: 20px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .profile-hero {
+                padding: 40px 15px 100px;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .profile-name {
+                font-size: 24px;
+            }
+
+            .section {
+                padding: 20px 15px;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">KADAM</a>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="#" class="btn btn-outline">Back to Search</a>
+                <a href="dashboard.html" class="btn btn-primary">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Hero -->
+    <div class="profile-hero"></div>
+
+    <!-- Profile Card -->
+    <div class="profile-card">
+        <div class="card">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-image-container">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe&size=150&background=d4a574&color=fff&bold=true" alt="John Doe" class="profile-image">
+                    <div class="verification-badge" title="Verified User">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                </div>
+
+                <div class="profile-info">
+                    <h1 class="profile-name">
+                        John Doe
+                        <span class="user-type-badge">Student</span>
+                    </h1>
+                    <p class="profile-username">@johndoe_2024</p>
+                    <p class="profile-bio">
+                        Passionate web developer and graphic designer with 3+ years of experience creating beautiful and functional digital solutions.
+                    </p>
+
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">47</span>
+                            <span class="stat-label">Tasks Done</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">4.8</span>
+                            <span class="stat-label">Rating</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">98%</span>
+                            <span class="stat-label">Success Rate</span>
+                        </div>
+                    </div>
+
+                    <div class="profile-actions">
+                        <button class="btn btn-primary btn-icon">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Request Task
+                        </button>
+                        <button class="btn btn-outline btn-icon">
+                            <i class="fa-regular fa-message"></i>
+                            Message
+                        </button>
+                        <button class="btn btn-outline btn-icon">
+                            <i class="fa-regular fa-bookmark"></i>
+                            Save
+                        </button>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" title="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Behance">
+                            <i class="fa-brands fa-behance"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level Section -->
+            <div class="level-section">
+                <div class="level-info">
+                    <div class="level-badge">
+                        <i class="fa-solid fa-crown"></i>
+                        Level 8 - Expert
+                    </div>
+                    <span class="xp-text">2,450 / 3,000 XP</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 81.6%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="content-wrapper">
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- About Section -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-user"></i>
+                    About
+                </h2>
+                <p class="about-text">
+                    I'm a dedicated student specializing in full-stack web development and modern graphic design. With a passion for creating user-friendly digital experiences, I've successfully completed 47 projects ranging from e-commerce websites to brand identity designs. I believe in clean code, pixel-perfect designs, and delivering work that exceeds expectations.
+                    <br><br>
+                    My expertise includes React, Node.js, UI/UX design, and Adobe Creative Suite. I'm always eager to take on new challenges and collaborate with clients who value quality and creativity. Let's build something amazing together!
+                </p>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-code"></i>
+                    Skills & Expertise
+                </h2>
+                <div class="skills-list">
+                    <div class="skill-tag">
+                        <i class="fa-solid fa-check"></i>
+                        Web Development
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fa-solid fa-check"></i>
+                        Graphic Design
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fa-solid fa-check"></i>
+                        UI/UX Design
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fa-solid fa-check"></i>
+                        Logo Design
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fa-solid fa-check"></i>
+                        React.js
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fa-solid fa-check"></i>
+                        Node.js
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fa-solid fa-check"></i>
+                        Adobe Photoshop
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fa-solid fa-check"></i>
+                        Adobe Illustrator
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fa-solid fa-check"></i>
+                        Figma
+                    </div>
+                    <div class="skill-tag">
+                        <i class="fa-solid fa-check"></i>
+                        WordPress
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-briefcase"></i>
+                    Portfolio & Work Samples
+                </h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/400/400?random=1" alt="Portfolio item" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-title">E-commerce Website</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/400/400?random=2" alt="Portfolio item" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-title">Brand Identity Design</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/400/400?random=3" alt="Portfolio item" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-title">Mobile App UI</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/400/400?random=4" alt="Portfolio item" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-title">Logo Collection</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/400/400?random=5" alt="Portfolio item" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-title">Dashboard Design</span>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/400/400?random=6" alt="Portfolio item" class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-title">Social Media Graphics</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Contact Info -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-address-card"></i>
+                    Contact Info
+                </h2>
+                <div class="info-list">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Email</div>
+                            <div class="info-value">john.doe@email.com</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Phone</div>
+                            <div class="info-value">+977 9812345678</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Location</div>
+                            <div class="info-value">Kathmandu, Nepal</div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-calendar"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Member Since</div>
+                            <div class="info-value">January 2023</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search Tags -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-tags"></i>
+                    Search Tags
+                </h2>
+                <div class="tags-grid">
+                    <span class="tag">Web Developer</span>
+                    <span class="tag">Designer</span>
+                    <span class="tag">React</span>
+                    <span class="tag">Frontend</span>
+                    <span class="tag">UI/UX</span>
+                    <span class="tag">Graphic Design</span>
+                    <span class="tag">Logo</span>
+                    <span class="tag">Branding</span>
+                    <span class="tag">WordPress</span>
+                    <span class="tag">Figma</span>
+                </div>
+            </section>
+
+            <!-- Active Tasks -->
+            <section class="section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-list-check"></i>
+                    Active Tasks
+                </h2>
+                <div class="task-card">
+                    <div class="task-title">E-commerce Website Development</div>
+                    <div class="task-meta">
+                        <span><i class="fa-solid fa-clock"></i> 5 days left</span>
+                        <span><i class="fa-solid fa-signal"></i> In Progress</span>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <div class="task-title">Brand Identity Package</div>
+                    <div class="task-meta">
+                        <span><i class="fa-solid fa-clock"></i> 12 days left</span>
+                        <span><i class="fa-solid fa-signal"></i> In Progress</span>
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const icon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        updateIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        // Portfolio lightbox (simple version)
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', () => {
+                alert('Portfolio item clicked! You can implement a lightbox modal here.');
+            });
+        });
+
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
