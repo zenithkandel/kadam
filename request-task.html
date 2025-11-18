@@ -334,41 +334,20 @@
         /* Category Grid */
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 900px) {
-            .category-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 16px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .category-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 14px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .category-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 18px;
+            margin-top: 24px;
         }
 
         .category-option {
             position: relative;
+            width: 100%;
         }
 
         .category-option input[type="radio"] {
             position: absolute;
             opacity: 0;
-            width: 0;
-            height: 0;
+            pointer-events: none;
         }
 
         .category-label {
@@ -376,87 +355,204 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 28px 20px;
-            background: var(--surface-color);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
+            gap: 12px;
+            padding: 32px 24px;
+            background: linear-gradient(145deg, var(--surface-color), var(--background-color));
+            border: 2px solid transparent;
+            border-radius: 20px;
             cursor: pointer;
-            transition: var(--transition-base);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-align: center;
-            min-height: 130px;
             position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            isolation: isolate;
+            height: 100%;
+            min-height: 140px;
         }
 
         .category-label::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            inset: 0;
+            border-radius: 18px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
             opacity: 0;
-            transition: var(--transition-base);
-            z-index: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .category-label::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+
+        .category-icon {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-light);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
         }
 
         .category-label i {
-            font-size: 40px;
+            font-size: 32px;
             color: var(--primary-color);
-            margin-bottom: 14px;
-            transition: var(--transition-base);
-            position: relative;
-            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .category-label span {
-            font-size: 14px;
-            color: var(--text-primary);
+            font-size: 15px;
             font-weight: 600;
             font-family: 'Poppins', sans-serif;
-            position: relative;
-            z-index: 1;
-            transition: var(--transition-base);
-            letter-spacing: 0.3px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
         }
 
-        .category-option input:checked + .category-label {
-            border-color: var(--primary-color);
-            background: var(--primary-color);
-            transform: translateY(-5px);
-            box-shadow: 0 12px 28px rgba(212, 165, 116, 0.35);
+        /* Hover State */
+        .category-label:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(212, 165, 116, 0.25);
         }
 
-        .category-option input:checked + .category-label::before {
+        .category-label:hover::before {
             opacity: 1;
         }
 
-        .category-option input:checked + .category-label i {
+        .category-label:hover .category-icon {
+            transform: rotate(5deg) scale(1.1);
+            background: var(--primary-color);
+        }
+
+        .category-label:hover i {
             color: white;
+            transform: scale(1.1);
+        }
+
+        .category-label:hover span {
+            color: var(--primary-color);
+        }
+
+        /* Checked State */
+        .category-option input:checked + .category-label {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 40px rgba(212, 165, 116, 0.4);
+        }
+
+        .category-option input:checked + .category-label::after {
+            opacity: 1;
+        }
+
+        .category-option input:checked + .category-label .category-icon {
+            background: white;
+            transform: rotate(-5deg) scale(1.15);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-option input:checked + .category-label i {
+            color: var(--primary-color);
             transform: scale(1.2);
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
 
         .category-option input:checked + .category-label span {
             color: white;
             font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .category-label:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .category-label:hover i {
-            transform: scale(1.1);
-            color: var(--primary-dark);
-        }
-
+        /* Active State */
         .category-label:active {
-            transform: translateY(-2px);
+            transform: translateY(-5px) scale(0.98);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .category-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 16px;
+            }
+
+            .category-label {
+                padding: 28px 20px;
+                min-height: 130px;
+            }
+
+            .category-icon {
+                width: 52px;
+                height: 52px;
+            }
+
+            .category-label i {
+                font-size: 28px;
+            }
+
+            .category-label span {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+
+            .category-label {
+                padding: 24px 16px;
+                min-height: 120px;
+            }
+
+            .category-icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            .category-label i {
+                font-size: 26px;
+            }
+
+            .category-label span {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .category-grid {
+                gap: 12px;
+            }
+
+            .category-label {
+                padding: 20px 12px;
+                min-height: 110px;
+                border-radius: 16px;
+            }
+
+            .category-icon {
+                width: 44px;
+                height: 44px;
+                border-radius: 12px;
+            }
+
+            .category-label i {
+                font-size: 24px;
+            }
+
+            .category-label span {
+                font-size: 12px;
+            }
         }
 
         /* Number Input with Controls */
@@ -1093,70 +1189,90 @@
                         <div class="category-option">
                             <input type="radio" id="cat-website" name="category" value="Website" required>
                             <label for="cat-website" class="category-label">
-                                <i class="fa-solid fa-code"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-code"></i>
+                                </div>
                                 <span>Website</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-software" name="category" value="Software">
                             <label for="cat-software" class="category-label">
-                                <i class="fa-solid fa-laptop-code"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                                </div>
                                 <span>Software</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-hardware" name="category" value="Computer Hardware">
                             <label for="cat-hardware" class="category-label">
-                                <i class="fa-solid fa-microchip"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
                                 <span>Hardware</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-art" name="category" value="Art">
                             <label for="cat-art" class="category-label">
-                                <i class="fa-solid fa-palette"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-palette"></i>
+                                </div>
                                 <span>Art</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-music" name="category" value="Music">
                             <label for="cat-music" class="category-label">
-                                <i class="fa-solid fa-music"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-music"></i>
+                                </div>
                                 <span>Music</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-design" name="category" value="Graphics Design">
                             <label for="cat-design" class="category-label">
-                                <i class="fa-solid fa-pen-nib"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </div>
                                 <span>Graphics</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-logo" name="category" value="Logo Making">
                             <label for="cat-logo" class="category-label">
-                                <i class="fa-solid fa-bezier-curve"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-bezier-curve"></i>
+                                </div>
                                 <span>Logo</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-video" name="category" value="Videography">
                             <label for="cat-video" class="category-label">
-                                <i class="fa-solid fa-video"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-video"></i>
+                                </div>
                                 <span>Video</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-writing" name="category" value="Writing">
                             <label for="cat-writing" class="category-label">
-                                <i class="fa-solid fa-pen-fancy"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-pen-fancy"></i>
+                                </div>
                                 <span>Writing</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-other" name="category" value="Other">
                             <label for="cat-other" class="category-label">
-                                <i class="fa-solid fa-ellipsis"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-ellipsis"></i>
+                                </div>
                                 <span>Other</span>
                             </label>
                         </div>
