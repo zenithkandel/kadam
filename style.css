@@ -1,0 +1,154 @@
+/* Global base styles and shared theme variables */
+
+:root {
+	--primary-color: #d4a574;
+	--primary-dark: #c49565;
+	--primary-light: #e8d5c4;
+	--secondary-color: #8b7355;
+	--success-color: #4caf50;
+	--warning-color: #ff9800;
+	--error-color: #f44336;
+	--text-primary: #3d3d3d;
+	--text-secondary: #7a7a7a;
+	--bg-white: #fdfcfb;
+	--bg-light: #f5f3f0;
+	--bg-cream: #faf8f5;
+	--background-color: #faf8f6;
+	--surface-color: #ffffff;
+	--border-color: #e6e2dc;
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+	--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+	--transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	--transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark mode overrides shared across pages */
+[data-theme="dark"] {
+	--primary-color: #d4a574;
+	--primary-dark: #e8d5c4;
+	--primary-light: #8b7355;
+	--secondary-color: #a88968;
+	--text-primary: #e8e8e8;
+	--text-secondary: #a8a8a8;
+	--bg-white: #1e1e1e;
+	--bg-light: #121212;
+	--bg-cream: #1a1a1a;
+	--background-color: #1a1a1a;
+	--surface-color: #2d2d2d;
+	--border-color: #3a3a3a;
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+	--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Global reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Base body styles (pages can override background if needed) */
+body {
+	font-family: 'Roboto', sans-serif;
+	background: var(--bg-light);
+	color: var(--text-primary);
+	line-height: 1.6;
+}
+
+/* Skip to content link for accessibility */
+.skip-to-content {
+	position: absolute;
+	top: -100px;
+	left: 0;
+	background: var(--primary-color);
+	color: #ffffff;
+	padding: 12px 20px;
+	text-decoration: none;
+	z-index: 1000;
+	font-weight: 600;
+	border-radius: 0 0 8px 0;
+}
+
+.skip-to-content:focus {
+	top: 0;
+}
+
+/* Shared theme toggle button base (pages may refine) */
+.theme-toggle {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	width: 45px;
+	height: 45px;
+	background: var(--bg-white);
+	border: 2px solid var(--border-color);
+	border-radius: 50%;
+	cursor: pointer;
+	transition: var(--transition-base);
+	z-index: 1000;
+	box-shadow: var(--shadow-md);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.theme-toggle i {
+	font-size: 18px;
+	color: var(--text-primary);
+	transition: var(--transition-base);
+}
+
+.theme-toggle:hover {
+	background: var(--primary-color);
+	border-color: var(--primary-color);
+}
+
+.theme-toggle:hover i {
+	color: var(--bg-white);
+}
+
+/* Generic button helpers */
+.btn {
+	padding: 12px 24px;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	text-decoration: none;
+	font-weight: 500;
+	font-size: 14px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: var(--transition-base);
+}
+
+.btn-primary {
+	background: var(--primary-color);
+	color: #ffffff;
+}
+
+.btn-primary:hover {
+	background: var(--primary-dark);
+}
+
+.btn-outline {
+	background: transparent;
+	color: var(--text-primary);
+	border: 2px solid var(--border-color);
+}
+
+.btn-outline:hover {
+	border-color: var(--primary-color);
+	color: var(--primary-color);
+}
+
+/* Smooth focus outline for keyboard users */
+*:focus-visible {
+	outline: 2px solid var(--primary-color);
+	outline-offset: 2px;
+}
+
