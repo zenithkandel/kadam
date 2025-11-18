@@ -400,7 +400,12 @@
 
         .category-label:hover {
             border-color: var(--primary-color);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-label:active {
+            transform: translateY(-1px);
         }
 
         /* Number Input with Controls */
@@ -440,6 +445,15 @@
         .number-btn:hover {
             background: var(--primary-dark);
             transform: scale(1.05);
+        }
+
+        .number-btn:active {
+            transform: scale(0.95);
+        }
+
+        .number-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         /* Budget Calculator */
@@ -575,6 +589,16 @@
             box-shadow: var(--shadow-md);
         }
 
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .btn-secondary {
             background: var(--background-color);
             color: var(--text-primary);
@@ -583,6 +607,11 @@
 
         .btn-secondary:hover {
             border-color: var(--primary-color);
+            background: var(--primary-light);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0);
         }
 
         /* Info Box */
