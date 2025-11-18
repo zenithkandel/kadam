@@ -331,11 +331,15 @@
             margin-top: 5px;
         }
 
-        /* Category Grid - Minimal & Flat Design */
+        /* Category Grid */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 15px;
+        }
+
+        .category-option {
+            position: relative;
         }
 
         .category-option input[type="radio"] {
@@ -349,7 +353,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             padding: 20px 15px;
             background: var(--surface-color);
             border: 2px solid var(--border-color);
@@ -361,8 +365,18 @@
             min-height: 120px;
         }
 
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            transition: var(--transition-base);
+        }
+
         .category-label i {
-            font-size: 28px;
+            font-size: 24px;
             color: var(--primary-color);
             transition: var(--transition-base);
         }
@@ -380,7 +394,6 @@
             transform: translateY(-3px);
             border-color: var(--primary-color);
             box-shadow: var(--shadow-sm);
-            background: var(--background-color);
         }
 
         /* Checked State */
@@ -411,8 +424,12 @@
                 padding: 15px 10px;
                 min-height: 100px;
             }
+            .category-icon {
+                width: 40px;
+                height: 40px;
+            }
             .category-label i {
-                font-size: 24px;
+                font-size: 20px;
             }
             .category-label span {
                 font-size: 13px;
@@ -1066,70 +1083,90 @@
                         <div class="category-option">
                             <input type="radio" id="cat-website" name="category" value="Website" required>
                             <label for="cat-website" class="category-label">
-                                <i class="fa-solid fa-globe"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-globe"></i>
+                                </div>
                                 <span>Website</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-software" name="category" value="Software">
                             <label for="cat-software" class="category-label">
-                                <i class="fa-solid fa-code"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-code"></i>
+                                </div>
                                 <span>Software</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-hardware" name="category" value="Computer Hardware">
                             <label for="cat-hardware" class="category-label">
-                                <i class="fa-solid fa-microchip"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
                                 <span>Hardware</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-art" name="category" value="Art">
                             <label for="cat-art" class="category-label">
-                                <i class="fa-solid fa-paint-brush"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-paint-brush"></i>
+                                </div>
                                 <span>Art</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-music" name="category" value="Music">
                             <label for="cat-music" class="category-label">
-                                <i class="fa-solid fa-music"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-music"></i>
+                                </div>
                                 <span>Music</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-design" name="category" value="Graphics Design">
                             <label for="cat-design" class="category-label">
-                                <i class="fa-solid fa-palette"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-palette"></i>
+                                </div>
                                 <span>Design</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-logo" name="category" value="Logo Making">
                             <label for="cat-logo" class="category-label">
-                                <i class="fa-solid fa-pen-nib"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-pen-nib"></i>
+                                </div>
                                 <span>Logo</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-video" name="category" value="Videography">
                             <label for="cat-video" class="category-label">
-                                <i class="fa-solid fa-video"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-video"></i>
+                                </div>
                                 <span>Video</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-writing" name="category" value="Writing">
                             <label for="cat-writing" class="category-label">
-                                <i class="fa-solid fa-pencil-alt"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-pencil-alt"></i>
+                                </div>
                                 <span>Writing</span>
                             </label>
                         </div>
                         <div class="category-option">
                             <input type="radio" id="cat-other" name="category" value="Other">
                             <label for="cat-other" class="category-label">
-                                <i class="fa-solid fa-ellipsis-h"></i>
+                                <div class="category-icon">
+                                    <i class="fa-solid fa-ellipsis-h"></i>
+                                </div>
                                 <span>Other</span>
                             </label>
                         </div>
