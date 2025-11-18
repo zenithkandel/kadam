@@ -208,3 +208,4 @@ x.	 System Settings
 2.	Manage content (FAQs, Terms & Conditions, Privacy Policy).
 3.	Update logos, contact info, or global site details.
 4.	Create, edit, or delete admin roles with tiered access (e.g., Super Admin, Moderator, Verifier, Accountant).
+
