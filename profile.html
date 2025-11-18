@@ -1735,6 +1735,43 @@
             section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(section);
         });
+
+        // Load More buttons functionality
+        document.querySelectorAll('.btn-load-more').forEach(button => {
+            button.addEventListener('click', function() {
+                this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Loading...';
+                // Simulate loading
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fa-solid fa-rotate"></i> Load More';
+                    alert('Feature to load more items will be implemented with backend integration.');
+                }, 1000);
+            });
+        });
+
+        // Report profile functionality (can be added to navbar if needed)
+        function reportProfile() {
+            if (confirm('Do you want to report this profile for violations?')) {
+                alert('Report submitted. Our team will review it shortly.');
+            }
+        }
     </script>
+
+    <!-- Footer -->
+    <footer style="background: var(--surface-color); padding: 30px 20px; text-align: center; margin-top: 40px; box-shadow: var(--shadow-sm);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 15px;">
+                &copy; 2024 KADAM. Connecting skilled students with employers.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 14px;">
+                <a href="terms.html" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition-base);" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-secondary)'">Terms & Conditions</a>
+                <span style="color: var(--border-color);">•</span>
+                <a href="privacy.html" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition-base);" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-secondary)'">Privacy Policy</a>
+                <span style="color: var(--border-color);">•</span>
+                <a href="index.html#contact" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition-base);" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-secondary)'">Contact Us</a>
+                <span style="color: var(--border-color);">•</span>
+                <a href="index.html#faq" style="color: var(--text-secondary); text-decoration: none; transition: var(--transition-base);" onmouseover="this.style.color='var(--primary-color)'" onmouseout="this.style.color='var(--text-secondary)'">FAQ</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
