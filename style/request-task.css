@@ -1,53 +1,8 @@
-
-        :root {
-            --primary-color: #d4a574;
-            --primary-dark: #c49565;
-            --primary-light: #e8d5c4;
-            --secondary-color: #8b7355;
-            --background-color: #faf8f6;
-            --surface-color: #ffffff;
-            --text-primary: #2c2c2c;
-            --text-secondary: #666666;
-            --border-color: #e0d5cc;
-            --success-color: #4caf50;
-            --warning-color: #ff9800;
-            --error-color: #f44336;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
-            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
-            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        [data-theme="dark"] {
-            --primary-color: #d4a574;
-            --primary-dark: #e8d5c4;
-            --primary-light: #8b7355;
-            --secondary-color: #a88968;
-            --background-color: #1a1a1a;
-            --surface-color: #2d2d2d;
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0a0;
-            --border-color: #404040;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            transition: var(--transition-base);
-            padding: 20px 15px;
-            min-height: 100vh;
-        }
+body {
+    background-color: var(--background-color);
+    padding: 20px 15px;
+    min-height: 100vh;
+}
 
         .container {
             max-width: 900px;
@@ -57,22 +12,9 @@
 
         /* Theme Toggle */
         .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
             background: var(--surface-color);
-            border: 2px solid var(--border-color);
-            color: var(--text-primary);
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition-base);
-            z-index: 1000;
-            box-shadow: var(--shadow-md);
         }
 
         .theme-toggle:hover {

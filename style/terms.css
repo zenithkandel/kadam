@@ -1,43 +1,5 @@
-* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #d4a574;
-            --primary-dark: #c49565;
-            --accent-color: #e8d5c4;
-            --text-primary: #3d3d3d;
-            --text-secondary: #7a7a7a;
-            --bg-white: #fdfcfb;
-            --bg-light: #f5f3f0;
-            --bg-cream: #faf8f5;
-            --border-color: #e6e2dc;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        [data-theme="dark"] {
-            --text-primary: #e8e8e8;
-            --text-secondary: #a8a8a8;
-            --bg-white: #1e1e1e;
-            --bg-light: #121212;
-            --bg-cream: #1a1a1a;
-            --border-color: #3a3a3a;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-        }
-
         body {
-            font-family: 'Roboto', sans-serif;
-            background: var(--bg-light);
-            color: var(--text-primary);
             line-height: 1.7;
-            transition: var(--transition-base);
         }
 
         /* Theme Toggle */

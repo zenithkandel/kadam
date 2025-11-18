@@ -1,46 +1,4 @@
- * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #d4a574;
-            --primary-dark: #c49565;
-            --accent-color: #e8d5c4;
-            --success-color: #a8b89f;
-            --error-color: #d89a9a;
-            --text-primary: #3d3d3d;
-            --text-secondary: #7a7a7a;
-            --bg-white: #fdfcfb;
-            --bg-light: #f5f3f0;
-            --bg-cream: #faf8f5;
-            --border-color: #e6e2dc;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
-            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Dark Mode Variables */
-        [data-theme="dark"] {
-            --text-primary: #e8e8e8;
-            --text-secondary: #a8a8a8;
-            --bg-white: #1e1e1e;
-            --bg-light: #121212;
-            --bg-cream: #1a1a1a;
-            --border-color: #3a3a3a;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-        }
-
         body {
-            font-family: 'Roboto', sans-serif;
-            background: var(--bg-light);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -48,48 +6,6 @@
             padding: 20px;
             position: relative;
             overflow-x: hidden;
-        }
-
-
-
-        /* Dark Mode Button */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 45px;
-            height: 45px;
-            background: var(--bg-white);
-            border: 2px solid var(--border-color);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: var(--transition-base);
-            z-index: 1000;
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-            box-shadow: var(--shadow-lg);
-            transform: scale(1.1) rotate(15deg);
-        }
-
-        .theme-toggle:hover i {
-            color: white;
-        }
-
-        .theme-toggle:active {
-            transform: scale(0.95);
-        }
-
-        .theme-toggle i {
-            font-size: 20px;
-            color: var(--primary-color);
-            transition: var(--transition-base);
         }
 
         .login-container {
