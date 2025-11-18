@@ -5,17 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>Request Task - Direct Hire Student | KADAM</title>
-    <meta name="description" content="Request a task directly from a student on KADAM. Post your project details, set budget, and hire skilled students for web development, design, and more.">
-    <meta name="keywords" content="request task, hire student, direct hire, post job, KADAM, freelance work">
-    <meta name="robots" content="noindex, nofollow">
+    <title>Request Task - Hire Skilled Students for Your Project | KADAM Nepal</title>
+    <meta name="description" content="Request tasks from talented students on KADAM. Post your project, set budget, and hire skilled students for web development, graphic design, logo making, content writing, and more. Secure payment system with 10% advance and transparent pricing.">
+    <meta name="keywords" content="hire students Nepal, request task, direct hire student, freelance Nepal, student jobs, KADAM platform, project posting, web development, graphic design, logo design, affordable services, student freelancers">
+    <meta name="author" content="KADAM Nepal">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Request Task - Hire Skilled Students | KADAM Nepal">
+    <meta property="og:description" content="Connect with talented students for your projects. Web development, design, content writing, and more. Secure payment with transparent pricing.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kadam.com.np/request-task.html">
+    <meta property="og:image" content="https://kadam.com.np/assets/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Request Task - Hire Skilled Students | KADAM Nepal">
+    <meta name="twitter:description" content="Connect with talented students for your projects on KADAM Nepal.">
+    <meta name="twitter:image" content="https://kadam.com.np/assets/twitter-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://kadam.com.np/request-task.html">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <!-- External Resources -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Request Task - Hire Students",
+      "description": "Request tasks from skilled students on KADAM Nepal",
+      "url": "https://kadam.com.np/request-task.html",
+      "publisher": {
+        "@type": "Organization",
+        "name": "KADAM Nepal"
+      }
+    }
+    </script>
     
     <style>
         :root {
@@ -64,12 +101,14 @@
             color: var(--text-primary);
             line-height: 1.6;
             transition: var(--transition-base);
-            padding: 20px;
+            padding: 20px 15px;
+            min-height: 100vh;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
+            width: 100%;
         }
 
         /* Theme Toggle */
@@ -95,7 +134,11 @@
         .theme-toggle:hover {
             background: var(--primary-light);
             border-color: var(--primary-color);
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
         }
 
         /* Header */
@@ -143,6 +186,12 @@
             display: flex;
             align-items: center;
             gap: 20px;
+            transition: var(--transition-base);
+        }
+
+        .student-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
 
         .student-avatar {
@@ -151,6 +200,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--primary-color);
+            flex-shrink: 0;
         }
 
         .student-info h3 {
@@ -237,6 +287,8 @@
 
         input[type="text"],
         input[type="number"],
+        input[type="email"],
+        input[type="tel"],
         input[type="date"],
         textarea,
         select {
@@ -257,6 +309,14 @@
             outline: none;
             border-color: var(--primary-color);
             background: var(--surface-color);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        input:disabled,
+        textarea:disabled,
+        select:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         textarea {
@@ -274,8 +334,21 @@
         /* Category Grid */
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .category-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .category-option {
