@@ -641,31 +641,54 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             body {
-                padding: 15px;
+                padding: 12px;
             }
 
             .theme-toggle {
                 width: 45px;
                 height: 45px;
-                top: 15px;
-                right: 15px;
+                top: 12px;
+                right: 12px;
+            }
+
+            .page-header {
+                margin-bottom: 30px;
             }
 
             .page-title {
                 font-size: 26px;
             }
 
+            .page-subtitle {
+                font-size: 15px;
+            }
+
             .student-card {
                 flex-direction: column;
                 text-align: center;
+                padding: 20px;
+            }
+
+            .student-avatar {
+                width: 70px;
+                height: 70px;
+            }
+
+            .student-info h3 {
+                font-size: 18px;
+            }
+
+            .student-meta {
+                justify-content: center;
+                font-size: 13px;
             }
 
             .form-card {
-                padding: 25px 20px;
+                padding: 25px 18px;
             }
 
-            .category-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            .section-title {
+                font-size: 18px;
             }
 
             .form-actions {
@@ -674,6 +697,15 @@
 
             .btn {
                 width: 100%;
+                padding: 14px 25px;
+            }
+
+            .budget-calculator {
+                padding: 18px;
+            }
+
+            .calc-row {
+                font-size: 14px;
             }
         }
 
@@ -685,23 +717,74 @@
             .theme-toggle {
                 width: 42px;
                 height: 42px;
+                top: 10px;
+                right: 10px;
+            }
+
+            .page-header {
+                margin-bottom: 25px;
+                padding-top: 10px;
             }
 
             .page-title {
                 font-size: 22px;
             }
 
+            .page-subtitle {
+                font-size: 14px;
+            }
+
+            .student-card {
+                padding: 18px;
+                margin-bottom: 20px;
+            }
+
+            .student-avatar {
+                width: 60px;
+                height: 60px;
+            }
+
+            .student-info h3 {
+                font-size: 16px;
+            }
+
+            .student-meta {
+                font-size: 12px;
+                gap: 10px;
+            }
+
             .form-card {
                 padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+
+            .form-section {
+                margin-bottom: 28px;
             }
 
             .section-title {
-                font-size: 18px;
+                font-size: 17px;
+                margin-bottom: 16px;
             }
 
-            .category-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+
+            input[type="text"],
+            input[type="number"],
+            input[type="email"],
+            input[type="tel"],
+            input[type="date"],
+            textarea,
+            select {
+                padding: 11px 13px;
+                font-size: 13px;
             }
 
             .category-label {
@@ -709,11 +792,173 @@
             }
 
             .category-label i {
-                font-size: 24px;
+                font-size: 22px;
+                margin-bottom: 6px;
             }
 
             .category-label span {
-                font-size: 12px;
+                font-size: 11px;
+            }
+
+            .number-btn {
+                width: 42px;
+                height: 42px;
+                font-size: 18px;
+            }
+
+            .budget-calculator {
+                padding: 15px;
+            }
+
+            .calc-row {
+                font-size: 13px;
+                padding: 8px 0;
+            }
+
+            .calc-row:last-child {
+                font-size: 16px;
+            }
+
+            .file-upload {
+                padding: 25px 15px;
+            }
+
+            .file-upload i {
+                font-size: 38px;
+            }
+
+            .info-box {
+                padding: 12px 15px;
+                margin-bottom: 20px;
+            }
+
+            .info-box-text {
+                font-size: 13px;
+            }
+
+            .btn {
+                padding: 13px 20px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .page-title {
+                font-size: 20px;
+            }
+
+            .student-card {
+                padding: 15px;
+            }
+
+            .form-card {
+                padding: 18px 12px;
+            }
+
+            .category-grid {
+                gap: 8px;
+            }
+
+            .category-label {
+                padding: 12px 6px;
+            }
+
+            .category-label i {
+                font-size: 20px;
+            }
+
+            .category-label span {
+                font-size: 10px;
+            }
+        }
+
+        /* Loading State */
+        .btn.loading {
+            position: relative;
+            color: transparent;
+            pointer-events: none;
+        }
+
+        .btn.loading::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error States */
+        input.error,
+        textarea.error,
+        select.error {
+            border-color: var(--error-color);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Success States */
+        input.success,
+        textarea.success,
+        select.success {
+            border-color: var(--success-color);
+        }
+
+        /* Accessibility Improvements */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* Focus Visible for Accessibility */
+        *:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Print Styles */
+        @media print {
+            .theme-toggle,
+            .back-link,
+            .form-actions {
+                display: none;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            .form-card,
+            .student-card,
+            .info-box {
+                box-shadow: none;
+                border: 1px solid #ccc;
             }
         }
     </style>
@@ -867,29 +1112,15 @@
                 </h2>
 
                 <div class="form-group">
-                    <label for="workers">Number of Workers Required</label>
-                    <div class="number-input-group">
-                        <button type="button" class="number-btn" onclick="decrementWorkers()">
-                            <i class="fa-solid fa-minus"></i>
-                        </button>
-                        <input type="number" id="workers" name="workers" value="1" min="1" max="10" class="number-control" readonly>
-                        <button type="button" class="number-btn" onclick="incrementWorkers()">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
-                    <span class="form-help">Usually 1 worker for individual tasks</span>
-                </div>
-
-                <div class="form-group">
                     <label for="timeRequired">Estimated Time Required (hours) <span class="required">*</span></label>
-                    <input type="number" id="timeRequired" name="timeRequired" min="1" placeholder="E.g., 40" required oninput="calculateBudget()">
-                    <span class="form-help">Minimum: 1 hour (Rs. 100/hour minimum rate)</span>
+                    <input type="number" id="timeRequired" name="timeRequired" min="1" max="1000" placeholder="E.g., 40" required oninput="calculateBudget()" aria-describedby="timeHelp">
+                    <span class="form-help" id="timeHelp">Minimum: 1 hour (Rs. 100/hour minimum rate)</span>
                 </div>
 
                 <div class="form-group">
                     <label for="deadline">Deadline for Completion <span class="required">*</span></label>
-                    <input type="date" id="deadline" name="deadline" required>
-                    <span class="form-help">When do you need this completed?</span>
+                    <input type="date" id="deadline" name="deadline" required aria-describedby="deadlineHelp">
+                    <span class="form-help" id="deadlineHelp">When do you need this completed?</span>
                 </div>
             </div>
 
@@ -902,8 +1133,9 @@
 
                 <div class="form-group">
                     <label for="budget">Your Offer Amount (Rs.) <span class="required">*</span></label>
-                    <input type="number" id="budget" name="budget" min="100" placeholder="E.g., 5000" required oninput="calculateBudget()">
-                    <span class="form-help">Minimum: Rs. 100/hour based on estimated time</span>
+                    <input type="number" id="budget" name="budget" min="100" placeholder="E.g., 5000" required oninput="calculateBudget()" aria-describedby="budgetHelp">
+                    <span class="form-help" id="budgetHelp">Minimum: Rs. 100/hour based on estimated time</span>
+                    <div class="error-message" id="budgetError">Please enter a valid budget amount</div>
                 </div>
 
                 <div class="budget-calculator">
@@ -939,19 +1171,21 @@
 
                 <div class="form-group">
                     <label for="referenceFile">Reference Image/File (Optional)</label>
-                    <div class="file-upload" onclick="document.getElementById('referenceFile').click()">
+                    <div class="file-upload" onclick="document.getElementById('referenceFile').click()" role="button" tabindex="0" aria-label="Upload reference file">
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                         <div class="file-upload-text">Click to upload reference file</div>
                         <div class="file-upload-hint">Supported: Images, PDFs, Documents (Max 10MB)</div>
                     </div>
-                    <input type="file" id="referenceFile" name="referenceFile" accept="image/*,.pdf,.doc,.docx" onchange="showFilePreview(this)">
+                    <input type="file" id="referenceFile" name="referenceFile" accept="image/*,.pdf,.doc,.docx" onchange="showFilePreview(this)" aria-describedby="fileHelp">
+                    <span class="form-help" id="fileHelp">Upload any reference materials to help explain your requirements</span>
                     <div id="filePreview" style="display: none;"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="contactInfo">Your Contact Information <span class="required">*</span></label>
-                    <input type="text" id="contactInfo" name="contactInfo" placeholder="Email or Phone Number" required>
-                    <span class="form-help">How should the student contact you?</span>
+                    <input type="text" id="contactInfo" name="contactInfo" placeholder="Email or Phone Number" required aria-describedby="contactHelp">
+                    <span class="form-help" id="contactHelp">How should the student contact you?</span>
+                    <div class="error-message" id="contactError">Please enter valid contact information</div>
                 </div>
 
                 <div class="form-group">
@@ -1006,40 +1240,56 @@
         document.getElementById('deadline').setAttribute('min', today);
 
         // Character counters
-        document.getElementById('taskTitle').addEventListener('input', function() {
-            document.getElementById('titleCount').textContent = this.value.length + ' / 150';
+        const taskTitle = document.getElementById('taskTitle');
+        const taskDescription = document.getElementById('taskDescription');
+        const titleCount = document.getElementById('titleCount');
+        const descCount = document.getElementById('descCount');
+
+        taskTitle.addEventListener('input', function() {
+            titleCount.textContent = this.value.length + ' / 150';
+            // Validate word count (max 15 words)
+            const wordCount = this.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+            if (wordCount > 15) {
+                this.classList.add('error');
+            } else {
+                this.classList.remove('error');
+            }
         });
 
-        document.getElementById('taskDescription').addEventListener('input', function() {
-            document.getElementById('descCount').textContent = this.value.length + ' / 1500';
+        taskDescription.addEventListener('input', function() {
+            descCount.textContent = this.value.length + ' / 1500';
+            // Validate word count (max 200 words)
+            const wordCount = this.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+            if (wordCount > 200) {
+                this.classList.add('error');
+            } else {
+                this.classList.remove('error');
+            }
         });
-
-        // Workers increment/decrement
-        function incrementWorkers() {
-            const input = document.getElementById('workers');
-            if (parseInt(input.value) < 10) {
-                input.value = parseInt(input.value) + 1;
-            }
-        }
-
-        function decrementWorkers() {
-            const input = document.getElementById('workers');
-            if (parseInt(input.value) > 1) {
-                input.value = parseInt(input.value) - 1;
-            }
-        }
 
         // Budget Calculator
         function calculateBudget() {
             const timeRequired = parseFloat(document.getElementById('timeRequired').value) || 0;
             const budget = parseFloat(document.getElementById('budget').value) || 0;
+            const budgetInput = document.getElementById('budget');
+            const budgetError = document.getElementById('budgetError');
             
             // Set minimum budget based on time
             const minBudget = timeRequired * 100;
             if (budget > 0 && budget < minBudget) {
-                document.getElementById('budget').setCustomValidity(`Minimum budget for ${timeRequired} hours is Rs. ${minBudget}`);
+                budgetInput.setCustomValidity(`Minimum budget for ${timeRequired} hours is Rs. ${minBudget}`);
+                budgetInput.classList.add('error');
+                budgetError.textContent = `Minimum budget for ${timeRequired} hours is Rs. ${minBudget}`;
+                budgetError.classList.add('show');
             } else {
-                document.getElementById('budget').setCustomValidity('');
+                budgetInput.setCustomValidity('');
+                budgetInput.classList.remove('error');
+                budgetError.classList.remove('show');
+                if (budget > 0) {
+                    budgetInput.classList.add('success');
+                } else {
+                    budgetInput.classList.remove('success');
+                }
             }
 
             // Calculate fees
@@ -1061,13 +1311,22 @@
             const preview = document.getElementById('filePreview');
             if (input.files && input.files[0]) {
                 const file = input.files[0];
+                
+                // Validate file size (max 10MB)
+                const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+                if (file.size > maxSize) {
+                    alert('File size exceeds 10MB. Please choose a smaller file.');
+                    input.value = '';
+                    return;
+                }
+                
                 preview.innerHTML = `
                     <div class="file-preview">
                         <div class="file-preview-info">
                             <i class="fa-solid fa-file"></i>
-                            <span>${file.name}</span>
+                            <span>${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)</span>
                         </div>
-                        <button type="button" class="remove-file" onclick="removeFile()">
+                        <button type="button" class="remove-file" onclick="removeFile()" aria-label="Remove file">
                             <i class="fa-solid fa-times"></i> Remove
                         </button>
                     </div>
@@ -1081,6 +1340,38 @@
             document.getElementById('filePreview').style.display = 'none';
         }
 
+        // Contact Information Validation
+        const contactInfo = document.getElementById('contactInfo');
+        const contactError = document.getElementById('contactError');
+
+        contactInfo.addEventListener('blur', function() {
+            const value = this.value.trim();
+            // Simple email or phone validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phonePattern = /^[0-9]{10,}$/;
+            
+            if (value && !emailPattern.test(value) && !phonePattern.test(value.replace(/[\s\-\(\)]/g, ''))) {
+                this.classList.add('error');
+                contactError.textContent = 'Please enter a valid email or phone number';
+                contactError.classList.add('show');
+            } else {
+                this.classList.remove('error');
+                contactError.classList.remove('show');
+                if (value) {
+                    this.classList.add('success');
+                }
+            }
+        });
+
+        // File upload keyboard accessibility
+        const fileUpload = document.querySelector('.file-upload');
+        fileUpload.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                document.getElementById('referenceFile').click();
+            }
+        });
+
         // Form Submission
         document.getElementById('requestTaskForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1092,6 +1383,30 @@
             
             if (budget < minBudget) {
                 alert(`Minimum budget for ${timeRequired} hours is Rs. ${minBudget}`);
+                document.getElementById('budget').focus();
+                return;
+            }
+
+            // Validate title word count
+            const titleWords = document.getElementById('taskTitle').value.trim().split(/\s+/).filter(word => word.length > 0).length;
+            if (titleWords > 15) {
+                alert('Task title must be 15 words or less. Please shorten your title.');
+                document.getElementById('taskTitle').focus();
+                return;
+            }
+
+            // Validate description word count
+            const descWords = document.getElementById('taskDescription').value.trim().split(/\s+/).filter(word => word.length > 0).length;
+            if (descWords > 200) {
+                alert('Task description must be 200 words or less. Please shorten your description.');
+                document.getElementById('taskDescription').focus();
+                return;
+            }
+
+            // Validate category selection
+            const categorySelected = document.querySelector('input[name="category"]:checked');
+            if (!categorySelected) {
+                alert('Please select a task category.');
                 return;
             }
 
@@ -1099,13 +1414,56 @@
             const studentName = "John Doe";
             const taskTitle = document.getElementById('taskTitle').value;
             const advancePayment = document.getElementById('advancePayment').textContent;
+            const submitBtn = this.querySelector('button[type="submit"]');
             
             if (confirm(`Are you sure you want to send this task request to ${studentName}?\n\nTask: ${taskTitle}\nAdvance Payment: Rs. ${advancePayment}\n\nOnce accepted, you'll need to make the advance payment to begin work.`)) {
-                alert('Task request sent successfully! The student will be notified and can accept or decline your request.');
-                // In production, this would submit to backend
-                // window.location.href = 'dashboard.html';
+                // Show loading state
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+
+                // Simulate submission (in production, this would be an API call)
+                setTimeout(() => {
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    alert('Task request sent successfully! The student will be notified and can accept or decline your request. You will receive a notification once they respond.');
+                    // In production, this would submit to backend
+                    // window.location.href = 'dashboard.html';
+                }, 1500);
             }
         });
+
+        // Auto-save draft to localStorage
+        const formFields = ['taskTitle', 'taskDescription', 'timeRequired', 'deadline', 'budget', 'contactInfo', 'additionalNotes'];
+        
+        formFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                // Load saved value
+                const savedValue = localStorage.getItem(`draft_${fieldId}`);
+                if (savedValue) {
+                    field.value = savedValue;
+                    if (fieldId === 'taskTitle') titleCount.textContent = savedValue.length + ' / 150';
+                    if (fieldId === 'taskDescription') descCount.textContent = savedValue.length + ' / 1500';
+                }
+                
+                // Save on input
+                field.addEventListener('input', () => {
+                    localStorage.setItem(`draft_${fieldId}`, field.value);
+                });
+            }
+        });
+
+        // Clear draft on successful submission
+        function clearDraft() {
+            formFields.forEach(fieldId => {
+                localStorage.removeItem(`draft_${fieldId}`);
+            });
+        }
+
+        // Trigger budget calculation on load if values exist
+        if (document.getElementById('budget').value) {
+            calculateBudget();
+        }
     </script>
 </body>
 </html>
