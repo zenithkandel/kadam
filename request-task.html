@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Request Task - Direct Hire Student | KADAM</title>
+    <meta name="description" content="Request a task directly from a student on KADAM. Post your project details, set budget, and hire skilled students for web development, design, and more.">
+    <meta name="keywords" content="request task, hire student, direct hire, post job, KADAM, freelance work">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- External Resources -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #d4a574;
+            --primary-dark: #c49565;
+            --primary-light: #e8d5c4;
+            --secondary-color: #8b7355;
+            --background-color: #faf8f6;
+            --surface-color: #ffffff;
+            --text-primary: #2c2c2c;
+            --text-secondary: #666666;
+            --border-color: #e0d5cc;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --error-color: #f44336;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #d4a574;
+            --primary-dark: #e8d5c4;
+            --primary-light: #8b7355;
+            --secondary-color: #a88968;
+            --background-color: #1a1a1a;
+            --surface-color: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border-color: #404040;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition-base);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--surface-color);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-base);
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 20px;
+            transition: var(--transition-base);
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Student Info Card */
+        .student-card {
+            background: var(--surface-color);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .student-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+
+        .student-info h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .student-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .student-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .student-meta i {
+            color: var(--primary-color);
+        }
+
+        /* Form Container */
+        .form-card {
+            background: var(--surface-color);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .required {
+            color: var(--error-color);
+            margin-left: 3px;
+        }
+
+        .form-help {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-primary);
+            background: var(--background-color);
+            transition: var(--transition-base);
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--surface-color);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .category-option {
+            position: relative;
+        }
+
+        .category-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .category-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 10px;
+            background: var(--background-color);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition-base);
+            text-align: center;
+        }
+
+        .category-label i {
+            font-size: 28px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            transition: var(--transition-base);
+        }
+
+        .category-label span {
+            font-size: 13px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .category-option input:checked + .category-label {
+            background: var(--primary-light);
+            border-color: var(--primary-color);
+        }
+
+        .category-option input:checked + .category-label i {
+            color: var(--primary-color);
+        }
+
+        .category-label:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Number Input with Controls */
+        .number-input-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .number-control {
+            background: var(--background-color);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+            flex: 1;
+        }
+
+        .number-btn {
+            width: 45px;
+            height: 45px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-base);
+        }
+
+        .number-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Budget Calculator */
+        .budget-calculator {
+            background: var(--background-color);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .calc-row:last-child {
+            border-bottom: none;
+            margin-top: 10px;
+            padding-top: 15px;
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--primary-color);
+        }
+
+        .calc-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .calc-value {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* File Upload */
+        .file-upload {
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-base);
+            background: var(--background-color);
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary-color);
+            background: var(--surface-color);
+        }
+
+        .file-upload i {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .file-upload-text {
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .file-upload-hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .file-preview {
+            margin-top: 15px;
+            padding: 12px;
+            background: var(--primary-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .file-preview-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-preview i {
+            color: var(--primary-color);
+        }
+
+        .remove-file {
+            background: none;
+            border: none;
+            color: var(--error-color);
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        /* Action Buttons */
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--background-color);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-color);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .info-box-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .info-box-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .theme-toggle {
+                width: 45px;
+                height: 45px;
+                top: 15px;
+                right: 15px;
+            }
+
+            .page-title {
+                font-size: 26px;
+            }
+
+            .student-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .form-card {
+                padding: 25px 20px;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .theme-toggle {
+                width: 42px;
+                height: 42px;
+            }
+
+            .page-title {
+                font-size: 22px;
+            }
+
+            .form-card {
+                padding: 20px 15px;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .category-label {
+                padding: 15px 8px;
+            }
+
+            .category-label i {
+                font-size: 24px;
+            }
+
+            .category-label span {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <a href="profile.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Profile
+            </a>
+            <h1 class="page-title">Request a Task</h1>
+            <p class="page-subtitle">Fill in the details below to directly request this student for your task</p>
+        </div>
+
+        <!-- Student Info Card -->
+        <div class="student-card">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&size=160&background=d4a574&color=fff&bold=true" alt="John Doe" class="student-avatar">
+            <div class="student-info">
+                <h3>John Doe</h3>
+                <div class="student-meta">
+                    <span><i class="fa-solid fa-star"></i> 4.8 Rating</span>
+                    <span><i class="fa-solid fa-check-circle"></i> 47 Tasks</span>
+                    <span><i class="fa-solid fa-crown"></i> Level 8</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Important Info -->
+        <div class="info-box">
+            <div class="info-box-title">
+                <i class="fa-solid fa-info-circle"></i>
+                How it Works
+            </div>
+            <div class="info-box-text">
+                Once you submit this request, the student will be notified and can accept or decline. If accepted, a digital agreement will be signed and you'll need to make a 10% advance payment (Rs. {{advance}}) to begin the work. The remaining 90% (Rs. {{final}}) will be paid upon completion. KADAM charges a 9.5% platform fee.
+            </div>
+        </div>
+
+        <!-- Task Request Form -->
+        <form class="form-card" id="requestTaskForm">
+            <!-- Task Details Section -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    Task Details
+                </h2>
+
+                <div class="form-group">
+                    <label for="taskTitle">Task Title <span class="required">*</span></label>
+                    <input type="text" id="taskTitle" name="taskTitle" placeholder="E.g., Design a modern logo for my startup" maxlength="150" required>
+                    <span class="form-help">Maximum 15 words - Be clear and concise</span>
+                    <span class="char-count" id="titleCount">0 / 150</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskDescription">Detailed Description <span class="required">*</span></label>
+                    <textarea id="taskDescription" name="taskDescription" placeholder="Describe your task requirements, deliverables, and any specific instructions..." maxlength="1500" required></textarea>
+                    <span class="form-help">Maximum 200 words - Include all important details</span>
+                    <span class="char-count" id="descCount">0 / 1500</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Task Category <span class="required">*</span></label>
+                    <div class="category-grid">
+                        <div class="category-option">
+                            <input type="radio" id="cat-website" name="category" value="Website" required>
+                            <label for="cat-website" class="category-label">
+                                <i class="fa-solid fa-globe"></i>
+                                <span>Website</span>
+                            </label>
+                        </div>
+                        <div class="category-option">
+                            <input type="radio" id="cat-software" name="category" value="Software">
+                            <label for="cat-software" class="category-label">
+                                <i class="fa-solid fa-laptop-code"></i>
+                                <span>Software</span>
+                            </label>
+                        </div>
+                        <div class="category-option">
+                            <input type="radio" id="cat-hardware" name="category" value="Computer Hardware">
+                            <label for="cat-hardware" class="category-label">
+                                <i class="fa-solid fa-microchip"></i>
+                                <span>Hardware</span>
+                            </label>
+                        </div>
+                        <div class="category-option">
+                            <input type="radio" id="cat-art" name="category" value="Art">
+                            <label for="cat-art" class="category-label">
+                                <i class="fa-solid fa-palette"></i>
+                                <span>Art</span>
+                            </label>
+                        </div>
+                        <div class="category-option">
+                            <input type="radio" id="cat-music" name="category" value="Music">
+                            <label for="cat-music" class="category-label">
+                                <i class="fa-solid fa-music"></i>
+                                <span>Music</span>
+                            </label>
+                        </div>
+                        <div class="category-option">
+                            <input type="radio" id="cat-design" name="category" value="Graphics Design">
+                            <label for="cat-design" class="category-label">
+                                <i class="fa-solid fa-pen-nib"></i>
+                                <span>Graphics</span>
+                            </label>
+                        </div>
+                        <div class="category-option">
+                            <input type="radio" id="cat-logo" name="category" value="Logo Making">
+                            <label for="cat-logo" class="category-label">
+                                <i class="fa-solid fa-copyright"></i>
+                                <span>Logo</span>
+                            </label>
+                        </div>
+                        <div class="category-option">
+                            <input type="radio" id="cat-video" name="category" value="Videography">
+                            <label for="cat-video" class="category-label">
+                                <i class="fa-solid fa-video"></i>
+                                <span>Video</span>
+                            </label>
+                        </div>
+                        <div class="category-option">
+                            <input type="radio" id="cat-writing" name="category" value="Writing">
+                            <label for="cat-writing" class="category-label">
+                                <i class="fa-solid fa-pen"></i>
+                                <span>Writing</span>
+                            </label>
+                        </div>
+                        <div class="category-option">
+                            <input type="radio" id="cat-other" name="category" value="Other">
+                            <label for="cat-other" class="category-label">
+                                <i class="fa-solid fa-ellipsis"></i>
+                                <span>Other</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Scope Section -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Project Scope
+                </h2>
+
+                <div class="form-group">
+                    <label for="workers">Number of Workers Required</label>
+                    <div class="number-input-group">
+                        <button type="button" class="number-btn" onclick="decrementWorkers()">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <input type="number" id="workers" name="workers" value="1" min="1" max="10" class="number-control" readonly>
+                        <button type="button" class="number-btn" onclick="incrementWorkers()">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                    <span class="form-help">Usually 1 worker for individual tasks</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeRequired">Estimated Time Required (hours) <span class="required">*</span></label>
+                    <input type="number" id="timeRequired" name="timeRequired" min="1" placeholder="E.g., 40" required oninput="calculateBudget()">
+                    <span class="form-help">Minimum: 1 hour (Rs. 100/hour minimum rate)</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="deadline">Deadline for Completion <span class="required">*</span></label>
+                    <input type="date" id="deadline" name="deadline" required>
+                    <span class="form-help">When do you need this completed?</span>
+                </div>
+            </div>
+
+            <!-- Budget Section -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    Budget & Payment
+                </h2>
+
+                <div class="form-group">
+                    <label for="budget">Your Offer Amount (Rs.) <span class="required">*</span></label>
+                    <input type="number" id="budget" name="budget" min="100" placeholder="E.g., 5000" required oninput="calculateBudget()">
+                    <span class="form-help">Minimum: Rs. 100/hour based on estimated time</span>
+                </div>
+
+                <div class="budget-calculator">
+                    <div class="calc-row">
+                        <span class="calc-label">Your Offer Amount</span>
+                        <span class="calc-value">Rs. <span id="offerAmount">0</span></span>
+                    </div>
+                    <div class="calc-row">
+                        <span class="calc-label">Platform Fee (9.5%)</span>
+                        <span class="calc-value">- Rs. <span id="platformFee">0</span></span>
+                    </div>
+                    <div class="calc-row">
+                        <span class="calc-label">Student Receives</span>
+                        <span class="calc-value">Rs. <span id="studentReceives">0</span></span>
+                    </div>
+                    <div class="calc-row">
+                        <span class="calc-label">Advance Payment (10%)</span>
+                        <span class="calc-value">Rs. <span id="advancePayment">0</span></span>
+                    </div>
+                    <div class="calc-row">
+                        <span class="calc-label">Final Payment (90%)</span>
+                        <span class="calc-value">Rs. <span id="finalPayment">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Info Section -->
+            <div class="form-section">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-paperclip"></i>
+                    Additional Information
+                </h2>
+
+                <div class="form-group">
+                    <label for="referenceFile">Reference Image/File (Optional)</label>
+                    <div class="file-upload" onclick="document.getElementById('referenceFile').click()">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <div class="file-upload-text">Click to upload reference file</div>
+                        <div class="file-upload-hint">Supported: Images, PDFs, Documents (Max 10MB)</div>
+                    </div>
+                    <input type="file" id="referenceFile" name="referenceFile" accept="image/*,.pdf,.doc,.docx" onchange="showFilePreview(this)">
+                    <div id="filePreview" style="display: none;"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactInfo">Your Contact Information <span class="required">*</span></label>
+                    <input type="text" id="contactInfo" name="contactInfo" placeholder="Email or Phone Number" required>
+                    <span class="form-help">How should the student contact you?</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="additionalNotes">Additional Notes (Optional)</label>
+                    <textarea id="additionalNotes" name="additionalNotes" placeholder="Any other requirements or preferences..." rows="4"></textarea>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+                    <i class="fa-solid fa-xmark"></i>
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Send Request
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const icon = themeToggle.querySelector('i');
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        updateIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('deadline').setAttribute('min', today);
+
+        // Character counters
+        document.getElementById('taskTitle').addEventListener('input', function() {
+            document.getElementById('titleCount').textContent = this.value.length + ' / 150';
+        });
+
+        document.getElementById('taskDescription').addEventListener('input', function() {
+            document.getElementById('descCount').textContent = this.value.length + ' / 1500';
+        });
+
+        // Workers increment/decrement
+        function incrementWorkers() {
+            const input = document.getElementById('workers');
+            if (parseInt(input.value) < 10) {
+                input.value = parseInt(input.value) + 1;
+            }
+        }
+
+        function decrementWorkers() {
+            const input = document.getElementById('workers');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        // Budget Calculator
+        function calculateBudget() {
+            const timeRequired = parseFloat(document.getElementById('timeRequired').value) || 0;
+            const budget = parseFloat(document.getElementById('budget').value) || 0;
+            
+            // Set minimum budget based on time
+            const minBudget = timeRequired * 100;
+            if (budget > 0 && budget < minBudget) {
+                document.getElementById('budget').setCustomValidity(`Minimum budget for ${timeRequired} hours is Rs. ${minBudget}`);
+            } else {
+                document.getElementById('budget').setCustomValidity('');
+            }
+
+            // Calculate fees
+            const platformFee = (budget * 0.095).toFixed(2);
+            const studentReceives = (budget - platformFee).toFixed(2);
+            const advancePayment = (budget * 0.10).toFixed(2);
+            const finalPayment = (budget * 0.90).toFixed(2);
+
+            // Update display
+            document.getElementById('offerAmount').textContent = budget.toFixed(2);
+            document.getElementById('platformFee').textContent = platformFee;
+            document.getElementById('studentReceives').textContent = studentReceives;
+            document.getElementById('advancePayment').textContent = advancePayment;
+            document.getElementById('finalPayment').textContent = finalPayment;
+        }
+
+        // File Preview
+        function showFilePreview(input) {
+            const preview = document.getElementById('filePreview');
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                preview.innerHTML = `
+                    <div class="file-preview">
+                        <div class="file-preview-info">
+                            <i class="fa-solid fa-file"></i>
+                            <span>${file.name}</span>
+                        </div>
+                        <button type="button" class="remove-file" onclick="removeFile()">
+                            <i class="fa-solid fa-times"></i> Remove
+                        </button>
+                    </div>
+                `;
+                preview.style.display = 'block';
+            }
+        }
+
+        function removeFile() {
+            document.getElementById('referenceFile').value = '';
+            document.getElementById('filePreview').style.display = 'none';
+        }
+
+        // Form Submission
+        document.getElementById('requestTaskForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate minimum budget
+            const timeRequired = parseFloat(document.getElementById('timeRequired').value);
+            const budget = parseFloat(document.getElementById('budget').value);
+            const minBudget = timeRequired * 100;
+            
+            if (budget < minBudget) {
+                alert(`Minimum budget for ${timeRequired} hours is Rs. ${minBudget}`);
+                return;
+            }
+
+            // Show confirmation
+            const studentName = "John Doe";
+            const taskTitle = document.getElementById('taskTitle').value;
+            const advancePayment = document.getElementById('advancePayment').textContent;
+            
+            if (confirm(`Are you sure you want to send this task request to ${studentName}?\n\nTask: ${taskTitle}\nAdvance Payment: Rs. ${advancePayment}\n\nOnce accepted, you'll need to make the advance payment to begin work.`)) {
+                alert('Task request sent successfully! The student will be notified and can accept or decline your request.');
+                // In production, this would submit to backend
+                // window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>
