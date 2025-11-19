@@ -2,90 +2,98 @@
 /* ---------------------------
    THEME 3 — MIDNIGHT BLUE
    --------------------------- */
+/* ================================
+   MIDNIGHT BLUE — LIGHT THEME
+================================ */
 :root[data-theme="light"] {
-  --primary-color: #8B5E3C;
-  --primary-dark: #6A452B;
-  --primary-light: #F6EFEA;
+  --primary-color: #1E3A8A;        /* Cobalt Blue */
+  --primary-dark: #162A66;         /* Deep Cobalt */
+  --primary-light: #E8EEFF;        /* Soft light blue */
 
-  --accent-color: #C8A789;
-  --accent-dark: #A6866F;
+  --accent-color: #3B82F6;         /* Bright Accent Blue */
+  --accent-dark: #1D4ED8;          /* Deep Accent */
 
-	/* Feedback colors */
-	--success-color: #4B8B6A;
-	--warning-color: #C58A3B;
-	--error-color: #C75B5B;
+  /* Feedback colors (same) */
+  --success-color: #4B8B6A;
+  --warning-color: #C58A3B;
+  --error-color: #C75B5B;
 
-	/* Text */
-	--text-color: #26211E;
-	--text-light: #584E47;
+  /* Text */
+  --text-color: #0A1224;           /* Midnight Blue */
+  --text-light: #39435A;           /* Soft desaturated blue-gray */
 
-	/* Backgrounds & surfaces */
-  --background-color: #FAF7F4;
+  /* Backgrounds & surfaces */
+  --background-color: #F4F7FF;     /* Faint blue-tinted white */
   --background-light: #FFFFFF;
-  --background-dark: #EDE4DD;
+  --background-dark: #E1E8F5;      /* Pale steel blue */
 
-  --button-bg: #8B5E3C;
-  --button-hover: #6A452B;
+  --button-bg: #1E3A8A;
+  --button-hover: #162A66;
   --button-text: #FFFFFF;
 
   --card-bg: #FFFFFF;
-  --card-border: #E1D4CA;
+  --card-border: #CBD5E1;          /* Slate-200 */
 
-	/* Legacy aliases for older page CSS */
-	--text-primary: var(--text-color);
-	--text-secondary: var(--text-light);
-	--bg-white: var(--background-light);
-	--bg-light: var(--background-color);
-	--bg-cream: var(--background-dark);
-	--surface-color: var(--card-bg);
-	--border-color: var(--card-border);
-	--shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-	--shadow-md: 0 4px 6px rgba(0,0,0,0.06);
-	--shadow-lg: 0 10px 15px rgba(0,0,0,0.09);
-	--shadow-xl: 0 20px 25px rgba(0,0,0,0.12);
+  /* Legacy aliases */
+  --text-primary: var(--text-color);
+  --text-secondary: var(--text-light);
+  --bg-white: var(--background-light);
+  --bg-light: var(--background-color);
+  --bg-cream: var(--background-dark);
+  --surface-color: var(--card-bg);
+  --border-color: var(--card-border);
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.09);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.12);
 }
 
+/* ================================
+   MIDNIGHT BLUE — DARK THEME
+================================ */
 :root[data-theme="dark"] {
-  --primary-color: #C8A789;
-  --primary-dark: #A6866F;
-  --primary-light: #3A2D26;
+  --primary-color: #3B82F6;        /* Vibrant Blue */
+  --primary-dark: #1E3A8A;         /* Cobalt Blue */
+  --primary-light: #1B233B;        /* Softened Midnight */
 
-  --accent-color: #AF8E74;
-  --accent-dark: #7B604D;
+  --accent-color: #60A5FA;         /* Light accent blue */
+  --accent-dark: #2563EB;          /* Strong accent */
 
-	/* Feedback colors */
-	--success-color: #4B8B6A;
-	--warning-color: #C58A3B;
-	--error-color: #C75B5B;
+  /* Feedback colors (same) */
+  --success-color: #4B8B6A;
+  --warning-color: #C58A3B;
+  --error-color: #C75B5B;
 
-	/* Text */
-	--text-color: #FFF7F1;
-	--text-light: #D8C8BF;
+  /* Text */
+  --text-color: #F1F5FF;           /* Soft blue-white */
+  --text-light: #B8C3E0;           /* Slate blue-gray */
 
-	/* Backgrounds & surfaces */
-  --background-color: #171311;
-  --background-light: #211C19;
-  --background-dark: #0C0A09;
+  /* Backgrounds & surfaces */
+  --background-color: #0A1224;     /* True Midnight Blue */
+  --background-light: #111A2F;     /* Elevated surface */
+  --background-dark: #050A16;      /* Deepest navy */
 
-  --button-bg: #C8A789;
-  --button-hover: #A6866F;
-  --button-text: #171311;
+  --button-bg: #3B82F6;
+  --button-hover: #2563EB;
+  --button-text: #0A1224;
 
-  --card-bg: #211C19;
-  --card-border: #2F2621;
+  --card-bg: #111A2F;              /* Elevated cards */
+  --card-border: #1E293B;          /* Slate-800 border */
 
-	/* Legacy aliases for older page CSS */
-	--text-primary: var(--text-color);
-	--text-secondary: var(--text-light);
-	--bg-white: var(--background-light);
-	--bg-light: var(--background-color);
-	--bg-cream: var(--background-dark);
-	--surface-color: var(--card-bg);
-	--border-color: var(--card-border);
-	--shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
-	--shadow-md: 0 4px 6px rgba(0,0,0,0.45);
-	--shadow-lg: 0 10px 15px rgba(0,0,0,0.55);
-	--shadow-xl: 0 20px 25px rgba(0,0,0,0.65);
+  /* Legacy aliases */
+  --text-primary: var(--text-color);
+  --text-secondary: var(--text-light);
+  --bg-white: var(--background-light);
+  --bg-light: var(--background-color);
+  --bg-cream: var(--background-dark);
+  --surface-color: var(--card-bg);
+  --border-color: var(--card-border);
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.45);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.55);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.65);
 }
 
 :root{
