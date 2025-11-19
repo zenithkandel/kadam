@@ -502,26 +502,100 @@
     z-index: -1;
 }
 
-/* Animations */
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ================================
+   ANIMATIONS & EFFECTS
+================================ */
+
+/* Typing Effect */
+.txt-type > .txt {
+    border-right: 0.2rem solid var(--primary-color);
+    color: var(--primary-color);
+    padding-right: 5px;
+    animation: blink 0.7s infinite;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes blink {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: var(--primary-color); }
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+/* Animated Background Blobs */
+.hero-bg-shape {
+    animation: blobFloat 20s infinite alternate;
+}
+
+.shape-1 {
+    animation-delay: -5s;
+}
+
+.shape-2 {
+    animation-delay: -10s;
+}
+
+@keyframes blobFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+/* Glass Overlay on Hero Image */
+.glass-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+}
+
+/* Infinite Marquee */
+.marquee-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 10;
+    transform: rotate(-2deg) scale(1.05);
+    margin-bottom: -30px;
+    box-shadow: var(--shadow-lg);
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee-content span {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: var(--transition-base);
+}
+
+.marquee-content span i {
+    color: var(--primary-color);
+}
+
+.marquee-content span:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 /* ================================
@@ -669,6 +743,21 @@
 
     .float-card {
         display: none; /* Hide floating cards on small screens to avoid clutter */
+    }
+
+    .marquee-container {
+        transform: none;
+        margin-bottom: 0;
+        position: relative;
+    }
+    
+    .hero {
+        padding-bottom: 0;
+    }
+    
+    .txt-type > .txt {
+        display: block; /* Break line on mobile if needed */
+        margin-top: 5px;
     }
 }
 

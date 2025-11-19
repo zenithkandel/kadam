@@ -89,22 +89,23 @@
                     </div>
                     
                     <h1 class="hero-title">
-                        Bridge the Gap Between <span class="highlight">Talent</span> & <span class="highlight">Opportunity</span>
+                        Hire Skilled Students for <br>
+                        <span class="txt-type" data-wait="3000" data-words='["Web Development", "Graphic Design", "Content Writing", "Video Editing", "Digital Marketing"]'></span>
                     </h1>
                     
                     <p class="hero-description">
                         KADAM connects ambitious students with employers looking for quality work. 
-                        Whether you need a logo designed or want to earn while you learn, we've got you covered.
+                        Get your projects done affordably while helping students build their careers.
                     </p>
 
                     <div class="hero-cta-group">
                         <a href="signup.html?type=employer" class="btn btn-primary btn-lg">
                             <i class="fa-solid fa-briefcase"></i>
-                            Hire Talent
+                            Post a Task
                         </a>
                         <a href="signup.html?type=student" class="btn btn-outline btn-lg">
                             <i class="fa-solid fa-graduation-cap"></i>
-                            Find Work
+                            Earn Money
                         </a>
                     </div>
 
@@ -135,19 +136,108 @@
                 </div>
 
                 <!-- Hero Visual -->
-                <div class="hero-visual">
+                <div class="hero-visual" id="heroVisual">
                     <div class="visual-card card-main">
                         <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students working together" class="hero-img">
+                        <div class="glass-overlay"></div>
                     </div>
                     
                     <!-- Decorative dots -->
                     <div class="dots-pattern"></div>
                 </div>
             </div>
+
+            <!-- Infinite Marquee -->
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span><i class="fa-solid fa-code"></i> Web Development</span>
+                    <span><i class="fa-solid fa-pen-nib"></i> Graphic Design</span>
+                    <span><i class="fa-solid fa-video"></i> Video Editing</span>
+                    <span><i class="fa-solid fa-bullhorn"></i> Digital Marketing</span>
+                    <span><i class="fa-solid fa-pen"></i> Content Writing</span>
+                    <span><i class="fa-solid fa-mobile-screen"></i> App Development</span>
+                    <span><i class="fa-solid fa-camera"></i> Photography</span>
+                    <span><i class="fa-solid fa-music"></i> Music Production</span>
+                    <!-- Duplicate for seamless loop -->
+                    <span><i class="fa-solid fa-code"></i> Web Development</span>
+                    <span><i class="fa-solid fa-pen-nib"></i> Graphic Design</span>
+                    <span><i class="fa-solid fa-video"></i> Video Editing</span>
+                    <span><i class="fa-solid fa-bullhorn"></i> Digital Marketing</span>
+                    <span><i class="fa-solid fa-pen"></i> Content Writing</span>
+                    <span><i class="fa-solid fa-mobile-screen"></i> App Development</span>
+                    <span><i class="fa-solid fa-camera"></i> Photography</span>
+                    <span><i class="fa-solid fa-music"></i> Music Production</span>
+                </div>
+            </div>
         </section>
     </main>
 
     <script>
+        // TypeWriter Effect
+        class TypeWriter {
+            constructor(txtElement, words, wait = 3000) {
+                this.txtElement = txtElement;
+                this.words = words;
+                this.txt = '';
+                this.wordIndex = 0;
+                this.wait = parseInt(wait, 10);
+                this.type();
+                this.isDeleting = false;
+            }
+
+            type() {
+                const current = this.wordIndex % this.words.length;
+                const fullTxt = this.words[current];
+
+                if(this.isDeleting) {
+                    this.txt = fullTxt.substring(0, this.txt.length - 1);
+                } else {
+                    this.txt = fullTxt.substring(0, this.txt.length + 1);
+                }
+
+                this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+
+                let typeSpeed = 100;
+
+                if(this.isDeleting) {
+                    typeSpeed /= 2;
+                }
+
+                if(!this.isDeleting && this.txt === fullTxt) {
+                    typeSpeed = this.wait;
+                    this.isDeleting = true;
+                } else if(this.isDeleting && this.txt === '') {
+                    this.isDeleting = false;
+                    this.wordIndex++;
+                    typeSpeed = 500;
+                }
+
+                setTimeout(() => this.type(), typeSpeed);
+            }
+        }
+
+        // Init TypeWriter
+        document.addEventListener('DOMContentLoaded', init);
+
+        function init() {
+            const txtElement = document.querySelector('.txt-type');
+            const words = JSON.parse(txtElement.getAttribute('data-words'));
+            const wait = txtElement.getAttribute('data-wait');
+            new TypeWriter(txtElement, words, wait);
+        }
+
+        // 3D Tilt Effect
+        const heroVisual = document.getElementById('heroVisual');
+        const visualCard = heroVisual.querySelector('.visual-card');
+
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 1024) {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                visualCard.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            }
+        });
+
         // Theme Toggle Logic
         const themeToggle = document.getElementById('themeToggle');
         const html = document.documentElement;
