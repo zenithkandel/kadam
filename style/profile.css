@@ -10,9 +10,13 @@ body {
 }
 
         .theme-toggle:hover {
-            background: var(--primary-light);
+            background: var(--primary-color);
             border-color: var(--primary-color);
             transform: scale(1.1);
+        }
+
+        .theme-toggle:hover i {
+            color: #ffffff;
         }
 
         /* Profile Hero Section */

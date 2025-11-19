@@ -170,7 +170,7 @@ body {
 }
 
 .theme-toggle:hover i {
-	color: var(--bg-white);
+	color: #ffffff;
 }
 
 /* Generic button helpers */
