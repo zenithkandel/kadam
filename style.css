@@ -10,9 +10,16 @@
   --accent-color: #C8A789;
   --accent-dark: #A6866F;
 
-  --text-color: #26211E;
-  --text-light: #584E47;
+	/* Feedback colors */
+	--success-color: #4B8B6A;
+	--warning-color: #C58A3B;
+	--error-color: #C75B5B;
 
+	/* Text */
+	--text-color: #26211E;
+	--text-light: #584E47;
+
+	/* Backgrounds & surfaces */
   --background-color: #FAF7F4;
   --background-light: #FFFFFF;
   --background-dark: #EDE4DD;
@@ -23,6 +30,19 @@
 
   --card-bg: #FFFFFF;
   --card-border: #E1D4CA;
+
+	/* Legacy aliases for older page CSS */
+	--text-primary: var(--text-color);
+	--text-secondary: var(--text-light);
+	--bg-white: var(--background-light);
+	--bg-light: var(--background-color);
+	--bg-cream: var(--background-dark);
+	--surface-color: var(--card-bg);
+	--border-color: var(--card-border);
+	--shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+	--shadow-md: 0 4px 6px rgba(0,0,0,0.06);
+	--shadow-lg: 0 10px 15px rgba(0,0,0,0.09);
+	--shadow-xl: 0 20px 25px rgba(0,0,0,0.12);
 }
 
 :root[data-theme="dark"] {
@@ -33,9 +53,16 @@
   --accent-color: #AF8E74;
   --accent-dark: #7B604D;
 
-  --text-color: #FFF7F1;
-  --text-light: #D8C8BF;
+	/* Feedback colors */
+	--success-color: #4B8B6A;
+	--warning-color: #C58A3B;
+	--error-color: #C75B5B;
 
+	/* Text */
+	--text-color: #FFF7F1;
+	--text-light: #D8C8BF;
+
+	/* Backgrounds & surfaces */
   --background-color: #171311;
   --background-light: #211C19;
   --background-dark: #0C0A09;
@@ -46,6 +73,19 @@
 
   --card-bg: #211C19;
   --card-border: #2F2621;
+
+	/* Legacy aliases for older page CSS */
+	--text-primary: var(--text-color);
+	--text-secondary: var(--text-light);
+	--bg-white: var(--background-light);
+	--bg-light: var(--background-color);
+	--bg-cream: var(--background-dark);
+	--surface-color: var(--card-bg);
+	--border-color: var(--card-border);
+	--shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+	--shadow-md: 0 4px 6px rgba(0,0,0,0.45);
+	--shadow-lg: 0 10px 15px rgba(0,0,0,0.55);
+	--shadow-xl: 0 20px 25px rgba(0,0,0,0.65);
 }
 
 :root{
