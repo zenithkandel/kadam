@@ -1,4 +1,7 @@
 /* Global base styles and shared theme variables */
+/* ---------------------------
+   THEME 1 — NORD MINIMAL
+   --------------------------- */
 
 :root {
 	--primary-color: #5E81AC;
@@ -31,6 +34,7 @@
 	--transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	--transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 [data-theme="dark"] {
 	--primary-color: #81A1C1;
 	--primary-dark: #5E81AC;
