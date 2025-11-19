@@ -1,5 +1,9 @@
 /* Landing Page Specific Styles */
 
+body {
+    overflow-x: hidden;
+}
+
 /* ================================
    NAVIGATION BAR
 ================================ */
