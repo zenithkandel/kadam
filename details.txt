@@ -208,4 +208,8 @@ x.	 System Settings
 2.	Manage content (FAQs, Terms & Conditions, Privacy Policy).
 3.	Update logos, contact info, or global site details.
 4.	Create, edit, or delete admin roles with tiered access (e.g., Super Admin, Moderator, Verifier, Accountant).
+9.	Founders:
+KADAM was founded by two 16-year-old technology enthusiasts from KMC Bagbazar, Kathmandu, with a vision to empower their peers.
+- Zenith Kandel (Co-Founder): A passionate web developer dedicated to creating digital solutions that help students of his age group. (GitHub: @zenithkandel)
+- Sakshyam Bastakoti (Co-Founder): Brings a diverse interest in technology, ranging from web development to Arduino and robotics. (GitHub: @they-call-me-electronerd)
 
