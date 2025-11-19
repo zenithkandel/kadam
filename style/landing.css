@@ -651,7 +651,7 @@
         position: fixed;
         top: 0;
         right: -100%;
-        width: 80%;
+        width: 85%;
         max-width: 300px;
         height: 100vh;
         background: var(--card-bg);
@@ -661,6 +661,8 @@
         box-shadow: -5px 0 20px rgba(0,0,0,0.1);
         align-items: flex-start;
         gap: 20px;
+        overflow-y: auto;
+        z-index: 1000;
     }
 
     .nav-menu.active {
@@ -714,16 +716,42 @@
 
     /* Hero Mobile */
     .hero {
-        padding: 120px 0 60px;
+        padding: 100px 0 0;
+        display: block;
+        min-height: auto;
+        overflow-x: hidden; /* Ensure no horizontal scroll */
+    }
+
+    .hero-container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+
+    .hero-content {
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .hero-badge {
+        margin: 0 auto 20px;
     }
 
     .hero-title {
         font-size: 32px;
+        line-height: 1.2;
+    }
+    
+    .hero-description {
+        font-size: 16px;
+        margin-bottom: 30px;
     }
 
     .hero-cta-group {
         flex-direction: column;
         width: 100%;
+        gap: 15px;
     }
 
     .btn-lg {
@@ -734,30 +762,50 @@
     .hero-stats {
         flex-direction: column;
         gap: 20px;
+        align-items: center;
+        margin-top: 30px;
     }
 
     .stat-divider {
+        display: none;
+    }
+
+    .hero-visual {
         width: 100%;
-        height: 1px;
+        margin-top: 20px;
+        transform: none !important;
+        padding: 0 10px;
+    }
+    
+    .visual-card {
+        transform: none !important;
     }
 
     .float-card {
-        display: none; /* Hide floating cards on small screens to avoid clutter */
+        display: none;
     }
 
+    /* Marquee Mobile Fix */
     .marquee-container {
-        transform: none;
-        margin-bottom: 0;
         position: relative;
-    }
-    
-    .hero {
-        padding-bottom: 0;
+        transform: none;
+        width: 100%;
+        margin: 0;
+        left: 0;
+        bottom: auto;
+        border-radius: 0;
+        box-shadow: none;
+        border-top: 1px solid var(--border-color);
+        background: var(--card-bg);
     }
     
     .txt-type > .txt {
-        display: block; /* Break line on mobile if needed */
-        margin-top: 5px;
+        display: inline;
+    }
+    
+    .hero-bg-shape {
+        opacity: 0.3;
+        transform: scale(0.7);
     }
 }
 
