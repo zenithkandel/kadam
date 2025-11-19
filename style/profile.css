@@ -768,6 +768,7 @@ body {
             .profile-info {
                 align-items: center;
                 width: 100%;
+                min-width: 0; /* Fix overflow on small screens */
             }
 
             .profile-name {
@@ -881,6 +882,7 @@ body {
 
             .profile-actions {
                 max-width: 100%;
+                grid-template-columns: 1fr 1fr; /* 2 columns for better space usage */
             }
 
             .btn {
