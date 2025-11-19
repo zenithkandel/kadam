@@ -136,14 +136,39 @@
                 </div>
 
                 <!-- Hero Visual -->
-                <div class="hero-visual" id="heroVisual">
-                    <div class="visual-card card-main">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students working together" class="hero-img">
-                        <div class="glass-overlay"></div>
+                <div class="hero-visual">
+                    <div class="composition-wrapper">
+                        <!-- Main Image -->
+                        <div class="comp-image-frame">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Students working together" class="main-img">
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="float-badge badge-top-right">
+                            <div class="badge-icon success">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-title">Verified Talent</span>
+                                <span class="badge-subtitle">ID Checked</span>
+                            </div>
+                        </div>
+
+                        <div class="float-badge badge-bottom-left">
+                            <div class="badge-avatars">
+                                <img src="https://ui-avatars.com/api/?name=Alex&background=0D8ABC&color=fff" alt="">
+                                <img src="https://ui-avatars.com/api/?name=Sam&background=FFB300&color=fff" alt="">
+                                <div class="avatar-more">+</div>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-title">500+ Tasks</span>
+                                <span class="badge-subtitle">Posted Today</span>
+                            </div>
+                        </div>
+
+                        <!-- Decorative -->
+                        <div class="deco-dot-pattern"></div>
                     </div>
-                    
-                    <!-- Decorative dots -->
-                    <div class="dots-pattern"></div>
                 </div>
             </div>
 
@@ -225,18 +250,6 @@
             const wait = txtElement.getAttribute('data-wait');
             new TypeWriter(txtElement, words, wait);
         }
-
-        // 3D Tilt Effect
-        const heroVisual = document.getElementById('heroVisual');
-        const visualCard = heroVisual.querySelector('.visual-card');
-
-        document.addEventListener('mousemove', (e) => {
-            if (window.innerWidth > 1024) {
-                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-                visualCard.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-            }
-        });
 
         // Theme Toggle Logic
         const themeToggle = document.getElementById('themeToggle');
