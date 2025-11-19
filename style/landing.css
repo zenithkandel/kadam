@@ -821,11 +821,12 @@ body {
         padding: 0 10px;
     }
     
-    .visual-card {
+    .comp-image-frame {
         transform: none !important;
+        border-width: 4px;
     }
 
-    .float-card {
+    .float-badge {
         display: none;
     }
 
