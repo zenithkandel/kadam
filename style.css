@@ -1,58 +1,55 @@
 /* Global base styles and shared theme variables */
 /* ---------------------------
-   THEME 1 — NORD MINIMAL
-   --------------------------- */
-/* ---------------------------
-   THEME 2 — WARM MINIMAL
+   THEME 3 — MIDNIGHT BLUE
    --------------------------- */
 
 :root {
-	--primary-color: #C8A27E;
-	--primary-dark: #A88463;
-	--primary-light: #E4CDB3;
+	--primary-color: #2F5DCC;
+	--primary-dark: #234AA6;
+	--primary-light: #6A8FED;
 
-	--secondary-color: #8C6E54;
+	--secondary-color: #7486A6;
 
-	--success-color: #66BB6A;
-	--warning-color: #FFA726;
-	--error-color: #EF5350;
+	--success-color: #4CAF50;
+	--warning-color: #FB8C00;
+	--error-color: #F4511E;
 
-	--text-primary: #3B3A36;
-	--text-secondary: #7B776F;
+	--text-primary: #1F2A37;
+	--text-secondary: #6C7A91;
 
-	--bg-white: #FAF7F3;
-	--bg-light: #F3EFEA;
-	--bg-cream: #F9F5EF;
+	--bg-white: #F7F9FC;
+	--bg-light: #EEF1F6;
+	--bg-cream: #F5F7FB;
 
-	--background-color: #F7F4EF;
+	--background-color: #F4F6FA;
 	--surface-color: #FFFFFF;
 
-	--border-color: #E5DED4;
+	--border-color: #D5DCE6;
 
 	--shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-	--shadow-md: 0 4px 6px rgba(0,0,0,0.07);
-	--shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+	--shadow-md: 0 4px 6px rgba(0,0,0,0.06);
+	--shadow-lg: 0 10px 15px rgba(0,0,0,0.09);
 	--shadow-xl: 0 20px 25px rgba(0,0,0,0.12);
 }
 
 [data-theme="dark"] {
-	--primary-color: #D5B596;
-	--primary-dark: #C8A27E;
-	--primary-light: #E8CDB3;
+	--primary-color: #5776E0;
+	--primary-dark: #2F5DCC;
+	--primary-light: #8EA4F0;
 
-	--secondary-color: #A78A6C;
+	--secondary-color: #8FA2C4;
 
-	--text-primary: #EFEDEB;
-	--text-secondary: #B8B3A9;
+	--text-primary: #E6E9EF;
+	--text-secondary: #AEB7C8;
 
-	--bg-white: #1E1C1A;
-	--bg-light: #141210;
-	--bg-cream: #1A1816;
+	--bg-white: #151820;
+	--bg-light: #0E1016;
+	--bg-cream: #1A1C23;
 
-	--background-color: #1B1816;
-	--surface-color: #2D2926;
+	--background-color: #161921;
+	--surface-color: #20232B;
 
-	--border-color: #3A3530;
+	--border-color: #2E3240;
 
 	--shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
 	--shadow-md: 0 4px 6px rgba(0,0,0,0.35);
