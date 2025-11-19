@@ -1215,6 +1215,28 @@ body {
         opacity: 0.3;
         transform: scale(0.7);
     }
+
+    /* New Sections Mobile */
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        padding: 30px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .footer-brand {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
 }
 
 /* Prevent scroll when menu is open */
