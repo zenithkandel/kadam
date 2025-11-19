@@ -203,10 +203,21 @@ body {
 .hero {
     position: relative;
     padding: 160px 0 100px;
-    overflow: hidden;
+    /* overflow: hidden; Removed to allow marquee to overlap */
     min-height: 100vh;
     display: flex;
     align-items: center;
+    z-index: 1; /* Ensure hero is above subsequent sections if needed */
+}
+
+.hero-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
 }
 
 /* Background Shapes */
@@ -214,7 +225,7 @@ body {
     position: absolute;
     border-radius: 50%;
     filter: blur(80px);
-    z-index: -1;
+    /* z-index: -1; Handled by container */
     opacity: 0.5;
 }
 
@@ -606,7 +617,7 @@ body {
     padding: 20px 0;
     overflow: hidden;
     white-space: nowrap;
-    z-index: 10;
+    z-index: 100; /* Increased z-index */
     transform: rotate(-2deg) scale(1.05);
     margin-bottom: -30px;
     box-shadow: var(--shadow-lg);
