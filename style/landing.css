@@ -671,14 +671,9 @@ body {
         justify-content: center;
     }
 
-    .visual-card {
+    .comp-image-frame {
         max-width: 600px;
         margin: 0 auto;
-        transform: none;
-    }
-    
-    .visual-card:hover {
-        transform: none;
     }
 }
 
