@@ -2,65 +2,50 @@
 /* ---------------------------
    THEME 3 — MIDNIGHT BLUE
    --------------------------- */
+:root[data-theme="light"] {
+  --primary-color: #8B5E3C;
+  --primary-dark: #6A452B;
+  --primary-light: #F6EFEA;
 
-:root {
-	--primary-color: #2F5DCC;
-	--primary-dark: #234AA6;
-	--primary-light: #6A8FED;
+  --accent-color: #C8A789;
+  --accent-dark: #A6866F;
 
-	--secondary-color: #7486A6;
+  --text-color: #26211E;
+  --text-light: #584E47;
 
-	--success-color: #4CAF50;
-	--warning-color: #FB8C00;
-	--error-color: #F4511E;
+  --background-color: #FAF7F4;
+  --background-light: #FFFFFF;
+  --background-dark: #EDE4DD;
 
-	--text-primary: #1F2A37;
-	--text-secondary: #6C7A91;
+  --button-bg: #8B5E3C;
+  --button-hover: #6A452B;
+  --button-text: #FFFFFF;
 
-	--bg-white: #F7F9FC;
-	--bg-light: #EEF1F6;
-	--bg-cream: #F5F7FB;
-
-	--background-color: #F4F6FA;
-	--surface-color: #FFFFFF;
-
-	--border-color: #D5DCE6;
-
-	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.06);
-	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.09);
-	--shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.12);
-	/* Restore shared transition tokens */
-	--transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	--transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --card-bg: #FFFFFF;
+  --card-border: #E1D4CA;
 }
 
-[data-theme="dark"] {
-	--primary-color: #5776E0;
-	--primary-dark: #2F5DCC;
-	--primary-light: #8EA4F0;
+:root[data-theme="dark"] {
+  --primary-color: #C8A789;
+  --primary-dark: #A6866F;
+  --primary-light: #3A2D26;
 
-	--secondary-color: #8FA2C4;
+  --accent-color: #AF8E74;
+  --accent-dark: #7B604D;
 
-	--text-primary: #E6E9EF;
-	--text-secondary: #AEB7C8;
+  --text-color: #FFF7F1;
+  --text-light: #D8C8BF;
 
-	--bg-white: #151820;
-	--bg-light: #0E1016;
-	--bg-cream: #1A1C23;
+  --background-color: #171311;
+  --background-light: #211C19;
+  --background-dark: #0C0A09;
 
-	--background-color: #161921;
-	--surface-color: #20232B;
+  --button-bg: #C8A789;
+  --button-hover: #A6866F;
+  --button-text: #171311;
 
-	--border-color: #2E3240;
-
-	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.35);
-	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
-	--shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.45);
-	/* Restore shared transition tokens */
-	--transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	--transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --card-bg: #211C19;
+  --card-border: #2F2621;
 }
 
 :root{
