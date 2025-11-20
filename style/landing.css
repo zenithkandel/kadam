@@ -1629,13 +1629,15 @@ body.no-scroll {
     .cursor-dot {
         width: 8px;
         height: 8px;
-        background-color: var(--primary-color);
+        background-color: white;
+        mix-blend-mode: difference;
     }
 
     .cursor-outline {
         width: 40px;
         height: 40px;
-        border: 1px solid var(--primary-color);
+        border: 1px solid white;
+        mix-blend-mode: difference;
         transition: width 0.2s, height 0.2s, background-color 0.2s;
         /* The movement transition is handled via JS for better performance or CSS for simple lag */
     }
@@ -1644,7 +1646,7 @@ body.no-scroll {
     body.hovering .cursor-outline {
         width: 60px;
         height: 60px;
-        background-color: rgba(59, 130, 246, 0.1);
+        background-color: rgba(255, 255, 255, 0.3);
         border-color: transparent;
     }
 
@@ -1652,6 +1654,6 @@ body.no-scroll {
     body.clicking .cursor-outline {
         width: 30px;
         height: 30px;
-        background-color: var(--primary-color);
+        background-color: white;
     }
 }
