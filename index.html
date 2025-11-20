@@ -145,7 +145,7 @@
                         </div>
                         
                         <!-- Floating Elements -->
-                        <div class="float-badge badge-top-right">
+                        <div class="float-badge badge-top-right float-animate">
                             <div class="badge-icon success">
                                 <i class="fa-solid fa-check"></i>
                             </div>
@@ -155,7 +155,7 @@
                             </div>
                         </div>
 
-                        <div class="float-badge badge-bottom-left">
+                        <div class="float-badge badge-bottom-left float-animate-delayed">
                             <div class="badge-avatars">
                                 <img src="https://ui-avatars.com/api/?name=Alex&background=0D8ABC&color=fff" alt="">
                                 <img src="https://ui-avatars.com/api/?name=Sam&background=FFB300&color=fff" alt="">
@@ -450,6 +450,10 @@
         </div>
     </footer>
 
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
     <script>
         // TypeWriter Effect
         class TypeWriter {
@@ -587,6 +591,130 @@
             });
             document.getElementById(`process-${type}`).classList.add('active');
         }
+
+        // Custom Cursor Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Only activate on desktop/devices with fine pointer
+            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                const cursorDot = document.querySelector('.cursor-dot');
+                const cursorOutline = document.querySelector('.cursor-outline');
+                
+                // Mouse Movement
+                window.addEventListener('mousemove', (e) => {
+                    const posX = e.clientX;
+                    const posY = e.clientY;
+
+                    // Dot follows instantly
+                    cursorDot.style.left = `${posX}px`;
+                    cursorDot.style.top = `${posY}px`;
+
+                    // Outline follows with a slight delay (using animate for smooth performance)
+                    cursorOutline.animate({
+                        left: `${posX}px`,
+                        top: `${posY}px`
+                    }, { duration: 500, fill: "forwards" });
+                });
+
+                // Hover Effects
+                const interactiveElements = document.querySelectorAll('a, button, input, textarea, .process-tab, .category-card, .step-card, .safety-card');
+                
+                interactiveElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        document.body.classList.add('hovering');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        document.body.classList.remove('hovering');
+                    });
+                });
+
+                // Click Effects
+                document.addEventListener('mousedown', () => {
+                    document.body.classList.add('clicking');
+                });
+
+                document.addEventListener('mouseup', () => {
+                    document.body.classList.remove('clicking');
+                });
+            }
+        });
+
+        /* ==========================================
+           INTERACTIVE ANIMATIONS SCRIPT
+           ========================================== */
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Scroll Reveal Animation
+            const revealElements = document.querySelectorAll('.section-title, .section-subtitle, .about-card, .team-card, .step-card, .safety-card, .category-card, .hero-content, .hero-visual');
+            
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-visible');
+                        revealObserver.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach(el => {
+                el.classList.add('reveal-up'); // Add base class via JS to keep HTML clean
+                revealObserver.observe(el);
+            });
+
+            // 2. 3D Tilt Effect for Cards (Desktop Only)
+            if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+                const tiltCards = document.querySelectorAll('.about-card, .team-card, .category-card, .step-card, .safety-card');
+
+                tiltCards.forEach(card => {
+                    card.classList.add('tilt-card');
+                    
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        const rotateX = ((y - centerY) / centerY) * -10; // Max rotation deg
+                        const rotateY = ((x - centerX) / centerX) * 10;
+
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                    });
+                });
+            }
+
+            // 3. Hero Parallax Effect
+            const heroSection = document.querySelector('.hero');
+            const heroShapes = document.querySelectorAll('.hero-bg-shape');
+            const floatBadges = document.querySelectorAll('.float-badge');
+
+            heroSection.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+
+                heroShapes.forEach((shape, index) => {
+                    const speed = (index + 1) * 20;
+                    const xOffset = (x - 0.5) * speed;
+                    const yOffset = (y - 0.5) * speed;
+                    shape.style.transform = `translate(${xOffset}px, ${yOffset}px) scale(1.1)`; // Keep scale from pulse
+                });
+
+                floatBadges.forEach((badge, index) => {
+                    const speed = (index + 1) * 30;
+                    const xOffset = (x - 0.5) * speed;
+                    const yOffset = (y - 0.5) * speed;
+                    badge.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+                });
+            });
+        });
     </script>
 </body>
 </html>
