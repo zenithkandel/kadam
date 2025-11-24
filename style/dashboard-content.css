@@ -299,48 +299,70 @@ body {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-.modal-textarea {
-    resize: vertical;
-    min-height: 100px;
+/* Table Styles */
+.table-container {
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s ease-out;
 }
 
-.modal-btn {
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.95rem;
-    border: 1px solid transparent;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
 }
 
-.modal-btn-primary {
-    background: var(--primary-color);
-    color: white;
-}
-
-.modal-btn-primary:hover {
-    background: var(--primary-dark);
-}
-
-.modal-btn-secondary {
-    background: transparent;
-    border-color: var(--card-border);
-    color: var(--text-color);
-}
-
-.modal-btn-secondary:hover {
+thead {
     background: var(--background-light);
-    border-color: var(--text-light);
+    border-bottom: 1px solid var(--card-border);
 }
 
-.modal-btn-danger {
-    background: #ef4444;
-    color: white;
+th {
+    padding: 15px 20px;
+    font-weight: 600;
+    color: var(--text-light);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.modal-btn-danger:hover {
-    background: #dc2626;
+td {
+    padding: 15px 20px;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--card-border);
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: var(--background-light);
+    transform: scale(1.005); /* Subtle zoom effect */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    z-index: 1;
+    position: relative;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    table {
+        min-width: 600px; /* Ensure table doesn't squish too much */
+    }
 }
 
 /* Responsive */
@@ -352,4 +374,10 @@ body {
     .stats-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
