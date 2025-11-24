@@ -1,70 +1,67 @@
 <?php
-// api/auth/login.php
+header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: http://localhost"); // Must be specific origin for credentials
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Credentials: true");
 
-include_once '../config/cors.php';
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+session_start();
 include_once '../config/database.php';
-include_once '../utils/response.php';
-include_once '../utils/jwt.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (!isset($data->email) || !isset($data->password)) {
-    sendError("Missing email or password.");
-}
+if (!empty($data->email) && !empty($data->password)) {
+    $query = "SELECT id, name, email, password_hash, role, status FROM users WHERE email = :email";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":email", $data->email);
+    $stmt->execute();
 
-$email = trim($data->email);
-$password = $data->password;
+    if ($stmt->rowCount() > 0) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (password_verify($data->password, $row['password_hash'])) {
+            
+            if ($row['status'] == 'banned') {
+                http_response_code(403);
+                echo json_encode(["success" => false, "message" => "Your account has been suspended."]);
+                exit;
+            }
 
-$query = "SELECT id, username, email, password_hash, name, role, status, profile_image FROM users WHERE email = :email LIMIT 1";
-$stmt = $db->prepare($query);
-$stmt->bindParam(":email", $email);
-$stmt->execute();
+            // Set Session Variables
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['role'] = $row['role'];
+            $_SESSION['name'] = $row['name'];
 
-if ($stmt->rowCount() > 0) {
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    if (password_verify($password, $row['password_hash'])) {
-        
-        if ($row['status'] == 'banned') {
-            sendError("Your account has been suspended.");
+            // Update last login
+            $updateQuery = "UPDATE users SET last_login = NOW() WHERE id = :id";
+            $updateStmt = $db->prepare($updateQuery);
+            $updateStmt->bindParam(":id", $row['id']);
+            $updateStmt->execute();
+
+            http_response_code(200);
+            echo json_encode([
+                "success" => true,
+                "message" => "Login successful.",
+                "role" => $row['role'],
+                "redirect" => "dashboard/" . $row['role'] . "/dashboard.html"
+            ]);
+        } else {
+            http_response_code(401);
+            echo json_encode(["success" => false, "message" => "Invalid password."]);
         }
-
-        // Generate JWT
-        $payload = [
-            "iss" => "http://localhost/projects/kadam",
-            "aud" => "http://localhost/projects/kadam",
-            "iat" => time(),
-            "exp" => time() + (60 * 60 * 24), // 24 hours
-            "data" => [
-                "id" => $row['id'],
-                "username" => $row['username'],
-                "email" => $row['email'],
-                "role" => $row['role']
-            ]
-        ];
-
-        $jwt = JWT::encode($payload);
-
-        // Update last login
-        $updateQuery = "UPDATE users SET last_login = NOW() WHERE id = :id";
-        $updateStmt = $db->prepare($updateQuery);
-        $updateStmt->bindParam(":id", $row['id']);
-        $updateStmt->execute();
-
-        // Remove password from response
-        unset($row['password_hash']);
-
-        sendSuccess("Login successful.", [
-            "token" => $jwt,
-            "user" => $row
-        ]);
     } else {
-        sendError("Invalid password.");
+        http_response_code(401);
+        echo json_encode(["success" => false, "message" => "User not found."]);
     }
 } else {
-    sendError("User not found.");
+    http_response_code(400);
+    echo json_encode(["success" => false, "message" => "Incomplete data."]);
 }
 ?>

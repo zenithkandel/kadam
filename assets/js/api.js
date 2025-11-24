@@ -12,22 +12,15 @@ const API_CONFIG = {
 };
 
 class ApiHandler {
-    static getAuthToken() {
-        return localStorage.getItem('auth_token');
-    }
-
     static async request(endpoint, method = 'GET', data = null) {
         const url = `${API_CONFIG.BASE_URL}/${endpoint}`;
         const headers = { ...API_CONFIG.HEADERS };
         
-        const token = this.getAuthToken();
-        if (token) {
-            headers['Authorization'] = `Bearer ${token}`;
-        }
-
+        // No token needed for sessions, browser handles cookies automatically
         const options = {
             method,
             headers,
+            credentials: 'include' // Important for sending cookies (PHPSESSID)
         };
 
         if (data) {
@@ -37,11 +30,12 @@ class ApiHandler {
         try {
             const response = await fetch(url, options);
             
-            // Handle 401 Unauthorized (Token expired or invalid)
+            // Handle 401 Unauthorized (Session expired)
             if (response.status === 401) {
-                localStorage.removeItem('auth_token');
-                localStorage.removeItem('user_role');
-                window.location.href = '/projects/kadam/auth/login.html';
+                // Redirect to login if not already there
+                if (!window.location.href.includes('login.html')) {
+                    window.location.href = '/projects/kadam/login.html';
+                }
                 return;
             }
 
