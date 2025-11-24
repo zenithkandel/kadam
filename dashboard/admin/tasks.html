@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Monitoring</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-content.css">
+    
+    <style>
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 300px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px 10px 35px;
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            color: white;
+        }
+
+        .btn-view {
+            background: var(--primary-color);
+        }
+
+        .btn-delete {
+            background: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="filter-bar">
+        <div class="search-box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" placeholder="Search tasks...">
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <select class="form-control" style="padding: 8px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-color);">
+                <option value="all">All Categories</option>
+                <option value="web">Web Dev</option>
+                <option value="design">Design</option>
+            </select>
+            <select class="form-control" style="padding: 8px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-color);">
+                <option value="all">All Status</option>
+                <option value="active">Active</option>
+                <option value="completed">Completed</option>
+                <option value="reported">Reported</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Task Title</th>
+                    <th>Employer</th>
+                    <th>Budget</th>
+                    <th>Posted Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>E-commerce Website Design</td>
+                    <td>Tech Corp</td>
+                    <td>Rs. 25,000</td>
+                    <td>Nov 24, 2025</td>
+                    <td><span class="status-badge status-active">Active</span></td>
+                    <td>
+                        <button class="action-btn btn-view"><i class="fa-solid fa-eye"></i></button>
+                        <button class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Logo Design for Startup</td>
+                    <td>Sarah Smith</td>
+                    <td>Rs. 5,000</td>
+                    <td>Nov 23, 2025</td>
+                    <td><span class="status-badge status-completed">Completed</span></td>
+                    <td>
+                        <button class="action-btn btn-view"><i class="fa-solid fa-eye"></i></button>
+                        <button class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Spam Task Example</td>
+                    <td>Spammer123</td>
+                    <td>Rs. 100,000</td>
+                    <td>Today</td>
+                    <td><span class="status-badge status-pending" style="background: #fee2e2; color: #ef4444;">Reported</span></td>
+                    <td>
+                        <button class="action-btn btn-view"><i class="fa-solid fa-eye"></i></button>
+                        <button class="action-btn btn-delete"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
