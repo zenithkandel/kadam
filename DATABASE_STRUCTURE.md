@@ -68,7 +68,22 @@ Extension table for admin-specific data.
 
 ---
 
-### 2. Tasks & Jobs
+### 2. Verification & Documents
+
+#### `verification_documents`
+Stores uploaded documents for user verification.
+*   `id` (PK, INT)
+*   `user_id` (FK -> users.id)
+*   `document_type` (ENUM: 'id_card', 'cv', 'guardian_letter', 'company_registration', 'other')
+*   `file_path` (VARCHAR)
+*   `status` (ENUM: 'pending', 'approved', 'rejected')
+*   `rejection_reason` (VARCHAR, Nullable)
+*   `uploaded_at` (DATETIME)
+*   `verified_at` (DATETIME, Nullable)
+
+---
+
+### 3. Tasks & Jobs
 
 #### `tasks`
 *   `id` (PK, INT)
@@ -149,7 +164,7 @@ Pivot table for required task skills.
 
 ---
 
-### 5. Reports & Analytics
+### 6. Reports, Support & Analytics
 
 #### `abuse_reports`
 For flagging inappropriate content or users.
@@ -162,6 +177,27 @@ For flagging inappropriate content or users.
 *   `status` (ENUM: 'pending', 'investigating', 'resolved', 'dismissed')
 *   `created_at` (DATETIME)
 *   `resolved_at` (DATETIME)
+
+#### `support_tickets`
+For user support inquiries.
+*   `id` (PK, INT)
+*   `user_id` (FK -> users.id)
+*   `subject` (VARCHAR)
+*   `message` (TEXT)
+*   `status` (ENUM: 'open', 'in_progress', 'resolved', 'closed')
+*   `created_at` (DATETIME)
+*   `updated_at` (DATETIME)
+
+#### `admin_logs`
+Audit trail for admin actions.
+*   `id` (PK, INT)
+*   `admin_id` (FK -> users.id)
+*   `action` (VARCHAR)
+*   `target_type` (VARCHAR) - e.g., 'user', 'task'
+*   `target_id` (INT)
+*   `details` (TEXT)
+*   `ip_address` (VARCHAR)
+*   `created_at` (DATETIME)
 
 #### `analytics_reports`
 Generated files for admin download.
