@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Overview</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-content.css">
+</head>
+<body>
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+        <div>
+            <h1>System Overview</h1>
+            <p>Monitoring platform performance and user activity.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <button class="btn-primary" style="background: var(--background-light); color: var(--text-color); border: 1px solid var(--card-border);">
+                <i class="fa-solid fa-download"></i> Export Report
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(13, 138, 188, 0.1); color: var(--primary-color);">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="stat-info">
+                <h3>1,245</h3>
+                <p>Total Students</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(46, 204, 113, 0.1); color: #2ecc71;">
+                <i class="fa-solid fa-building"></i>
+            </div>
+            <div class="stat-info">
+                <h3>328</h3>
+                <p>Total Employers</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(241, 196, 15, 0.1); color: #f1c40f;">
+                <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <div class="stat-info">
+                <h3>856</h3>
+                <p>Active Tasks</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(155, 89, 182, 0.1); color: #9b59b6;">
+                <i class="fa-solid fa-money-bill-wave"></i>
+            </div>
+            <div class="stat-info">
+                <h3>Rs. 4.2M</h3>
+                <p>Total Payouts</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="section-header">
+        <h2 class="section-title">Recent System Activity</h2>
+        <a href="#" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">View All Logs</a>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="User" style="width: 30px; height: 30px; border-radius: 50%;">
+                            <span>John Doe</span>
+                        </div>
+                    </td>
+                    <td>Registered as Student</td>
+                    <td>2 mins ago</td>
+                    <td><span class="status-badge status-active">Success</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <img src="https://ui-avatars.com/api/?name=Tech+Corp&background=random" alt="User" style="width: 30px; height: 30px; border-radius: 50%;">
+                            <span>Tech Corp</span>
+                        </div>
+                    </td>
+                    <td>Posted new task "Web Dev"</td>
+                    <td>15 mins ago</td>
+                    <td><span class="status-badge status-active">Success</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <img src="https://ui-avatars.com/api/?name=Mike+Ross&background=random" alt="User" style="width: 30px; height: 30px; border-radius: 50%;">
+                            <span>Mike Ross</span>
+                        </div>
+                    </td>
+                    <td>Failed login attempt</td>
+                    <td>1 hour ago</td>
+                    <td><span class="status-badge status-pending" style="background: #fee2e2; color: #ef4444;">Failed</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
