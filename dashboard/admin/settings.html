@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-content.css">
+    
+    <style>
+        .settings-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .settings-section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .settings-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .settings-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            background: var(--background-light);
+            color: var(--text-color);
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--card-border);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-info h4 {
+            margin-bottom: 5px;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .setting-info p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .btn-save {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .btn-save:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <!-- General Settings -->
+        <div class="settings-section">
+            <div class="settings-header">
+                <h3 class="settings-title">General Configuration</h3>
+            </div>
+            <form onsubmit="event.preventDefault();">
+                <div class="form-group">
+                    <label class="form-label">Platform Name</label>
+                    <input type="text" class="form-control" value="KADAM">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Support Email</label>
+                    <input type="email" class="form-control" value="support@kadam.com">
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Maintenance Mode</h4>
+                        <p>Disable access for all users except admins</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div style="text-align: right; margin-top: 20px;">
+                    <button class="btn-save">Save Changes</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Security Settings -->
+        <div class="settings-section">
+            <div class="settings-header">
+                <h3 class="settings-title">Security & Access</h3>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h4>User Registration</h4>
+                    <p>Allow new users to register</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h4>Email Verification</h4>
+                    <p>Require email verification for new accounts</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h4>Two-Factor Auth (Admin)</h4>
+                    <p>Enforce 2FA for all admin accounts</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Content Moderation -->
+        <div class="settings-section">
+            <div class="settings-header">
+                <h3 class="settings-title">Content Moderation</h3>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h4>Auto-Approve Tasks</h4>
+                    <p>Automatically approve new task postings</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h4>Profanity Filter</h4>
+                    <p>Automatically filter offensive language</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
