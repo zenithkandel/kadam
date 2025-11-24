@@ -22,16 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await ApiHandler.post('auth/login.php', data);
                 
                 if (response.success) {
-                    localStorage.setItem('auth_token', response.token);
-                    localStorage.setItem('user_role', response.user.role);
-                    localStorage.setItem('user_data', JSON.stringify(response.user));
+                    const { token, user } = response.data;
+                    
+                    localStorage.setItem('auth_token', token);
+                    localStorage.setItem('user_role', user.role);
+                    localStorage.setItem('user_data', JSON.stringify(user));
                     
                     // Redirect based on role
-                    if (response.user.role === 'student') {
+                    if (user.role === 'student') {
                         window.location.href = '../dashboard/student/dashboard.html';
-                    } else if (response.user.role === 'employer') {
+                    } else if (user.role === 'employer') {
                         window.location.href = '../dashboard/employer/dashboard.html';
-                    } else if (response.user.role === 'admin') {
+                    } else if (user.role === 'admin') {
                         window.location.href = '../dashboard/admin/dashboard.html';
                     }
                 }
