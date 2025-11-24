@@ -23,6 +23,7 @@ Base table for all user types.
 *   `username` (VARCHAR, Unique)
 *   `email` (VARCHAR, Unique)
 *   `password_hash` (VARCHAR)
+*   `name` (VARCHAR) - Display name (Full Name for students, Company Name/Name for employers)
 *   `role` (ENUM: 'student', 'employer', 'admin')
 *   `status` (ENUM: 'active', 'banned', 'pending_verification')
 *   `profile_image` (VARCHAR, URL/Path)
@@ -36,7 +37,6 @@ Base table for all user types.
 #### `students`
 Extension table for student-specific data.
 *   `user_id` (FK -> users.id, Unique)
-*   `full_name` (VARCHAR)
 *   `title` (VARCHAR) - e.g., "Computer Science Student"
 *   `bio` (TEXT)
 *   `education_level` (VARCHAR)
@@ -51,7 +51,6 @@ Extension table for student-specific data.
 #### `employers`
 Extension table for employer-specific data.
 *   `user_id` (FK -> users.id, Unique)
-*   `company_name` (VARCHAR) - Or individual name if type is individual
 *   `employer_type` (ENUM: 'individual', 'company')
 *   `industry` (VARCHAR)
 *   `company_size` (VARCHAR)
@@ -65,7 +64,6 @@ Extension table for employer-specific data.
 #### `admins`
 Extension table for admin-specific data.
 *   `user_id` (FK -> users.id, Unique)
-*   `full_name` (VARCHAR)
 *   `permissions` (JSON) - e.g., ["manage_users", "manage_tasks"]
 
 ---
