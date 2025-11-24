@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Task</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-content.css">
+    
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            background: var(--background-light);
+            color: var(--text-color);
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        .file-upload {
+            border: 2px dashed var(--card-border);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary-color);
+            background: var(--background-light);
+        }
+
+        .file-upload i {
+            font-size: 2rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .file-upload p {
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .btn-submit {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 style="margin-bottom: 25px; color: var(--text-color);">Create New Task</h2>
+        
+        <form onsubmit="event.preventDefault(); alert('Task posted successfully!');">
+            <div class="form-group">
+                <label class="form-label">Task Title</label>
+                <input type="text" class="form-control" placeholder="e.g. Build a Responsive Website" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Task Description</label>
+                <textarea class="form-control" placeholder="Describe the task requirements in detail..." required></textarea>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select class="form-control" required>
+                            <option value="">Select Category</option>
+                            <option value="web">Web Development</option>
+                            <option value="design">Graphic Design</option>
+                            <option value="content">Content Writing</option>
+                            <option value="marketing">Digital Marketing</option>
+                            <option value="data">Data Entry</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="form-label">Budget (Rs.)</label>
+                        <input type="number" class="form-control" placeholder="e.g. 5000" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="form-label">Deadline</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="form-label">Difficulty Level</label>
+                        <select class="form-control" required>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="expert">Expert</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Required Skills (Comma separated)</label>
+                <input type="text" class="form-control" placeholder="e.g. HTML, CSS, JavaScript">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Attachments (Optional)</label>
+                <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <p>Click to upload files or drag and drop</p>
+                    <input type="file" id="fileInput" style="display: none;" multiple>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Post Task</button>
+        </form>
+    </div>
+</body>
+</html>
