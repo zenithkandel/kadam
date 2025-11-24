@@ -259,19 +259,8 @@
                 loginBtn.classList.add('loading');
                 loginBtn.textContent = '';
 
-                // Simulate API call (replace with actual authentication)
-                setTimeout(() => {
-                    const email = emailInput.value.trim().toLowerCase();
-                    
-                    // Redirect based on email (Simulation)
-                    if (email.includes('admin')) {
-                        window.location.href = 'dashboard/admin/dashboard.html';
-                    } else if (email.includes('employer') || email.includes('hr')) {
-                        window.location.href = 'dashboard/employer/dashboard.html';
-                    } else {
-                        window.location.href = 'dashboard/student/dashboard.html';
-                    }
-                }, 1500);
+                // API call is now handled by auth.js
+                // The validation above provides visual feedback
             }
         });
 
