@@ -330,6 +330,7 @@
         </form>
     </div>
 
+    <script src="assets/js/api.js"></script>
     <script>
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
@@ -495,7 +496,7 @@
         });
 
         // Form Submission
-        document.getElementById('requestTaskForm').addEventListener('submit', function(e) {
+        document.getElementById('requestTaskForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Validate minimum budget
@@ -507,6 +508,41 @@
                 alert(`Minimum budget for ${timeRequired} hours is Rs. ${minBudget}`);
                 document.getElementById('budget').focus();
                 return;
+            }
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            const formData = {
+                title: document.getElementById('taskTitle').value,
+                description: document.getElementById('taskDescription').value + 
+                             "\n\nTime Required: " + document.getElementById('timeRequired').value + " hours" +
+                             "\nContact: " + document.getElementById('contactInfo').value +
+                             "\nNotes: " + document.getElementById('additionalNotes').value,
+                category: document.querySelector('input[name="category"]:checked').value,
+                budget: budget,
+                deadline: document.getElementById('deadline').value,
+                difficulty_level: document.getElementById('difficultyLevel').value
+            };
+
+            try {
+                const response = await ApiHandler.post('tasks/create.php', formData);
+                if (response.success) {
+                    alert('Task request sent successfully!');
+                    window.location.href = 'dashboard/employer/index.html';
+                } else {
+                    alert(response.message || 'Failed to send request.');
+                }
+            } catch (error) {
+                console.error('Error sending request:', error);
+                alert('An error occurred. Please try again.');
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
             }
 
             // Validate title word count

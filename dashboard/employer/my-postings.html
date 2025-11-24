@@ -264,11 +264,76 @@
             });
         }
 
-        function viewApplicants(taskId, taskTitle) {
+        async function viewApplicants(taskId, taskTitle) {
             openModal('applicantsModal', taskTitle);
-            // Fetch applicants (Placeholder)
             const container = document.getElementById('applicant-list-container');
-            container.innerHTML = '<div style="text-align: center; padding: 20px;">No applicants found (Feature coming soon).</div>';
+            container.innerHTML = '<div style="text-align: center; padding: 20px;">Loading applicants...</div>';
+
+            try {
+                const response = await ApiHandler.get(`tasks/applicants.php?task_id=${taskId}`);
+                if (response.success) {
+                    const applicants = response.data;
+                    if (applicants.length === 0) {
+                        container.innerHTML = '<div style="text-align: center; padding: 20px;">No applicants yet.</div>';
+                        return;
+                    }
+
+                    container.innerHTML = '';
+                    applicants.forEach(app => {
+                        const card = document.createElement('div');
+                        card.className = 'applicant-card';
+                        card.innerHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; gap: 15px; align-items: center;">
+                                    <img src="${app.profile_image || `https://ui-avatars.com/api/?name=${encodeURIComponent(app.name)}&background=random`}" 
+                                         style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                                    <div>
+                                        <h4 style="margin: 0; font-size: 1rem;">${app.name}</h4>
+                                        <span style="font-size: 0.85rem; color: var(--text-light);">${app.education_level || 'Student'} • ${app.institution || ''}</span>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-weight: 600; color: var(--primary-color);">Rs. ${app.bid_amount}</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-light);">${new Date(app.created_at).toLocaleDateString()}</div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px; padding: 10px; background: var(--background-light); border-radius: 6px; font-size: 0.9rem;">
+                                ${app.message}
+                            </div>
+                            <div style="margin-top: 10px; display: flex; gap: 10px; justify-content: flex-end;">
+                                <button class="btn-action" onclick="window.location.href='../student/profile.html?id=${app.student_id}'">View Profile</button>
+                                <button class="btn-primary" style="padding: 6px 12px; font-size: 0.85rem;" onclick="hireStudent(${app.id})">Hire</button>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+                } else {
+                    container.innerHTML = `<div style="text-align: center; padding: 20px; color: red;">${response.message}</div>`;
+                }
+            } catch (error) {
+                console.error('Error loading applicants:', error);
+                container.innerHTML = '<div style="text-align: center; padding: 20px; color: red;">Error loading applicants.</div>';
+            }
+        }
+
+        async function hireStudent(applicationId) {
+            if (!confirm('Are you sure you want to hire this student? This will mark the task as In Progress.')) {
+                return;
+            }
+
+            try {
+                const response = await ApiHandler.post('tasks/accept_application.php', { application_id: applicationId });
+                if (response.success) {
+                    alert('Student hired successfully!');
+                    closeModal('applicantsModal');
+                    loadTasks(); // Reload tasks to update status
+                } else {
+                    alert(response.message || 'Failed to hire student.');
+                }
+            } catch (error) {
+                console.error('Error hiring student:', error);
+                alert('An error occurred.');
+            }
         }
 
         function closeTask(taskId) {

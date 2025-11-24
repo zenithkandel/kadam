@@ -97,5 +97,22 @@
     <script src="../../assets/js/api.js"></script>
     <script src="../../assets/js/student.js"></script>
     <script src="dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await ApiHandler.get('profile/get.php');
+                if (response.success) {
+                    const user = response.data;
+                    const miniProfile = document.querySelector('.user-mini-profile');
+                    if (miniProfile) {
+                        miniProfile.querySelector('img').src = user.profile_image || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random`;
+                        miniProfile.querySelector('h4').textContent = user.name;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading user info:', error);
+            }
+        });
+    </script>
 </body>
 </html>

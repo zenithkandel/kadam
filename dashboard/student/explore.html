@@ -489,15 +489,38 @@
             document.body.style.overflow = '';
         }
 
-        function submitApplication() {
+        async function submitApplication() {
+            const btn = document.querySelector('#applyModal .btn-primary');
+            const originalText = btn.textContent;
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+
             const taskId = document.getElementById('apply-task-id').value;
             const coverLetter = document.getElementById('cover-letter').value;
             const rate = document.getElementById('proposed-rate').value;
 
-            // Here you would handle the form submission to API
-            // For now, simulation
-            alert(`Application submitted for Task ID: ${taskId}\nRate: Rs. ${rate}`);
-            closeModal('applyModal');
+            const data = {
+                task_id: taskId,
+                message: coverLetter,
+                bid_amount: rate
+            };
+
+            try {
+                const response = await ApiHandler.post('tasks/apply.php', data);
+                if (response.success) {
+                    alert('Application submitted successfully!');
+                    closeModal('applyModal');
+                } else {
+                    alert(response.message || 'Failed to submit application.');
+                }
+            } catch (error) {
+                console.error('Error submitting application:', error);
+                alert('An error occurred.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
         }
 
         // Close modal when clicking outside
