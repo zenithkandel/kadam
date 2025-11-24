@@ -38,7 +38,7 @@
                 <i class="fa-solid fa-users"></i>
             </div>
             <div class="stat-info">
-                <h3>1,245</h3>
+                <h3 id="total-students">0</h3>
                 <p>Total Students</p>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 <i class="fa-solid fa-building"></i>
             </div>
             <div class="stat-info">
-                <h3>328</h3>
+                <h3 id="total-employers">0</h3>
                 <p>Total Employers</p>
             </div>
         </div>
@@ -56,7 +56,7 @@
                 <i class="fa-solid fa-briefcase"></i>
             </div>
             <div class="stat-info">
-                <h3>856</h3>
+                <h3 id="active-tasks">0</h3>
                 <p>Active Tasks</p>
             </div>
         </div>
@@ -65,7 +65,7 @@
                 <i class="fa-solid fa-money-bill-wave"></i>
             </div>
             <div class="stat-info">
-                <h3>Rs. 4.2M</h3>
+                <h3 id="total-payouts">Rs. 0</h3>
                 <p>Total Payouts</p>
             </div>
         </div>
@@ -82,23 +82,63 @@
             <thead>
                 <tr>
                     <th>User</th>
-                    <th>Action</th>
-                    <th>Time</th>
+                    <th>Role</th>
+                    <th>Joined</th>
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="User" style="width: 30px; height: 30px; border-radius: 50%;">
-                            <span>John Doe</span>
-                        </div>
-                    </td>
-                    <td>Registered as Student</td>
-                    <td>2 mins ago</td>
-                    <td><span class="status-badge status-active">Success</span></td>
-                </tr>
+            <tbody id="recent-activity-body">
+                <tr><td colspan="4" style="text-align:center;">Loading...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="../../assets/js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await ApiHandler.get('admin/stats.php');
+                if (response.success) {
+                    const stats = response.data;
+                    
+                    document.getElementById('total-students').textContent = stats.students_count;
+                    document.getElementById('total-employers').textContent = stats.employers_count;
+                    document.getElementById('active-tasks').textContent = stats.active_tasks_count;
+                    document.getElementById('total-payouts').textContent = 'Rs. ' + stats.total_payouts;
+
+                    const tbody = document.getElementById('recent-activity-body');
+                    tbody.innerHTML = '';
+
+                    if (stats.recent_activity && stats.recent_activity.length > 0) {
+                        stats.recent_activity.forEach(user => {
+                            const row = `
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div style="width: 30px; height: 30px; border-radius: 50%; background: #eee; display: flex; align-items: center; justify-content: center;">
+                                                <i class="fa-solid fa-user" style="color: #666; font-size: 12px;"></i>
+                                            </div>
+                                            <span>${user.name}</span>
+                                        </div>
+                                    </td>
+                                    <td>${user.role.charAt(0).toUpperCase() + user.role.slice(1)}</td>
+                                    <td>${new Date(user.created_at).toLocaleDateString()}</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                </tr>
+                            `;
+                            tbody.innerHTML += row;
+                        });
+                    } else {
+                        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No recent activity.</td></tr>';
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading admin stats:', error);
+            }
+        });
+    </script>
+</body>
+</html>                </tr>
                 <tr>
                     <td>
                         <div style="display: flex; align-items: center; gap: 10px;">

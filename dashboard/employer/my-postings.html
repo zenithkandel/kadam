@@ -147,219 +147,143 @@
 </head>
 <body>
     <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('active')">Active (12)</button>
-        <button class="tab-btn" onclick="switchTab('drafts')">Drafts (3)</button>
-        <button class="tab-btn" onclick="switchTab('closed')">Closed (156)</button>
-        <button class="btn-primary" style="margin-left: auto; padding: 8px 16px; font-size: 0.9rem;" onclick="openModal('postTaskModal')">
+        <button class="tab-btn active" onclick="switchTab('active')">Active (<span id="count-active">0</span>)</button>
+        <button class="tab-btn" onclick="switchTab('closed')">Closed (<span id="count-closed">0</span>)</button>
+        <button class="btn-primary" style="margin-left: auto; padding: 8px 16px; font-size: 0.9rem;" onclick="window.parent.document.querySelector('[data-page=\'post-task.html\']').click()">
             <i class="fa-solid fa-plus"></i> Post New Task
         </button>
     </div>
 
-    <!-- Active Tasks -->
-    <div id="active-tasks" class="task-list">
-        <div class="task-card">
-            <div class="task-header">
-                <span class="task-status status-active">Active</span>
-                <span style="color: var(--text-light); font-size: 0.8rem;">Posted: 2 days ago</span>
-            </div>
-            <h4 class="task-title">E-commerce Website Design</h4>
-            <div class="task-meta">
-                <span><i class="fa-solid fa-users"></i> 15 Applicants</span>
-                <span><i class="fa-solid fa-money-bill"></i> Rs. 25,000</span>
-                <span><i class="fa-solid fa-clock"></i> Due in 5 days</span>
-            </div>
-            <div class="task-actions">
-                <button class="btn-action">View Applicants</button>
-                <button class="btn-action">Edit Task</button>
-                <button class="btn-action" style="color: #ef4444; border-color: #ef4444;">Close Task</button>
-            </div>
-        </div>
-
-        <div class="task-card">
-            <div class="task-header">
-                <span class="task-status status-active">Active</span>
-                <span style="color: var(--text-light); font-size: 0.8rem;">Posted: 5 days ago</span>
-            </div>
-            <h4 class="task-title">Social Media Marketing Campaign</h4>
-            <div class="task-meta">
-                <span><i class="fa-solid fa-users"></i> 8 Applicants</span>
-                <span><i class="fa-solid fa-money-bill"></i> Rs. 15,000</span>
-                <span><i class="fa-solid fa-clock"></i> Due in 10 days</span>
-            </div>
-            <div class="task-actions">
-                <button class="btn-action">View Applicants</button>
-                <button class="btn-action">Edit Task</button>
-                <button class="btn-action" style="color: #ef4444; border-color: #ef4444;">Close Task</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Drafts (Hidden) -->
-    <div id="drafts-tasks" class="task-list" style="display: none;">
-        <div class="task-card" style="opacity: 0.8;">
-            <div class="task-header">
-                <span class="task-status status-pending">Draft</span>
-                <span style="color: var(--text-light); font-size: 0.8rem;">Last edited: Yesterday</span>
-            </div>
-            <h4 class="task-title">Python Script for Data Analysis</h4>
-            <div class="task-meta">
-                <span><i class="fa-solid fa-money-bill"></i> Rs. 8,000</span>
-            </div>
-            <div class="task-actions">
-                <button class="btn-action">Continue Editing</button>
-                <button class="btn-action" style="color: #ef4444; border-color: #ef4444;">Delete</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Post/Edit Task Modal -->
-    <div class="modal-overlay" id="postTaskModal">
-        <div class="modal-container">
-            <div class="modal-header">
-                <h3 class="modal-title">Post New Task</h3>
-                <button class="modal-close" onclick="closeModal('postTaskModal')">
-                    <i class="fa-solid fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="postTaskForm">
-                    <div class="form-group">
-                        <label class="form-label">Task Title</label>
-                        <input type="text" class="form-control" placeholder="e.g. Website Redesign">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Description</label>
-                        <textarea class="form-control" rows="5" placeholder="Detailed description of the task..."></textarea>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Budget (Rs.)</label>
-                            <input type="number" class="form-control" placeholder="e.g. 25000">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Deadline</label>
-                            <input type="date" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Required Skills (Comma separated)</label>
-                        <input type="text" class="form-control" placeholder="e.g. HTML, CSS, Photoshop">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Attachments</label>
-                        <div class="file-upload-area">
-                            <i class="fa-solid fa-cloud-upload-alt"></i>
-                            <p>Upload reference files</p>
-                            <input type="file" hidden multiple>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeModal('postTaskModal')">Cancel</button>
-                <button class="btn-primary" onclick="saveTask()">Post Task</button>
-            </div>
-        </div>
+    <!-- Task List Container -->
+    <div id="task-list-container" class="task-list">
+        <!-- Loaded via JS -->
+        <div style="text-align: center; padding: 20px; color: var(--text-light);">Loading postings...</div>
     </div>
 
     <!-- View Applicants Modal -->
     <div class="modal-overlay" id="applicantsModal">
         <div class="modal-container">
             <div class="modal-header">
-                <h3 class="modal-title">Applicants for "E-commerce Website Design"</h3>
+                <h3 class="modal-title">Applicants</h3>
                 <button class="modal-close" onclick="closeModal('applicantsModal')">
                     <i class="fa-solid fa-times"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="applicant-list">
-                    <!-- Applicant 1 -->
-                    <div class="applicant-card" style="border-bottom: 1px solid var(--card-border); padding-bottom: 15px; margin-bottom: 15px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                            <div style="display: flex; gap: 10px; align-items: center;">
-                                <img src="https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff" style="width: 40px; height: 40px; border-radius: 50%;">
-                                <div>
-                                    <h4 style="font-size: 1rem; margin: 0;">John Doe</h4>
-                                    <span style="font-size: 0.8rem; color: var(--text-light);">Computer Science Student</span>
-                                </div>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="font-weight: 600; color: var(--primary-color);">Rs. 24,000</div>
-                                <div style="font-size: 0.8rem; color: var(--text-light);">In 4 days</div>
-                            </div>
-                        </div>
-                        <p style="font-size: 0.9rem; color: var(--text-color); margin-bottom: 10px;">
-                            I have experience building e-commerce sites with React and Node.js. I can deliver this within the deadline.
-                        </p>
-                        <div style="display: flex; gap: 10px;">
-                            <button class="btn-primary" style="padding: 6px 12px; font-size: 0.85rem;">Hire</button>
-                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;">Message</button>
-                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;">View Profile</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Applicant 2 -->
-                    <div class="applicant-card">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                            <div style="display: flex; gap: 10px; align-items: center;">
-                                <img src="https://ui-avatars.com/api/?name=Jane+Smith&background=E91E63&color=fff" style="width: 40px; height: 40px; border-radius: 50%;">
-                                <div>
-                                    <h4 style="font-size: 1rem; margin: 0;">Jane Smith</h4>
-                                    <span style="font-size: 0.8rem; color: var(--text-light);">UI/UX Designer</span>
-                                </div>
-                            </div>
-                            <div style="text-align: right;">
-                                <div style="font-weight: 600; color: var(--primary-color);">Rs. 25,000</div>
-                                <div style="font-size: 0.8rem; color: var(--text-light);">In 5 days</div>
-                            </div>
-                        </div>
-                        <p style="font-size: 0.9rem; color: var(--text-color); margin-bottom: 10px;">
-                            I specialize in clean and modern UI design. Check my portfolio for similar projects.
-                        </p>
-                        <div style="display: flex; gap: 10px;">
-                            <button class="btn-primary" style="padding: 6px 12px; font-size: 0.85rem;">Hire</button>
-                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;">Message</button>
-                            <button class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;">View Profile</button>
-                        </div>
-                    </div>
+                <div class="applicant-list" id="applicant-list-container">
+                    <!-- Loaded via JS -->
+                    <div style="text-align: center; padding: 20px;">Loading applicants...</div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="../../assets/js/api.js"></script>
     <script>
-        function switchTab(tabName) {
+        let allTasks = [];
+        let currentTab = 'active';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadTasks();
+        });
+
+        async function loadTasks() {
+            try {
+                const response = await ApiHandler.get('tasks/my_tasks.php');
+                if (response.success) {
+                    allTasks = response.data;
+                    updateCounts();
+                    renderTasks();
+                }
+            } catch (error) {
+                console.error('Error loading tasks:', error);
+                document.getElementById('task-list-container').innerHTML = '<div style="text-align: center; padding: 20px; color: red;">Error loading tasks.</div>';
+            }
+        }
+
+        function updateCounts() {
+            const active = allTasks.filter(t => t.status === 'open').length;
+            const closed = allTasks.filter(t => t.status === 'completed' || t.status === 'closed').length;
+
+            document.getElementById('count-active').textContent = active;
+            document.getElementById('count-closed').textContent = closed;
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
+            renderTasks();
+        }
 
-            document.querySelectorAll('.task-list').forEach(list => list.style.display = 'none');
+        function renderTasks() {
+            const container = document.getElementById('task-list-container');
+            container.innerHTML = '';
 
-            if (tabName === 'active') {
-                document.getElementById('active-tasks').style.display = 'flex';
-            } else if (tabName === 'drafts') {
-                document.getElementById('drafts-tasks').style.display = 'flex';
-            } else {
-                // Placeholder for closed
-                document.getElementById('active-tasks').style.display = 'none';
+            let filteredTasks = [];
+            if (currentTab === 'active') {
+                filteredTasks = allTasks.filter(t => t.status === 'open');
+            } else if (currentTab === 'closed') {
+                filteredTasks = allTasks.filter(t => t.status === 'completed' || t.status === 'closed');
+            }
+
+            if (filteredTasks.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--text-light);">No postings found in this category.</div>';
+                return;
+            }
+
+            filteredTasks.forEach(task => {
+                const card = document.createElement('div');
+                card.className = 'task-card';
+                
+                // Calculate days due
+                const deadline = new Date(task.deadline);
+                const today = new Date();
+                const diffTime = deadline - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                const dueText = diffDays > 0 ? `Due in ${diffDays} days` : (diffDays === 0 ? 'Due today' : 'Overdue');
+
+                card.innerHTML = `
+                    <div class="task-header">
+                        <span class="task-status status-${task.status === 'open' ? 'active' : 'completed'}">${task.status.toUpperCase()}</span>
+                        <span style="color: var(--text-light); font-size: 0.8rem;">Posted: ${new Date(task.created_at).toLocaleDateString()}</span>
+                    </div>
+                    <h4 class="task-title">${task.title}</h4>
+                    <div class="task-meta">
+                        <span><i class="fa-solid fa-users"></i> ${task.applicants_count || 0} Applicants</span>
+                        <span><i class="fa-solid fa-money-bill"></i> Rs. ${task.budget}</span>
+                        <span><i class="fa-solid fa-clock"></i> ${dueText}</span>
+                    </div>
+                    <div class="task-actions">
+                        <button class="btn-action" onclick="viewApplicants(${task.id}, '${task.title}')">View Applicants</button>
+                        <button class="btn-action" onclick="alert('Edit functionality coming soon')">Edit Task</button>
+                        ${task.status === 'open' ? `<button class="btn-action" style="color: #ef4444; border-color: #ef4444;" onclick="closeTask(${task.id})">Close Task</button>` : ''}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function viewApplicants(taskId, taskTitle) {
+            openModal('applicantsModal', taskTitle);
+            // Fetch applicants (Placeholder)
+            const container = document.getElementById('applicant-list-container');
+            container.innerHTML = '<div style="text-align: center; padding: 20px;">No applicants found (Feature coming soon).</div>';
+        }
+
+        function closeTask(taskId) {
+            if (confirm('Are you sure you want to close this task?')) {
+                // Call API to close task (Not implemented yet)
+                alert('Task closed (Simulation).');
             }
         }
 
         // Modal Functions
         function openModal(modalId, title = '') {
             const modal = document.getElementById(modalId);
-            if (title && modalId === 'postTaskModal') {
-                modal.querySelector('.modal-title').textContent = 'Edit Task: ' + title;
-                modal.querySelector('.btn-primary').textContent = 'Save Changes';
-            } else if (modalId === 'postTaskModal') {
-                modal.querySelector('.modal-title').textContent = 'Post New Task';
-                modal.querySelector('.btn-primary').textContent = 'Post Task';
-                document.getElementById('postTaskForm').reset();
-            }
-            
             if (title && modalId === 'applicantsModal') {
                 modal.querySelector('.modal-title').textContent = 'Applicants for "' + title + '"';
             }
-
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -370,11 +294,6 @@
             document.body.style.overflow = '';
         }
 
-        function saveTask() {
-            alert('Task saved successfully!');
-            closeModal('postTaskModal');
-        }
-
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target.classList.contains('modal-overlay')) {
@@ -382,20 +301,6 @@
                 document.body.style.overflow = '';
             }
         }
-
-        // Attach event listeners
-        document.querySelectorAll('.btn-action').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const taskCard = this.closest('.task-card');
-                const taskTitle = taskCard.querySelector('.task-title').textContent;
-                
-                if (this.textContent.trim() === 'Edit Task' || this.textContent.trim() === 'Continue Editing') {
-                    openModal('postTaskModal', taskTitle);
-                } else if (this.textContent.trim() === 'View Applicants') {
-                    openModal('applicantsModal', taskTitle);
-                }
-            });
-        });
     </script>
 </body>
 </html>

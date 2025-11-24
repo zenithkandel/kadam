@@ -185,76 +185,15 @@
 </head>
 <body>
     <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('active')">Active Tasks (2)</button>
-        <button class="tab-btn" onclick="switchTab('completed')">Completed (47)</button>
-        <button class="tab-btn" onclick="switchTab('applications')">Applications (3)</button>
+        <button class="tab-btn active" onclick="switchTab('active')">Active Tasks (<span id="count-active">0</span>)</button>
+        <button class="tab-btn" onclick="switchTab('completed')">Completed (<span id="count-completed">0</span>)</button>
+        <button class="tab-btn" onclick="switchTab('applications')">Applications (<span id="count-applications">0</span>)</button>
     </div>
 
-    <!-- Active Tasks -->
-    <div id="active-tasks" class="task-list">
-        <div class="task-card">
-            <div class="task-header">
-                <span class="task-status status-active">In Progress</span>
-                <span style="color: var(--text-light); font-size: 0.8rem;">Deadline: Nov 28, 2025</span>
-            </div>
-            <h4 class="task-title">E-commerce Website Design</h4>
-            <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 10px;">
-                Design the homepage and product pages for a new fashion brand.
-            </p>
-            <div class="task-progress">
-                <div class="progress-bar" style="width: 70%"></div>
-            </div>
-            <div class="task-meta">
-                <span><i class="fa-solid fa-building"></i> Tech Corp</span>
-                <span><i class="fa-solid fa-money-bill"></i> Rs. 25,000</span>
-            </div>
-            <div class="task-actions">
-                <button class="btn-action btn-primary-sm">Submit Work</button>
-                <button class="btn-action">Message Employer</button>
-                <button class="btn-action">View Details</button>
-            </div>
-        </div>
-
-        <div class="task-card">
-            <div class="task-header">
-                <span class="task-status status-pending">Pending Review</span>
-                <span style="color: var(--text-light); font-size: 0.8rem;">Submitted: Nov 23, 2025</span>
-            </div>
-            <h4 class="task-title">Logo Design for Startup</h4>
-            <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 10px;">
-                Minimalist logo design for a coffee shop.
-            </p>
-            <div class="task-progress">
-                <div class="progress-bar" style="width: 100%"></div>
-            </div>
-            <div class="task-meta">
-                <span><i class="fa-solid fa-user"></i> Sarah Smith</span>
-                <span><i class="fa-solid fa-money-bill"></i> Rs. 5,000</span>
-            </div>
-            <div class="task-actions">
-                <button class="btn-action">View Submission</button>
-                <button class="btn-action">Message Employer</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Completed Tasks (Hidden by default) -->
-    <div id="completed-tasks" class="task-list" style="display: none;">
-        <div class="task-card" style="opacity: 0.8;">
-            <div class="task-header">
-                <span class="task-status status-completed">Completed</span>
-                <span style="color: var(--text-light); font-size: 0.8rem;">Finished: Nov 15, 2025</span>
-            </div>
-            <h4 class="task-title">Video Editing for YouTube</h4>
-            <div class="task-meta">
-                <span><i class="fa-solid fa-user"></i> Mike Ross</span>
-                <span><i class="fa-solid fa-money-bill"></i> Rs. 8,000</span>
-                <span><i class="fa-solid fa-star" style="color: var(--warning-color);"></i> 5.0</span>
-            </div>
-            <div class="task-actions">
-                <button class="btn-action">View Certificate</button>
-            </div>
-        </div>
+    <!-- Task List Container -->
+    <div id="task-list-container" class="task-list">
+        <!-- Loaded via JS -->
+        <div style="text-align: center; padding: 20px; color: var(--text-light);">Loading tasks...</div>
     </div>
 
     <!-- Submit Work Modal -->
@@ -268,21 +207,22 @@
             </div>
             <div class="modal-body">
                 <form id="submitWorkForm">
+                    <input type="hidden" id="submit-task-id">
                     <div class="form-group">
                         <label class="form-label">Work Description / Notes</label>
-                        <textarea class="form-control" rows="5" placeholder="Describe the work you are submitting..."></textarea>
+                        <textarea class="form-control" id="work-description" rows="5" placeholder="Describe the work you are submitting..."></textarea>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Upload Files</label>
                         <div class="file-upload-area">
                             <i class="fa-solid fa-cloud-upload-alt"></i>
                             <p>Click to upload project files</p>
-                            <input type="file" hidden multiple>
+                            <input type="file" id="work-files" hidden multiple>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">External Link (Optional)</label>
-                        <input type="url" class="form-control" placeholder="https://github.com/...">
+                        <input type="url" class="form-control" id="work-link" placeholder="https://github.com/...">
                     </div>
                 </form>
             </div>
@@ -293,32 +233,115 @@
         </div>
     </div>
 
+    <script src="../../assets/js/api.js"></script>
     <script>
-        function switchTab(tabName) {
-            // Update buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        let allTasks = [];
+        let currentTab = 'active';
 
-            // Hide all lists
-            document.querySelectorAll('.task-list').forEach(list => list.style.display = 'none');
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadTasks();
+        });
 
-            // Show selected list (Simulation)
-            if (tabName === 'active') {
-                document.getElementById('active-tasks').style.display = 'flex';
-            } else if (tabName === 'completed') {
-                document.getElementById('completed-tasks').style.display = 'flex';
-            } else {
-                // Placeholder for applications
-                document.getElementById('active-tasks').style.display = 'none';
-                // In a real app, we'd have an applications container
+        async function loadTasks() {
+            try {
+                const response = await ApiHandler.get('tasks/my_tasks.php');
+                if (response.success) {
+                    allTasks = response.data;
+                    updateCounts();
+                    renderTasks();
+                }
+            } catch (error) {
+                console.error('Error loading tasks:', error);
+                document.getElementById('task-list-container').innerHTML = '<div style="text-align: center; padding: 20px; color: red;">Error loading tasks.</div>';
             }
         }
 
+        function updateCounts() {
+            const active = allTasks.filter(t => t.application_status === 'accepted' && t.status !== 'completed').length;
+            const completed = allTasks.filter(t => t.status === 'completed').length; // Assuming completed tasks are marked as such
+            const applications = allTasks.filter(t => t.application_status === 'pending').length;
+
+            document.getElementById('count-active').textContent = active;
+            document.getElementById('count-completed').textContent = completed;
+            document.getElementById('count-applications').textContent = applications;
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active'); // Note: event might be undefined if called programmatically, but here it's onclick
+            renderTasks();
+        }
+
+        function renderTasks() {
+            const container = document.getElementById('task-list-container');
+            container.innerHTML = '';
+
+            let filteredTasks = [];
+            if (currentTab === 'active') {
+                filteredTasks = allTasks.filter(t => t.application_status === 'accepted' && t.status !== 'completed');
+            } else if (currentTab === 'completed') {
+                filteredTasks = allTasks.filter(t => t.status === 'completed');
+            } else if (currentTab === 'applications') {
+                filteredTasks = allTasks.filter(t => t.application_status === 'pending');
+            }
+
+            if (filteredTasks.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--text-light);">No tasks found in this category.</div>';
+                return;
+            }
+
+            filteredTasks.forEach(task => {
+                const card = document.createElement('div');
+                card.className = 'task-card';
+                
+                let statusBadge = '';
+                let actions = '';
+
+                if (currentTab === 'active') {
+                    statusBadge = '<span class="task-status status-active">In Progress</span>';
+                    actions = `
+                        <button class="btn-action btn-primary-sm" onclick="openModal('submitWorkModal', '${task.title}', ${task.id})">Submit Work</button>
+                        <button class="btn-action">Message Employer</button>
+                        <button class="btn-action">View Details</button>
+                    `;
+                } else if (currentTab === 'completed') {
+                    statusBadge = '<span class="task-status status-completed">Completed</span>';
+                    actions = `<button class="btn-action">View Certificate</button>`;
+                } else {
+                    statusBadge = '<span class="task-status status-pending">Pending</span>';
+                    actions = `<button class="btn-action" onclick="alert('Application is pending review.')">Check Status</button>`;
+                }
+
+                card.innerHTML = `
+                    <div class="task-header">
+                        ${statusBadge}
+                        <span style="color: var(--text-light); font-size: 0.8rem;">Posted: ${new Date(task.created_at).toLocaleDateString()}</span>
+                    </div>
+                    <h4 class="task-title">${task.title}</h4>
+                    <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 10px;">
+                        ${task.description.substring(0, 100)}...
+                    </p>
+                    <div class="task-meta">
+                        <span><i class="fa-solid fa-money-bill"></i> Rs. ${task.budget}</span>
+                        <span><i class="fa-solid fa-tag"></i> ${task.category}</span>
+                    </div>
+                    <div class="task-actions">
+                        ${actions}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
         // Modal Functions
-        function openModal(modalId, taskTitle = '') {
+        function openModal(modalId, taskTitle = '', taskId = null) {
             const modal = document.getElementById(modalId);
             if (taskTitle) {
                 modal.querySelector('.modal-title').textContent = 'Submit Work: ' + taskTitle;
+            }
+            if (taskId) {
+                document.getElementById('submit-task-id').value = taskId;
             }
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -330,8 +353,14 @@
             document.body.style.overflow = '';
         }
 
-        function submitWork() {
-            alert('Work submitted successfully!');
+        async function submitWork() {
+            const taskId = document.getElementById('submit-task-id').value;
+            const description = document.getElementById('work-description').value;
+            const link = document.getElementById('work-link').value;
+            
+            // In a real app, we would upload files and send data to API
+            // For now, just alert
+            alert(`Work submitted for Task ID: ${taskId}\nDescription: ${description}`);
             closeModal('submitWorkModal');
         }
 
@@ -342,20 +371,6 @@
                 document.body.style.overflow = '';
             }
         }
-
-        // Attach event listeners to Submit Work buttons
-        document.addEventListener('DOMContentLoaded', function() {
-            const submitButtons = document.querySelectorAll('.btn-primary-sm');
-            submitButtons.forEach(button => {
-                if (button.textContent.trim() === 'Submit Work') {
-                    button.addEventListener('click', function() {
-                        const taskCard = this.closest('.task-card');
-                        const taskTitle = taskCard.querySelector('.task-title').textContent;
-                        openModal('submitWorkModal', taskTitle);
-                    });
-                }
-            });
-        });
     </script>
 </body>
 </html>

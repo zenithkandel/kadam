@@ -18,7 +18,10 @@ $database = new Database();
 $db = $database->getConnection();
 
 if ($role == 'employer') {
-    $query = "SELECT * FROM tasks WHERE employer_id = :id ORDER BY created_at DESC";
+    $query = "SELECT t.*, (SELECT COUNT(*) FROM task_applications WHERE task_id = t.id) as applicants_count 
+              FROM tasks t 
+              WHERE employer_id = :id 
+              ORDER BY created_at DESC";
 } elseif ($role == 'student') {
     // For students, maybe show tasks they applied to?
     // For now, let's just return empty or handle differently
