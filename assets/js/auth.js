@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Signup Form Handler
-    const signupForm = document.getElementById('signup-form');
+    const signupForm = document.getElementById('signupForm');
     if (signupForm) {
         signupForm.addEventListener('submit', async (e) => {
             e.preventDefault();
