@@ -54,9 +54,51 @@
 
         <!-- Signup Form -->
         <form class="signup-form" id="signupForm" novalidate>
+            <!-- Account Type -->
+            <div class="form-group">
+                <label>I am a... <span class="required">*</span></label>
+                <div class="account-type-selector">
+                    <div class="type-option">
+                        <input type="radio" id="role-student" name="role" value="student" checked>
+                        <label for="role-student" class="type-label">
+                            <i class="fa-solid fa-user-graduate"></i>
+                            <span>Student</span>
+                        </label>
+                    </div>
+                    <div class="type-option">
+                        <input type="radio" id="role-employer" name="role" value="employer">
+                        <label for="role-employer" class="type-label">
+                            <i class="fa-solid fa-briefcase"></i>
+                            <span>Employer</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employer Type (Hidden by default) -->
+            <div class="form-group" id="employerTypeGroup" style="display: none;">
+                <label>Employer Type <span class="required">*</span></label>
+                <div class="account-type-selector">
+                    <div class="type-option">
+                        <input type="radio" id="type-individual" name="employerType" value="individual" checked>
+                        <label for="type-individual" class="type-label">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Individual</span>
+                        </label>
+                    </div>
+                    <div class="type-option">
+                        <input type="radio" id="type-company" name="employerType" value="company">
+                        <label for="type-company" class="type-label">
+                            <i class="fa-solid fa-building"></i>
+                            <span>Company</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
             <!-- Name -->
             <div class="form-group">
-                <label for="name">Full Name <span class="required">*</span></label>
+                <label for="name" id="nameLabel">Full Name <span class="required">*</span></label>
                 <div class="input-wrapper">
                     <input 
                         type="text" 
@@ -115,7 +157,7 @@
             </div>
 
             <!-- Username -->
-            <div class="form-group">
+            <div class="form-group" id="usernameGroup">
                 <label for="username">Username <span class="required">*</span></label>
                 <div class="username-group">
                     <div class="input-wrapper">
@@ -292,6 +334,48 @@
         const generateBtn = document.getElementById('generateUsername');
         const progressFill = document.getElementById('progressFill');
         const progressText = document.getElementById('progressText');
+
+        // Role Selection Logic
+        const roleRadios = document.querySelectorAll('input[name="role"]');
+        const employerTypeRadios = document.querySelectorAll('input[name="employerType"]');
+        const employerTypeGroup = document.getElementById('employerTypeGroup');
+        const usernameGroup = document.getElementById('usernameGroup');
+        const nameLabel = document.getElementById('nameLabel');
+
+        function updateFormState() {
+            const selectedRole = document.querySelector('input[name="role"]:checked').value;
+            
+            if (selectedRole === 'student') {
+                employerTypeGroup.style.display = 'none';
+                usernameGroup.style.display = 'block';
+                usernameInput.required = true;
+                nameLabel.innerHTML = 'Full Name <span class="required">*</span>';
+            } else {
+                employerTypeGroup.style.display = 'block';
+                usernameGroup.style.display = 'none';
+                usernameInput.required = false;
+                
+                // Check employer type
+                const selectedEmployerType = document.querySelector('input[name="employerType"]:checked').value;
+                if (selectedEmployerType === 'company') {
+                    nameLabel.innerHTML = 'Company Name <span class="required">*</span>';
+                } else {
+                    nameLabel.innerHTML = 'Full Name <span class="required">*</span>';
+                }
+            }
+            updateProgress(); // Update progress when fields change
+        }
+
+        roleRadios.forEach(radio => {
+            radio.addEventListener('change', updateFormState);
+        });
+
+        employerTypeRadios.forEach(radio => {
+            radio.addEventListener('change', updateFormState);
+        });
+
+        // Initialize state
+        updateFormState();
 
         // Password Toggles
         const togglePassword = document.getElementById('togglePassword');
@@ -559,12 +643,21 @@
         // Progress Bar Update
         function updateProgress() {
             let completed = 0;
-            const totalFields = 8;
+            let totalFields = 7; // Base fields: Name, Email, Phone, Address, Password, Confirm, Terms
+            
+            const selectedRole = document.querySelector('input[name="role"]:checked').value;
+            if (selectedRole === 'student') {
+                totalFields = 8; // + Username
+            }
 
             if (nameInput.classList.contains('valid')) completed++;
             if (emailInput.classList.contains('valid')) completed++;
             if (phoneInput.classList.contains('valid')) completed++;
-            if (usernameInput.value && usernameInput.classList.contains('valid')) completed++;
+            
+            if (selectedRole === 'student') {
+                if (usernameInput.value && usernameInput.classList.contains('valid')) completed++;
+            }
+            
             if (addressInput.classList.contains('valid')) completed++;
             if (passwordInput.classList.contains('valid')) completed++;
             if (confirmPasswordInput.classList.contains('valid')) completed++;
@@ -582,14 +675,19 @@
             const isNameValid = validateName();
             const isEmailValid = validateEmail();
             const isPhoneValid = validatePhone();
-            const isUsernameValid = usernameInput.value !== '';
             const isAddressValid = validateAddress();
             const isPasswordValid = validatePassword();
             const isConfirmPasswordValid = validateConfirmPassword();
             const isTermsAccepted = termsCheckbox.checked;
-
-            if (!isUsernameValid) {
-                showError(usernameInput, document.getElementById('username-error'), 'Please generate a username');
+            
+            const selectedRole = document.querySelector('input[name="role"]:checked').value;
+            let isUsernameValid = true;
+            
+            if (selectedRole === 'student') {
+                isUsernameValid = usernameInput.value !== '';
+                if (!isUsernameValid) {
+                    showError(usernameInput, document.getElementById('username-error'), 'Please generate a username');
+                }
             }
 
             if (!isTermsAccepted) {
@@ -605,8 +703,8 @@
 
                 // Simulate API call
                 setTimeout(() => {
-                    // Success - redirect to dashboard or verification
-                    window.location.href = 'dashboard.html';
+                    // Success - redirect to verification
+                    window.location.href = 'verification.html';
                 }, 1500);
             }
         });
