@@ -21,7 +21,7 @@
     <!-- Welcome Banner -->
     <div class="welcome-banner">
         <div>
-            <h1>Welcome back, Tech Corp! 👋</h1>
+            <h1>Welcome back, <span id="employer-name">Employer</span>! 👋</h1>
             <p>Here's what's happening with your job postings today.</p>
         </div>
         <button class="btn-primary" onclick="window.parent.document.querySelector('[data-page=\'post-task.html\']').click()">
@@ -36,7 +36,7 @@
                 <i class="fa-solid fa-briefcase"></i>
             </div>
             <div class="stat-info">
-                <h3>12</h3>
+                <h3 id="active-postings">0</h3>
                 <p>Active Postings</p>
             </div>
         </div>
@@ -45,59 +45,108 @@
                 <i class="fa-solid fa-users"></i>
             </div>
             <div class="stat-info">
-                <h3>45</h3>
-                <p>New Applications</p>
+                <h3 id="total-hires">0</h3>
+                <p>Total Hires</p>
             </div>
         </div>
         <div class="stat-card">
             <div class="stat-icon" style="background: rgba(241, 196, 15, 0.1); color: #f1c40f;">
-                <i class="fa-solid fa-clock"></i>
+                <i class="fa-solid fa-wallet"></i>
             </div>
             <div class="stat-info">
-                <h3>8</h3>
-                <p>Pending Review</p>
+                <h3 id="total-spent">Rs. 0</h3>
+                <p>Total Spent</p>
             </div>
         </div>
         <div class="stat-card">
             <div class="stat-icon" style="background: rgba(155, 89, 182, 0.1); color: #9b59b6;">
-                <i class="fa-solid fa-check-circle"></i>
+                <i class="fa-solid fa-star"></i>
             </div>
             <div class="stat-info">
-                <h3>156</h3>
-                <p>Tasks Completed</p>
+                <h3 id="average-rating">0.0</h3>
+                <p>Average Rating</p>
             </div>
         </div>
     </div>
 
     <!-- Recent Applications -->
     <div class="section-header">
-        <h2 class="section-title">Recent Applications</h2>
-        <a href="#" onclick="window.parent.document.querySelector('[data-page=\'applications.html\']').click()" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">View All</a>
+        <h2 class="section-title">Recent Postings</h2>
+        <a href="#" onclick="window.parent.document.querySelector('[data-page=\'my-postings.html\']').click()" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">View All</a>
     </div>
 
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th>Applicant</th>
-                    <th>Task</th>
-                    <th>Applied Date</th>
+                    <th>Task Title</th>
+                    <th>Category</th>
+                    <th>Budget</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Posted Date</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="User" style="width: 30px; height: 30px; border-radius: 50%;">
-                            <span>John Doe</span>
-                        </div>
-                    </td>
-                    <td>Web Development</td>
-                    <td>Nov 24, 2025</td>
-                    <td><span class="status-badge status-pending">Pending</span></td>
-                    <td><button class="btn-sm">Review</button></td>
+            <tbody id="recent-postings-body">
+                <!-- Loaded via JS -->
+                <tr><td colspan="5" style="text-align:center;">Loading...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="../../assets/js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // 1. Load Profile Stats
+                const profileResponse = await ApiHandler.get('auth/me.php');
+                if (profileResponse.success) {
+                    const user = profileResponse.data;
+                    document.getElementById('employer-name').textContent = user.name;
+                    
+                    if (user.details) {
+                        document.getElementById('total-hires').textContent = user.details.hires_count || 0;
+                        document.getElementById('total-spent').textContent = 'Rs. ' + (user.details.total_spent || 0);
+                        document.getElementById('average-rating').textContent = user.details.average_rating || '0.0';
+                    }
+                }
+
+                // 2. Load My Tasks (Postings)
+                const tasksResponse = await ApiHandler.get('tasks/my_tasks.php');
+                const tbody = document.getElementById('recent-postings-body');
+                tbody.innerHTML = '';
+
+                if (tasksResponse.success && tasksResponse.data.length > 0) {
+                    const tasks = tasksResponse.data;
+                    
+                    // Count active postings
+                    const activeCount = tasks.filter(t => t.status === 'open').length;
+                    document.getElementById('active-postings').textContent = activeCount;
+
+                    // Show recent 5
+                    tasks.slice(0, 5).forEach(task => {
+                        const row = `
+                            <tr>
+                                <td>${task.title}</td>
+                                <td>${task.category}</td>
+                                <td>Rs. ${task.budget}</td>
+                                <td><span class="status-badge status-${task.status}">${task.status}</span></td>
+                                <td>${new Date(task.created_at).toLocaleDateString()}</td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
+                    });
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No postings found.</td></tr>';
+                    document.getElementById('active-postings').textContent = 0;
+                }
+
+            } catch (error) {
+                console.error('Error loading employer dashboard:', error);
+            }
+        });
+    </script>
+</body>
+</html>
                 </tr>
                 <tr>
                     <td>
