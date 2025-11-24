@@ -261,12 +261,16 @@
 
                 // Simulate API call (replace with actual authentication)
                 setTimeout(() => {
-                    // Success - redirect to dashboard
-                    window.location.href = 'dashboard.html';
+                    const email = emailInput.value.trim().toLowerCase();
                     
-                    // In case of error, remove loading state
-                    // loginBtn.classList.remove('loading');
-                    // loginBtn.textContent = 'Sign In';
+                    // Redirect based on email (Simulation)
+                    if (email.includes('admin')) {
+                        window.location.href = 'dashboard/admin/dashboard.html';
+                    } else if (email.includes('employer') || email.includes('hr')) {
+                        window.location.href = 'dashboard/employer/dashboard.html';
+                    } else {
+                        window.location.href = 'dashboard/student/dashboard.html';
+                    }
                 }, 1500);
             }
         });
