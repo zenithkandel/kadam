@@ -131,63 +131,63 @@
 </head>
 <body>
     <div class="profile-header">
-        <img src="https://ui-avatars.com/api/?name=Tech+Corp&background=random&rounded=false" alt="Company Logo" class="profile-avatar">
+        <img src="" alt="Company Logo" class="profile-avatar" id="profile-image">
         <div class="profile-info">
-            <h2>Tech Corp Solutions</h2>
-            <span class="profile-role">IT Services & Consulting</span>
+            <h2 id="profile-name">Loading...</h2>
+            <span class="profile-role" id="profile-industry">Industry</span>
             <div class="profile-stats">
                 <div class="stat-item">
-                    <span class="stat-value">4.9</span>
+                    <span class="stat-value" id="stat-rating">0.0</span>
                     <span class="stat-label">Rating</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-value">156</span>
+                    <span class="stat-value" id="stat-hires">0</span>
                     <span class="stat-label">Hires</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-value">Rs. 2.5M+</span>
+                    <span class="stat-value" id="stat-spent">Rs. 0</span>
                     <span class="stat-label">Spent</span>
                 </div>
             </div>
         </div>
         <div style="margin-left: auto;">
-            <button class="btn-primary">Edit Profile</button>
+            <button class="btn-primary" onclick="openModal('editProfileModal')">Edit Profile</button>
         </div>
     </div>
 
     <div class="section-card">
         <div class="section-header">
             <h3 class="section-title">About Company</h3>
-            <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+            <button class="edit-btn" onclick="openModal('editProfileModal')"><i class="fa-solid fa-pen"></i></button>
         </div>
-        <p style="color: var(--text-light); line-height: 1.6;">
-            Tech Corp Solutions is a leading provider of innovative software solutions for businesses worldwide. 
-            We specialize in web development, mobile apps, and cloud computing. We are always looking for talented 
-            freelancers and students to join our projects and help us deliver excellence to our clients.
+        <p style="color: var(--text-light); line-height: 1.6;" id="profile-description">
+            No description added yet.
         </p>
     </div>
 
     <div class="section-card">
         <div class="section-header">
             <h3 class="section-title">Company Details</h3>
-            <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+            <button class="edit-btn" onclick="openModal('editProfileModal')"><i class="fa-solid fa-pen"></i></button>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
             <div class="info-group">
                 <span class="info-label">Website</span>
-                <a href="#" class="info-value" style="color: var(--primary-color); text-decoration: none;">www.techcorp.com</a>
+                <span id="profile-website-container">
+                    <span class="info-value" id="profile-website">Not added</span>
+                </span>
             </div>
             <div class="info-group">
                 <span class="info-label">Industry</span>
-                <span class="info-value">Information Technology</span>
+                <span class="info-value" id="profile-industry-detail">Not specified</span>
             </div>
             <div class="info-group">
                 <span class="info-label">Company Size</span>
-                <span class="info-value">50-200 Employees</span>
+                <span class="info-value" id="profile-size">Not specified</span>
             </div>
             <div class="info-group">
                 <span class="info-label">Founded</span>
-                <span class="info-value">2015</span>
+                <span class="info-value" id="profile-founded">Not specified</span>
             </div>
         </div>
     </div>
@@ -195,22 +195,200 @@
     <div class="section-card">
         <div class="section-header">
             <h3 class="section-title">Contact Information</h3>
-            <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+            <button class="edit-btn" onclick="openModal('editProfileModal')"><i class="fa-solid fa-pen"></i></button>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
             <div class="info-group">
                 <span class="info-label">Email</span>
-                <span class="info-value">hr@techcorp.com</span>
+                <span class="info-value" id="profile-email">...</span>
             </div>
             <div class="info-group">
                 <span class="info-label">Phone</span>
-                <span class="info-value">+91 11 2345 6789</span>
+                <span class="info-value" id="profile-phone">...</span>
             </div>
             <div class="info-group">
                 <span class="info-label">Headquarters</span>
-                <span class="info-value">Cyber City, Gurugram, India</span>
+                <span class="info-value" id="profile-address">...</span>
             </div>
         </div>
     </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal-overlay" id="editProfileModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">Edit Profile</h3>
+                <button class="modal-close" onclick="closeModal('editProfileModal')">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Company Name</label>
+                            <input type="text" class="form-control" id="edit-name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Industry</label>
+                            <input type="text" class="form-control" id="edit-industry">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" id="edit-description" rows="4"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Company Size</label>
+                            <select class="form-control" id="edit-size">
+                                <option value="">Select Size</option>
+                                <option value="1-10 Employees">1-10 Employees</option>
+                                <option value="11-50 Employees">11-50 Employees</option>
+                                <option value="51-200 Employees">51-200 Employees</option>
+                                <option value="201-500 Employees">201-500 Employees</option>
+                                <option value="500+ Employees">500+ Employees</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Founded Year</label>
+                            <input type="number" class="form-control" id="edit-founded" min="1900" max="2099">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Website URL</label>
+                        <input type="url" class="form-control" id="edit-website">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="edit-phone">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Headquarters Address</label>
+                            <input type="text" class="form-control" id="edit-address">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('editProfileModal')">Cancel</button>
+                <button class="btn-primary" onclick="saveProfile()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../assets/js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadProfile);
+
+        async function loadProfile() {
+            try {
+                const response = await ApiHandler.get('profile/get.php');
+                if (response.success) {
+                    const user = response.data;
+                    const details = user.details || {};
+
+                    // Header
+                    document.getElementById('profile-name').textContent = user.name;
+                    document.getElementById('profile-industry').textContent = details.industry || 'Industry not specified';
+                    document.getElementById('profile-image').src = user.profile_image || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random&rounded=false`;
+                    
+                    // Stats
+                    document.getElementById('stat-rating').textContent = details.average_rating || '0.0';
+                    document.getElementById('stat-hires').textContent = details.hires_count || '0';
+                    document.getElementById('stat-spent').textContent = 'Rs. ' + (details.total_spent || '0');
+
+                    // About
+                    document.getElementById('profile-description').textContent = details.description || 'No description added yet.';
+
+                    // Details
+                    if (details.website_url) {
+                        document.getElementById('profile-website-container').innerHTML = `<a href="${details.website_url}" target="_blank" class="info-value" style="color: var(--primary-color); text-decoration: none;">${details.website_url}</a>`;
+                    } else {
+                        document.getElementById('profile-website').textContent = 'Not added';
+                    }
+                    document.getElementById('profile-industry-detail').textContent = details.industry || 'Not specified';
+                    document.getElementById('profile-size').textContent = details.company_size || 'Not specified';
+                    document.getElementById('profile-founded').textContent = details.founded_year || 'Not specified';
+
+                    // Contact
+                    document.getElementById('profile-email').textContent = user.email;
+                    document.getElementById('profile-phone').textContent = user.phone || 'Not added';
+                    document.getElementById('profile-address').textContent = user.address || 'Not added';
+
+                    // Populate Edit Form
+                    document.getElementById('edit-name').value = user.name;
+                    document.getElementById('edit-industry').value = details.industry || '';
+                    document.getElementById('edit-description').value = details.description || '';
+                    document.getElementById('edit-size').value = details.company_size || '';
+                    document.getElementById('edit-founded').value = details.founded_year || '';
+                    document.getElementById('edit-website').value = details.website_url || '';
+                    document.getElementById('edit-phone').value = user.phone || '';
+                    document.getElementById('edit-address').value = user.address || '';
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        }
+
+        async function saveProfile() {
+            const btn = document.querySelector('#editProfileModal .btn-primary');
+            const originalText = btn.textContent;
+            btn.textContent = 'Saving...';
+            btn.disabled = true;
+
+            const data = {
+                name: document.getElementById('edit-name').value,
+                phone: document.getElementById('edit-phone').value,
+                address: document.getElementById('edit-address').value,
+                details: {
+                    industry: document.getElementById('edit-industry').value,
+                    description: document.getElementById('edit-description').value,
+                    company_size: document.getElementById('edit-size').value,
+                    founded_year: document.getElementById('edit-founded').value,
+                    website_url: document.getElementById('edit-website').value
+                }
+            };
+
+            try {
+                const response = await ApiHandler.post('profile/update.php', data);
+                if (response.success) {
+                    alert('Profile updated successfully!');
+                    closeModal('editProfileModal');
+                    loadProfile(); // Reload to show changes
+                } else {
+                    alert(response.message || 'Failed to update profile.');
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('An error occurred.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
 </body>
 </html>
