@@ -74,9 +74,4 @@ if (!empty($data->task_id) && !empty($data->message)) {
         http_response_code(400);
         echo json_encode(["success" => false, "message" => "Incomplete data."]);
     }
-
-} catch (Exception $e) {
-    http_response_code(401);
-    echo json_encode(["success" => false, "message" => "Access denied.", "error" => $e->getMessage()]);
-}
 ?>
