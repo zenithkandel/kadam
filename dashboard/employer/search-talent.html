@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Talent</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-content.css">
+    
+    <style>
+        /* Search & Filter Bar */
+        .search-filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-family: inherit;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .filter-select {
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* Talent Cards */
+        .talent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .talent-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .talent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-sm);
+            border-color: var(--primary-color);
+        }
+
+        .talent-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--background-dark);
+        }
+
+        .talent-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .talent-title {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .skill-tag {
+            background: var(--background-dark);
+            color: var(--text-light);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .card-actions {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-view {
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-contact {
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            background: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-contact:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="search-filter-bar">
+        <div class="search-box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" placeholder="Search for skills, names, or roles...">
+        </div>
+        <select class="filter-select">
+            <option value="">All Skills</option>
+            <option value="web">Web Development</option>
+            <option value="design">Design</option>
+            <option value="marketing">Marketing</option>
+        </select>
+        <select class="filter-select">
+            <option value="">Availability</option>
+            <option value="immediate">Immediate</option>
+            <option value="part-time">Part Time</option>
+            <option value="full-time">Full Time</option>
+        </select>
+    </div>
+
+    <div class="talent-grid">
+        <!-- Talent Card 1 -->
+        <div class="talent-card">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="John Doe" class="talent-avatar">
+            <h3 class="talent-name">John Doe</h3>
+            <p class="talent-title">Computer Science Student</p>
+            <div class="skills-container">
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">React</span>
+            </div>
+            <div class="card-actions">
+                <button class="btn-view">View Profile</button>
+                <button class="btn-contact">Contact</button>
+            </div>
+        </div>
+
+        <!-- Talent Card 2 -->
+        <div class="talent-card">
+            <img src="https://ui-avatars.com/api/?name=Jane+Smith&background=random" alt="Jane Smith" class="talent-avatar">
+            <h3 class="talent-name">Jane Smith</h3>
+            <p class="talent-title">Graphic Design Major</p>
+            <div class="skills-container">
+                <span class="skill-tag">Photoshop</span>
+                <span class="skill-tag">Illustrator</span>
+                <span class="skill-tag">Figma</span>
+            </div>
+            <div class="card-actions">
+                <button class="btn-view">View Profile</button>
+                <button class="btn-contact">Contact</button>
+            </div>
+        </div>
+
+        <!-- Talent Card 3 -->
+        <div class="talent-card">
+            <img src="https://ui-avatars.com/api/?name=Mike+Johnson&background=random" alt="Mike Johnson" class="talent-avatar">
+            <h3 class="talent-name">Mike Johnson</h3>
+            <p class="talent-title">Marketing Specialist</p>
+            <div class="skills-container">
+                <span class="skill-tag">SEO</span>
+                <span class="skill-tag">Content Writing</span>
+                <span class="skill-tag">Social Media</span>
+            </div>
+            <div class="card-actions">
+                <button class="btn-view">View Profile</button>
+                <button class="btn-contact">Contact</button>
+            </div>
+        </div>
+
+        <!-- Talent Card 4 -->
+        <div class="talent-card">
+            <img src="https://ui-avatars.com/api/?name=Sarah+Wilson&background=random" alt="Sarah Wilson" class="talent-avatar">
+            <h3 class="talent-name">Sarah Wilson</h3>
+            <p class="talent-title">Data Science Student</p>
+            <div class="skills-container">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">Machine Learning</span>
+            </div>
+            <div class="card-actions">
+                <button class="btn-view">View Profile</button>
+                <button class="btn-contact">Contact</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

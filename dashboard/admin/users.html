@@ -189,21 +189,46 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
         }
+
+        .tabs {
+            display: flex;
+            gap: 20px;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: var(--text-light);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="filterUsers('all')">All Users</button>
+        <button class="tab-btn" onclick="filterUsers('student')">Students</button>
+        <button class="tab-btn" onclick="filterUsers('employer')">Employers</button>
+    </div>
+
     <div class="filter-bar">
         <div class="search-box">
             <i class="fa-solid fa-search"></i>
-            <input type="text" placeholder="Search users...">
+            <input type="text" id="userSearch" placeholder="Search users..." onkeyup="searchUsers()">
         </div>
         <div style="display: flex; gap: 10px;">
-            <select class="form-control" style="padding: 8px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-color);">
-                <option value="all">All Roles</option>
-                <option value="student">Student</option>
-                <option value="employer">Employer</option>
-            </select>
-            <select class="form-control" style="padding: 8px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-color);">
+            <!-- Role select removed as we have tabs now -->
+            <select class="form-control" id="statusFilter" onchange="filterStatus()" style="padding: 8px; border-radius: 6px; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-color);">
                 <option value="all">All Status</option>
                 <option value="active">Active</option>
                 <option value="banned">Banned</option>
@@ -213,7 +238,7 @@
     </div>
 
     <div class="table-container">
-        <table>
+        <table id="usersTable">
             <thead>
                 <tr>
                     <th>User</th>
@@ -345,6 +370,57 @@
     </div>
 
     <script>
+        // Filter Functions
+        function filterUsers(role) {
+            // Update tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(role === 'all' ? 'all' : role)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const roleCell = row.querySelector('td:nth-child(2) .skill-tag').textContent.toLowerCase();
+                if (role === 'all' || roleCell === role) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function searchUsers() {
+            const input = document.getElementById('userSearch');
+            const filter = input.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+
+            rows.forEach(row => {
+                const name = row.querySelector('td:first-child span').textContent.toLowerCase();
+                const email = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                if (name.includes(filter) || email.includes(filter)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function filterStatus() {
+            const status = document.getElementById('statusFilter').value;
+            const rows = document.querySelectorAll('tbody tr');
+
+            rows.forEach(row => {
+                const statusCell = row.querySelector('td:nth-child(5) .status-badge').textContent.toLowerCase();
+                if (status === 'all' || statusCell.includes(status)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
         // Modal Functions
         function openModal(modalId, userName = '') {
             const modal = document.getElementById(modalId);
