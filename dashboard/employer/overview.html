@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Overview</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-content.css">
+</head>
+<body>
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+        <div>
+            <h1>Welcome back, Tech Corp! 👋</h1>
+            <p>Here's what's happening with your job postings today.</p>
+        </div>
+        <button class="btn-primary" onclick="window.parent.document.querySelector('[data-page=\'post-task.html\']').click()">
+            <i class="fa-solid fa-plus"></i> Post New Task
+        </button>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(13, 138, 188, 0.1); color: var(--primary-color);">
+                <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <div class="stat-info">
+                <h3>12</h3>
+                <p>Active Postings</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(46, 204, 113, 0.1); color: #2ecc71;">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="stat-info">
+                <h3>45</h3>
+                <p>New Applications</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(241, 196, 15, 0.1); color: #f1c40f;">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            <div class="stat-info">
+                <h3>8</h3>
+                <p>Pending Review</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon" style="background: rgba(155, 89, 182, 0.1); color: #9b59b6;">
+                <i class="fa-solid fa-check-circle"></i>
+            </div>
+            <div class="stat-info">
+                <h3>156</h3>
+                <p>Tasks Completed</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Applications -->
+    <div class="section-header">
+        <h2 class="section-title">Recent Applications</h2>
+        <a href="#" onclick="window.parent.document.querySelector('[data-page=\'applications.html\']').click()" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem;">View All</a>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Applicant</th>
+                    <th>Task</th>
+                    <th>Applied Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="User" style="width: 30px; height: 30px; border-radius: 50%;">
+                            <span>John Doe</span>
+                        </div>
+                    </td>
+                    <td>Web Development</td>
+                    <td>Nov 24, 2025</td>
+                    <td><span class="status-badge status-pending">Pending</span></td>
+                    <td><button class="btn-sm">Review</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <img src="https://ui-avatars.com/api/?name=Jane+Smith&background=random" alt="User" style="width: 30px; height: 30px; border-radius: 50%;">
+                            <span>Jane Smith</span>
+                        </div>
+                    </td>
+                    <td>Logo Design</td>
+                    <td>Nov 23, 2025</td>
+                    <td><span class="status-badge status-active">Shortlisted</span></td>
+                    <td><button class="btn-sm">Review</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <img src="https://ui-avatars.com/api/?name=Mike+Ross&background=random" alt="User" style="width: 30px; height: 30px; border-radius: 50%;">
+                            <span>Mike Ross</span>
+                        </div>
+                    </td>
+                    <td>Data Entry</td>
+                    <td>Nov 22, 2025</td>
+                    <td><span class="status-badge status-completed">Hired</span></td>
+                    <td><button class="btn-sm">View</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
