@@ -354,14 +354,37 @@
         }
 
         async function submitWork() {
+            const btn = document.querySelector('#submitWorkModal .btn-primary');
+            const originalText = btn.textContent;
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+
             const taskId = document.getElementById('submit-task-id').value;
             const description = document.getElementById('work-description').value;
             const link = document.getElementById('work-link').value;
             
-            // In a real app, we would upload files and send data to API
-            // For now, just alert
-            alert(`Work submitted for Task ID: ${taskId}\nDescription: ${description}`);
-            closeModal('submitWorkModal');
+            const data = {
+                task_id: taskId,
+                message: description + (link ? `\n\nLink: ${link}` : ''),
+                files: [] // File upload not implemented in this demo
+            };
+
+            try {
+                const response = await ApiHandler.post('tasks/submit_work.php', data);
+                if (response.success) {
+                    alert('Work submitted successfully!');
+                    closeModal('submitWorkModal');
+                    loadTasks();
+                } else {
+                    alert(response.message || 'Failed to submit work.');
+                }
+            } catch (error) {
+                console.error('Error submitting work:', error);
+                alert('An error occurred.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
         }
 
         // Close modal when clicking outside
