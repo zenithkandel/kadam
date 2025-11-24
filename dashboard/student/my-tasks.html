@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-content.css">
+    
+    <style>
+        .tabs {
+            display: flex;
+            gap: 20px;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: var(--text-light);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-action {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: 1px solid var(--card-border);
+            background: var(--background-light);
+            color: var(--text-color);
+            transition: all 0.2s ease;
+        }
+
+        .btn-action:hover {
+            background: var(--card-bg);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-primary-sm {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary-sm:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('active')">Active Tasks (2)</button>
+        <button class="tab-btn" onclick="switchTab('completed')">Completed (47)</button>
+        <button class="tab-btn" onclick="switchTab('applications')">Applications (3)</button>
+    </div>
+
+    <!-- Active Tasks -->
+    <div id="active-tasks" class="task-list">
+        <div class="task-card">
+            <div class="task-header">
+                <span class="task-status status-active">In Progress</span>
+                <span style="color: var(--text-light); font-size: 0.8rem;">Deadline: Nov 28, 2025</span>
+            </div>
+            <h4 class="task-title">E-commerce Website Design</h4>
+            <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 10px;">
+                Design the homepage and product pages for a new fashion brand.
+            </p>
+            <div class="task-progress">
+                <div class="progress-bar" style="width: 70%"></div>
+            </div>
+            <div class="task-meta">
+                <span><i class="fa-solid fa-building"></i> Tech Corp</span>
+                <span><i class="fa-solid fa-money-bill"></i> Rs. 25,000</span>
+            </div>
+            <div class="task-actions">
+                <button class="btn-action btn-primary-sm">Submit Work</button>
+                <button class="btn-action">Message Employer</button>
+                <button class="btn-action">View Details</button>
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="task-header">
+                <span class="task-status status-pending">Pending Review</span>
+                <span style="color: var(--text-light); font-size: 0.8rem;">Submitted: Nov 23, 2025</span>
+            </div>
+            <h4 class="task-title">Logo Design for Startup</h4>
+            <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 10px;">
+                Minimalist logo design for a coffee shop.
+            </p>
+            <div class="task-progress">
+                <div class="progress-bar" style="width: 100%"></div>
+            </div>
+            <div class="task-meta">
+                <span><i class="fa-solid fa-user"></i> Sarah Smith</span>
+                <span><i class="fa-solid fa-money-bill"></i> Rs. 5,000</span>
+            </div>
+            <div class="task-actions">
+                <button class="btn-action">View Submission</button>
+                <button class="btn-action">Message Employer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Completed Tasks (Hidden by default) -->
+    <div id="completed-tasks" class="task-list" style="display: none;">
+        <div class="task-card" style="opacity: 0.8;">
+            <div class="task-header">
+                <span class="task-status status-completed">Completed</span>
+                <span style="color: var(--text-light); font-size: 0.8rem;">Finished: Nov 15, 2025</span>
+            </div>
+            <h4 class="task-title">Video Editing for YouTube</h4>
+            <div class="task-meta">
+                <span><i class="fa-solid fa-user"></i> Mike Ross</span>
+                <span><i class="fa-solid fa-money-bill"></i> Rs. 8,000</span>
+                <span><i class="fa-solid fa-star" style="color: var(--warning-color);"></i> 5.0</span>
+            </div>
+            <div class="task-actions">
+                <button class="btn-action">View Certificate</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Hide all lists
+            document.querySelectorAll('.task-list').forEach(list => list.style.display = 'none');
+
+            // Show selected list (Simulation)
+            if (tabName === 'active') {
+                document.getElementById('active-tasks').style.display = 'flex';
+            } else if (tabName === 'completed') {
+                document.getElementById('completed-tasks').style.display = 'flex';
+            } else {
+                // Placeholder for applications
+                document.getElementById('active-tasks').style.display = 'none';
+                // In a real app, we'd have an applications container
+            }
+        }
+    </script>
+</body>
+</html>
