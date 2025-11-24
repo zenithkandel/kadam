@@ -259,27 +259,27 @@
 </head>
 <body>
     <div class="profile-header">
-        <img src="https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff" alt="Profile" class="profile-avatar">
+        <img src="" alt="Profile" class="profile-avatar" id="profile-image">
         <div class="profile-info">
-            <h2>John Doe</h2>
-            <span class="profile-role">Computer Science Student</span>
+            <h2 id="profile-name">Loading...</h2>
+            <span class="profile-role" id="profile-title">Student</span>
             <div class="profile-stats">
                 <div class="stat-item">
-                    <span class="stat-value">4.8</span>
+                    <span class="stat-value" id="stat-rating">0.0</span>
                     <span class="stat-label">Rating</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-value">47</span>
+                    <span class="stat-value" id="stat-completed">0</span>
                     <span class="stat-label">Completed</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-value">Rs. 125k</span>
+                    <span class="stat-value" id="stat-earned">Rs. 0</span>
                     <span class="stat-label">Earned</span>
                 </div>
             </div>
         </div>
         <div style="margin-left: auto;">
-            <button class="btn-primary">Edit Profile</button>
+            <button class="btn-primary" onclick="openModal('editProfileModal')">Edit Profile</button>
         </div>
     </div>
 
@@ -289,39 +289,31 @@
             <div class="section-card">
                 <div class="section-header">
                     <h3 class="section-title">About Me</h3>
-                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                    <button class="edit-btn" onclick="openModal('editProfileModal')"><i class="fa-solid fa-pen"></i></button>
                 </div>
-                <p style="color: var(--text-light); line-height: 1.6;">
-                    I am a passionate Computer Science student with a strong interest in Web Development and UI/UX Design. 
-                    I have experience working with HTML, CSS, JavaScript, and React. I am looking for freelance opportunities 
-                    to build my portfolio and gain real-world experience.
+                <p style="color: var(--text-light); line-height: 1.6;" id="profile-bio">
+                    No bio added yet.
                 </p>
             </div>
 
             <div class="section-card">
                 <div class="section-header">
                     <h3 class="section-title">Education</h3>
-                    <button class="edit-btn"><i class="fa-solid fa-plus"></i></button>
+                    <button class="edit-btn" onclick="openModal('editProfileModal')"><i class="fa-solid fa-pen"></i></button>
                 </div>
                 <div class="info-group">
-                    <div class="info-value">Bachelor of Technology in Computer Science</div>
-                    <div class="info-label">Delhi Technological University • 2022 - 2026</div>
-                </div>
-                <div class="info-group">
-                    <div class="info-value">High School Diploma</div>
-                    <div class="info-label">Delhi Public School • 2020 - 2022</div>
+                    <div class="info-value" id="profile-education">Not specified</div>
+                    <div class="info-label" id="profile-institution"></div>
                 </div>
             </div>
 
             <div class="section-card">
                 <div class="section-header">
                     <h3 class="section-title">Portfolio</h3>
-                    <button class="edit-btn"><i class="fa-solid fa-plus"></i></button>
+                    <button class="edit-btn" onclick="alert('Portfolio management coming soon')"><i class="fa-solid fa-plus"></i></button>
                 </div>
-                <div class="task-card" style="margin-bottom: 0;">
-                    <h4 class="task-title">E-commerce App UI</h4>
-                    <p style="color: var(--text-light); font-size: 0.9rem;">Designed a complete mobile app UI for a fashion store.</p>
-                    <a href="#" style="color: var(--primary-color); font-size: 0.9rem; text-decoration: none; margin-top: 10px; display: inline-block;">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                <div id="portfolio-container">
+                    <p style="color: var(--text-light); font-size: 0.9rem;" id="profile-portfolio-url">No portfolio URL added.</p>
                 </div>
             </div>
         </div>
@@ -331,34 +323,31 @@
             <div class="section-card">
                 <div class="section-header">
                     <h3 class="section-title">Skills</h3>
-                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                    <button class="edit-btn" onclick="alert('Skills management coming soon')"><i class="fa-solid fa-pen"></i></button>
                 </div>
-                <div>
+                <div id="skills-container">
+                    <!-- Skills loaded via JS -->
                     <span class="skill-tag">HTML5</span>
                     <span class="skill-tag">CSS3</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Figma</span>
-                    <span class="skill-tag">Python</span>
                 </div>
             </div>
 
             <div class="section-card">
                 <div class="section-header">
                     <h3 class="section-title">Contact Info</h3>
-                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                    <button class="edit-btn" onclick="openModal('editProfileModal')"><i class="fa-solid fa-pen"></i></button>
                 </div>
                 <div class="info-group">
                     <span class="info-label">Email</span>
-                    <span class="info-value">john.doe@example.com</span>
+                    <span class="info-value" id="profile-email">...</span>
                 </div>
                 <div class="info-group">
                     <span class="info-label">Phone</span>
-                    <span class="info-value">+91 98765 43210</span>
+                    <span class="info-value" id="profile-phone">...</span>
                 </div>
                 <div class="info-group">
                     <span class="info-label">Location</span>
-                    <span class="info-value">New Delhi, India</span>
+                    <span class="info-value" id="profile-address">...</span>
                 </div>
             </div>
         </div>
@@ -378,34 +367,40 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" value="John Doe">
+                            <input type="text" class="form-control" id="edit-name">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Role / Title</label>
-                            <input type="text" class="form-control" value="Computer Science Student">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" id="edit-title" placeholder="e.g. CS Student">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">About Me</label>
-                        <textarea class="form-control" rows="4">I am a passionate Computer Science student with a strong interest in Web Development and UI/UX Design.</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Skills (Comma separated)</label>
-                        <input type="text" class="form-control" value="HTML5, CSS3, JavaScript, React, Figma, Python">
+                        <textarea class="form-control" id="edit-bio" rows="4"></textarea>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" value="john.doe@example.com">
+                            <label class="form-label">Education Level</label>
+                            <input type="text" class="form-control" id="edit-education">
                         </div>
                         <div class="form-group">
+                            <label class="form-label">Institution</label>
+                            <input type="text" class="form-control" id="edit-institution">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
                             <label class="form-label">Phone</label>
-                            <input type="tel" class="form-control" value="+91 98765 43210">
+                            <input type="tel" class="form-control" id="edit-phone">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Location</label>
+                            <input type="text" class="form-control" id="edit-address">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Location</label>
-                        <input type="text" class="form-control" value="New Delhi, India">
+                        <label class="form-label">Portfolio URL</label>
+                        <input type="url" class="form-control" id="edit-portfolio">
                     </div>
                 </form>
             </div>
@@ -416,7 +411,96 @@
         </div>
     </div>
 
+    <script src="../../assets/js/api.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', loadProfile);
+
+        async function loadProfile() {
+            try {
+                const response = await ApiHandler.get('profile/get.php');
+                if (response.success) {
+                    const user = response.data;
+                    const details = user.details || {};
+
+                    // Header
+                    document.getElementById('profile-name').textContent = user.name;
+                    document.getElementById('profile-title').textContent = details.title || 'Student';
+                    document.getElementById('profile-image').src = user.profile_image || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random`;
+                    
+                    // Stats
+                    document.getElementById('stat-rating').textContent = details.average_rating || '0.0';
+                    document.getElementById('stat-completed').textContent = details.tasks_completed_count || '0';
+                    document.getElementById('stat-earned').textContent = 'Rs. ' + (details.total_earned || '0');
+
+                    // About
+                    document.getElementById('profile-bio').textContent = details.bio || 'No bio added yet.';
+
+                    // Education
+                    document.getElementById('profile-education').textContent = details.education_level || 'Not specified';
+                    document.getElementById('profile-institution').textContent = details.institution ? `${details.institution} • ${details.graduation_year || ''}` : '';
+
+                    // Contact
+                    document.getElementById('profile-email').textContent = user.email;
+                    document.getElementById('profile-phone').textContent = user.phone || 'Not added';
+                    document.getElementById('profile-address').textContent = user.address || 'Not added';
+
+                    // Portfolio
+                    if (details.portfolio_url) {
+                        document.getElementById('profile-portfolio-url').innerHTML = `<a href="${details.portfolio_url}" target="_blank" style="color: var(--primary-color);">${details.portfolio_url}</a>`;
+                    }
+
+                    // Populate Edit Form
+                    document.getElementById('edit-name').value = user.name;
+                    document.getElementById('edit-title').value = details.title || '';
+                    document.getElementById('edit-bio').value = details.bio || '';
+                    document.getElementById('edit-education').value = details.education_level || '';
+                    document.getElementById('edit-institution').value = details.institution || '';
+                    document.getElementById('edit-phone').value = user.phone || '';
+                    document.getElementById('edit-address').value = user.address || '';
+                    document.getElementById('edit-portfolio').value = details.portfolio_url || '';
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        }
+
+        async function saveProfile() {
+            const btn = document.querySelector('#editProfileModal .btn-primary');
+            const originalText = btn.textContent;
+            btn.textContent = 'Saving...';
+            btn.disabled = true;
+
+            const data = {
+                name: document.getElementById('edit-name').value,
+                phone: document.getElementById('edit-phone').value,
+                address: document.getElementById('edit-address').value,
+                details: {
+                    title: document.getElementById('edit-title').value,
+                    bio: document.getElementById('edit-bio').value,
+                    education_level: document.getElementById('edit-education').value,
+                    institution: document.getElementById('edit-institution').value,
+                    portfolio_url: document.getElementById('edit-portfolio').value
+                }
+            };
+
+            try {
+                const response = await ApiHandler.post('profile/update.php', data);
+                if (response.success) {
+                    alert('Profile updated successfully!');
+                    closeModal('editProfileModal');
+                    loadProfile(); // Reload to show changes
+                } else {
+                    alert(response.message || 'Failed to update profile.');
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('An error occurred.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
         // Modal Functions
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
@@ -430,11 +514,6 @@
             document.body.style.overflow = '';
         }
 
-        function saveProfile() {
-            alert('Profile updated successfully!');
-            closeModal('editProfileModal');
-        }
-
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target.classList.contains('modal-overlay')) {
@@ -442,19 +521,6 @@
                 document.body.style.overflow = '';
             }
         }
-
-        // Attach event listeners
-        document.querySelector('.btn-primary').addEventListener('click', function() {
-            if (this.textContent.trim() === 'Edit Profile') {
-                openModal('editProfileModal');
-            }
-        });
-
-        document.querySelectorAll('.edit-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                openModal('editProfileModal');
-            });
-        });
     </script>
 </body>
 </html>
