@@ -176,6 +176,166 @@ body {
     font-size: 0.85rem;
 }
 
+/* Button Styles */
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.btn-primary, .btn-apply, .btn-save, .btn-submit, .btn-login, .btn-signup, .btn-subscribe {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary:hover, .btn-apply:hover, .btn-save:hover, .btn-submit:hover, .btn-login:hover, .btn-signup:hover, .btn-subscribe:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.btn-secondary {
+    background: var(--background-light);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: var(--card-bg);
+    border-color: var(--text-light);
+}
+
+.btn-danger, .btn-reject, .btn-ban {
+    background: transparent;
+    color: #ef4444;
+    border: 1px solid #ef4444;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.btn-danger:hover, .btn-reject:hover, .btn-ban:hover {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-sm, .btn-primary-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    border: 1px solid var(--card-border);
+    background: var(--background-light);
+    color: var(--text-color);
+    transition: all 0.2s ease;
+}
+
+.btn-sm:hover {
+    background: var(--card-bg);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-primary-sm {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.btn-primary-sm:hover {
+    background: var(--primary-dark);
+    color: white;
+    border: none;
+}
+
+.btn-load-more {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: var(--background-light);
+    border: 1px dashed var(--card-border);
+    color: var(--text-light);
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: all 0.2s ease;
+}
+
+.btn-load-more:hover {
+    background: var(--card-bg);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-action, .btn-message {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border: 1px solid var(--card-border);
+    background: var(--background-light);
+    color: var(--text-color);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-action:hover, .btn-message:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: var(--card-bg);
+}
+
+.btn-accept, .btn-verify {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.btn-accept:hover, .btn-verify:hover {
+    background: #27ae60;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
+}
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    transform: scale(1.1);
+}
+
+.action-btn.btn-edit { background: var(--primary-color); }
+.action-btn.btn-ban { background: #ef4444; color: white; border: none; } /* Override generic btn-ban */
+.action-btn.btn-verify { background: #2ecc71; }
+
 /* Modal Styles */
 .modal-overlay {
     position: fixed;
