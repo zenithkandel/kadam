@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-content.css">
+</head>
+<body>
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+        <h2>Welcome back, John!</h2>
+        <p>You have 2 active tasks and 5 new job recommendations today.</p>
+        <i class="fa-solid fa-rocket banner-decoration"></i>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon green">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+            <div class="stat-info">
+                <h3>Rs. 15,000</h3>
+                <p>Total Earnings</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon blue">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div class="stat-info">
+                <h3>47</h3>
+                <p>Tasks Completed</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon orange">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            <div class="stat-info">
+                <h3>2</h3>
+                <p>Active Tasks</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon purple">
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="stat-info">
+                <h3>4.8</h3>
+                <p>Average Rating</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Tasks -->
+    <div class="section-header">
+        <h3>Active Tasks</h3>
+        <a href="my-tasks.html" class="view-all">View All</a>
+    </div>
+
+    <div class="task-list">
+        <div class="task-card">
+            <div class="task-header">
+                <span class="task-status status-active">In Progress</span>
+                <span style="color: var(--text-light); font-size: 0.8rem;">Due in 2 days</span>
+            </div>
+            <h4 class="task-title">E-commerce Website Design</h4>
+            <div class="task-progress">
+                <div class="progress-bar" style="width: 70%"></div>
+            </div>
+            <div class="task-meta">
+                <span><i class="fa-solid fa-building"></i> Tech Corp</span>
+                <span><i class="fa-solid fa-money-bill"></i> Rs. 25,000</span>
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="task-header">
+                <span class="task-status status-pending">Pending Review</span>
+                <span style="color: var(--text-light); font-size: 0.8rem;">Submitted yesterday</span>
+            </div>
+            <h4 class="task-title">Logo Design for Startup</h4>
+            <div class="task-progress">
+                <div class="progress-bar" style="width: 100%"></div>
+            </div>
+            <div class="task-meta">
+                <span><i class="fa-solid fa-user"></i> Sarah Smith</span>
+                <span><i class="fa-solid fa-money-bill"></i> Rs. 5,000</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

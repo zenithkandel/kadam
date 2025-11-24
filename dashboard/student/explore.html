@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Jobs</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-content.css">
+    
+    <style>
+        /* Search & Filter Bar */
+        .search-filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-family: inherit;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .filter-select {
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            background: var(--card-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* Job Cards */
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .job-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-sm);
+            border-color: var(--primary-color);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .company-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: var(--background-dark);
+        }
+
+        .job-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .company-name {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            background: var(--background-color);
+            border-radius: 4px;
+            color: var(--text-light);
+        }
+
+        .job-footer {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .job-price {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .btn-apply {
+            padding: 8px 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-apply:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+    <div class="search-filter-bar">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search for jobs (e.g. Web Design, Logo)...">
+        </div>
+        <select class="filter-select">
+            <option value="">All Categories</option>
+            <option value="web">Web Development</option>
+            <option value="design">Graphic Design</option>
+            <option value="writing">Content Writing</option>
+        </select>
+        <select class="filter-select">
+            <option value="">Sort By</option>
+            <option value="newest">Newest</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="price-low">Price: Low to High</option>
+        </select>
+    </div>
+
+    <div class="section-header">
+        <h3>Recommended for You</h3>
+        <span style="color: var(--text-light); font-size: 0.9rem;">Based on your skills</span>
+    </div>
+
+    <div class="job-grid">
+        <!-- Job 1 -->
+        <div class="job-card">
+            <div class="job-header">
+                <img src="https://ui-avatars.com/api/?name=Tech+Corp&background=0D8ABC&color=fff" alt="Company" class="company-logo">
+                <span class="job-badge">Urgent</span>
+            </div>
+            <h4 class="job-title">Corporate Website Redesign</h4>
+            <div class="company-name">
+                <i class="fa-solid fa-building"></i> Tech Corp Pvt. Ltd.
+            </div>
+            <div class="job-tags">
+                <span class="tag">Web Design</span>
+                <span class="tag">HTML/CSS</span>
+                <span class="tag">Figma</span>
+            </div>
+            <div class="job-footer">
+                <span class="job-price">Rs. 35,000</span>
+                <button class="btn-apply">Apply Now</button>
+            </div>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="job-card">
+            <div class="job-header">
+                <img src="https://ui-avatars.com/api/?name=Creative+Studio&background=FF5722&color=fff" alt="Company" class="company-logo">
+                <span class="job-badge">Remote</span>
+            </div>
+            <h4 class="job-title">Social Media Graphics</h4>
+            <div class="company-name">
+                <i class="fa-solid fa-building"></i> Creative Studio
+            </div>
+            <div class="job-tags">
+                <span class="tag">Photoshop</span>
+                <span class="tag">Illustrator</span>
+                <span class="tag">Social Media</span>
+            </div>
+            <div class="job-footer">
+                <span class="job-price">Rs. 15,000</span>
+                <button class="btn-apply">Apply Now</button>
+            </div>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="job-card">
+            <div class="job-header">
+                <img src="https://ui-avatars.com/api/?name=John+Smith&background=4CAF50&color=fff" alt="Individual" class="company-logo">
+                <span class="job-badge">One-time</span>
+            </div>
+            <h4 class="job-title">Wedding Video Editing</h4>
+            <div class="company-name">
+                <i class="fa-solid fa-user"></i> John Smith
+            </div>
+            <div class="job-tags">
+                <span class="tag">Video Editing</span>
+                <span class="tag">Premiere Pro</span>
+            </div>
+            <div class="job-footer">
+                <span class="job-price">Rs. 20,000</span>
+                <button class="btn-apply">Apply Now</button>
+            </div>
+        </div>
+        
+        <!-- Job 4 -->
+        <div class="job-card">
+            <div class="job-header">
+                <img src="https://ui-avatars.com/api/?name=Edu+Nepal&background=9C27B0&color=fff" alt="Company" class="company-logo">
+            </div>
+            <h4 class="job-title">Content Writer for Blog</h4>
+            <div class="company-name">
+                <i class="fa-solid fa-building"></i> Edu Nepal
+            </div>
+            <div class="job-tags">
+                <span class="tag">Writing</span>
+                <span class="tag">SEO</span>
+                <span class="tag">English</span>
+            </div>
+            <div class="job-footer">
+                <span class="job-price">Rs. 5,000</span>
+                <button class="btn-apply">Apply Now</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - KADAM</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-layout.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../../index.html" class="logo">
+                    <div class="logo-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <span class="logo-text">KADAM</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active" data-page="overview.html">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="menu-item" data-page="explore.html">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Explore Jobs</span>
+                </a>
+                <a href="#" class="menu-item" data-page="my-tasks.html">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>My Tasks</span>
+                </a>
+                <a href="#" class="menu-item" data-page="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="menu-item" data-page="settings.html">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-mini-profile">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="User">
+                    <div class="user-info">
+                        <h4>John Doe</h4>
+                        <span>Student</span>
+                    </div>
+                </div>
+                <a href="../../index.html" class="menu-item" style="margin-top: 10px; color: var(--error-color);">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="dashboard-header">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <button class="mobile-toggle" id="sidebarToggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="header-title">
+                        <h2 id="pageTitle">Overview</h2>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                    <button class="action-btn" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-light);">
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="iframe-container">
+                <iframe id="contentFrame" src="overview.html" title="Dashboard Content"></iframe>
+            </div>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
