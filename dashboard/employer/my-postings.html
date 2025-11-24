@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Postings</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-content.css">
+    
+    <style>
+        .tabs {
+            display: flex;
+            gap: 20px;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: var(--text-light);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-action {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: 1px solid var(--card-border);
+            background: var(--background-light);
+            color: var(--text-color);
+            transition: all 0.2s ease;
+        }
+
+        .btn-action:hover {
+            background: var(--card-bg);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('active')">Active (12)</button>
+        <button class="tab-btn" onclick="switchTab('drafts')">Drafts (3)</button>
+        <button class="tab-btn" onclick="switchTab('closed')">Closed (156)</button>
+    </div>
+
+    <!-- Active Tasks -->
+    <div id="active-tasks" class="task-list">
+        <div class="task-card">
+            <div class="task-header">
+                <span class="task-status status-active">Active</span>
+                <span style="color: var(--text-light); font-size: 0.8rem;">Posted: 2 days ago</span>
+            </div>
+            <h4 class="task-title">E-commerce Website Design</h4>
+            <div class="task-meta">
+                <span><i class="fa-solid fa-users"></i> 15 Applicants</span>
+                <span><i class="fa-solid fa-money-bill"></i> Rs. 25,000</span>
+                <span><i class="fa-solid fa-clock"></i> Due in 5 days</span>
+            </div>
+            <div class="task-actions">
+                <button class="btn-action">View Applicants</button>
+                <button class="btn-action">Edit Task</button>
+                <button class="btn-action" style="color: #ef4444; border-color: #ef4444;">Close Task</button>
+            </div>
+        </div>
+
+        <div class="task-card">
+            <div class="task-header">
+                <span class="task-status status-active">Active</span>
+                <span style="color: var(--text-light); font-size: 0.8rem;">Posted: 5 days ago</span>
+            </div>
+            <h4 class="task-title">Social Media Marketing Campaign</h4>
+            <div class="task-meta">
+                <span><i class="fa-solid fa-users"></i> 8 Applicants</span>
+                <span><i class="fa-solid fa-money-bill"></i> Rs. 15,000</span>
+                <span><i class="fa-solid fa-clock"></i> Due in 10 days</span>
+            </div>
+            <div class="task-actions">
+                <button class="btn-action">View Applicants</button>
+                <button class="btn-action">Edit Task</button>
+                <button class="btn-action" style="color: #ef4444; border-color: #ef4444;">Close Task</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Drafts (Hidden) -->
+    <div id="drafts-tasks" class="task-list" style="display: none;">
+        <div class="task-card" style="opacity: 0.8;">
+            <div class="task-header">
+                <span class="task-status status-pending">Draft</span>
+                <span style="color: var(--text-light); font-size: 0.8rem;">Last edited: Yesterday</span>
+            </div>
+            <h4 class="task-title">Python Script for Data Analysis</h4>
+            <div class="task-meta">
+                <span><i class="fa-solid fa-money-bill"></i> Rs. 8,000</span>
+            </div>
+            <div class="task-actions">
+                <button class="btn-action">Continue Editing</button>
+                <button class="btn-action" style="color: #ef4444; border-color: #ef4444;">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.querySelectorAll('.task-list').forEach(list => list.style.display = 'none');
+
+            if (tabName === 'active') {
+                document.getElementById('active-tasks').style.display = 'flex';
+            } else if (tabName === 'drafts') {
+                document.getElementById('drafts-tasks').style.display = 'flex';
+            } else {
+                // Placeholder for closed
+                document.getElementById('active-tasks').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
