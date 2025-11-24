@@ -343,7 +343,7 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -351,7 +351,6 @@ button {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    backdrop-filter: blur(4px);
 }
 
 .modal-overlay.active {
@@ -429,11 +428,11 @@ button {
 }
 
 /* Modal Form Elements */
-.modal-form-group {
+.modal-form-group, .form-group {
     margin-bottom: 20px;
 }
 
-.modal-label {
+.modal-label, .form-label {
     display: block;
     margin-bottom: 8px;
     color: var(--text-color);
@@ -441,7 +440,7 @@ button {
     font-size: 0.9rem;
 }
 
-.modal-input, .modal-textarea, .modal-select {
+.modal-input, .modal-textarea, .modal-select, .form-control {
     width: 100%;
     padding: 10px 15px;
     border: 1px solid var(--card-border);
@@ -453,10 +452,46 @@ button {
     transition: border-color 0.2s ease;
 }
 
-.modal-input:focus, .modal-textarea:focus, .modal-select:focus {
+.modal-input:focus, .modal-textarea:focus, .modal-select:focus, .form-control:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.file-upload-area {
+    border: 2px dashed var(--card-border);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--background-light);
+}
+
+.file-upload-area:hover {
+    border-color: var(--primary-color);
+    background: var(--background-color);
+}
+
+.file-upload-area i {
+    font-size: 2rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.file-upload-area p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin: 0;
 }
 
 /* Table Styles */
