@@ -1,0 +1,56 @@
+<?php
+// api/profile/get.php
+
+include_once '../config/cors.php';
+include_once '../config/database.php';
+include_once '../utils/response.php';
+include_once '../utils/jwt.php';
+
+$token = JWT::getBearerToken();
+if (!$token) sendError("Unauthorized.", 401);
+$decoded = JWT::decode($token);
+if (!$decoded) sendError("Invalid token.", 401);
+
+$user_id = $decoded['data']['id'];
+$role = $decoded['data']['role'];
+
+$database = new Database();
+$db = $database->getConnection();
+
+try {
+    // Fetch basic user info
+    $query = "SELECT id, username, email, name, role, status, profile_image, phone, address, is_verified, created_at FROM users WHERE id = :id";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":id", $user_id);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$user) {
+        sendError("User not found.", 404);
+    }
+
+    // Fetch role-specific info
+    $details = null;
+    if ($role === 'student') {
+        $query = "SELECT * FROM students WHERE user_id = :id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(":id", $user_id);
+        $stmt->execute();
+        $details = $stmt->fetch(PDO::FETCH_ASSOC);
+    } elseif ($role === 'employer') {
+        $query = "SELECT * FROM employers WHERE user_id = :id";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(":id", $user_id);
+        $stmt->execute();
+        $details = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Merge details into user object
+    $user['details'] = $details;
+
+    sendSuccess("Profile retrieved successfully.", $user);
+
+} catch (Exception $e) {
+    sendError("Error fetching profile: " . $e->getMessage());
+}
+?>
