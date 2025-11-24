@@ -69,6 +69,126 @@
         .btn-verify {
             background: #2ecc71;
         }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        .modal-body {
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .status-active {
+            background: #2ecc71;
+        }
+
+        .status-pending {
+            background: #f39c12;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-color);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+        }
     </style>
 </head>
 <body>
@@ -156,5 +276,129 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal-overlay" id="editUserModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">Edit User</h3>
+                <button class="modal-close" onclick="closeModal('editUserModal')">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editUserForm">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" value="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" value="john.doe@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Role</label>
+                        <select class="form-control">
+                            <option value="student">Student</option>
+                            <option value="employer">Employer</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Status</label>
+                        <select class="form-control">
+                            <option value="active">Active</option>
+                            <option value="pending">Pending</option>
+                            <option value="banned">Banned</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('editUserModal')">Cancel</button>
+                <button class="btn-primary" onclick="saveUser()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ban User Modal -->
+    <div class="modal-overlay" id="banUserModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">Ban User</h3>
+                <button class="modal-close" onclick="closeModal('banUserModal')">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to ban <strong id="banUserName">John Doe</strong>? This action will prevent them from logging in.</p>
+                <div class="form-group" style="margin-top: 15px;">
+                    <label class="form-label">Reason for Ban</label>
+                    <textarea class="form-control" rows="3" placeholder="Violation of terms..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('banUserModal')">Cancel</button>
+                <button class="btn-primary" style="background: #ef4444;" onclick="banUser()">Ban User</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal Functions
+        function openModal(modalId, userName = '') {
+            const modal = document.getElementById(modalId);
+            if (userName) {
+                if (modalId === 'editUserModal') {
+                    modal.querySelector('.modal-title').textContent = 'Edit User: ' + userName;
+                } else if (modalId === 'banUserModal') {
+                    document.getElementById('banUserName').textContent = userName;
+                }
+            }
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function saveUser() {
+            alert('User updated successfully!');
+            closeModal('editUserModal');
+        }
+
+        function banUser() {
+            alert('User has been banned.');
+            closeModal('banUserModal');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Attach event listeners
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const userName = row.querySelector('td:first-child span').textContent;
+                openModal('editUserModal', userName);
+            });
+        });
+
+        document.querySelectorAll('.btn-ban').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const userName = row.querySelector('td:first-child span').textContent;
+                openModal('banUserModal', userName);
+            });
+        });
+    </script>
 </body>
 </html>
