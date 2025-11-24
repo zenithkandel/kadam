@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../../style/dashboard-content.css">
+    
+    <style>
+        .settings-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .settings-section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .settings-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .settings-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            background: var(--background-light);
+            color: var(--text-color);
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--card-border);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-info h4 {
+            margin-bottom: 5px;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .setting-info p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .btn-save {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .btn-save:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-danger {
+            background: transparent;
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-danger:hover {
+            background: #ef4444;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <!-- Account Settings -->
+        <div class="settings-section">
+            <div class="settings-header">
+                <h3 class="settings-title">Account Settings</h3>
+            </div>
+            <form onsubmit="event.preventDefault();">
+                <div class="form-group">
+                    <label class="form-label">Business Email</label>
+                    <input type="email" class="form-control" value="hr@techcorp.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Contact Number</label>
+                    <input type="tel" class="form-control" value="+91 11 2345 6789">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Current Password</label>
+                    <input type="password" class="form-control" placeholder="Enter current password">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">New Password</label>
+                    <input type="password" class="form-control" placeholder="Enter new password">
+                </div>
+                <div style="text-align: right;">
+                    <button class="btn-save">Save Changes</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Notifications -->
+        <div class="settings-section">
+            <div class="settings-header">
+                <h3 class="settings-title">Notifications</h3>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h4>New Applications</h4>
+                    <p>Get notified when someone applies to your tasks</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h4>Task Completion</h4>
+                    <p>Get notified when a task is marked as completed</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h4>Daily Summary</h4>
+                    <p>Receive a daily summary of your account activity</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Billing -->
+        <div class="settings-section">
+            <div class="settings-header">
+                <h3 class="settings-title">Billing & Payments</h3>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h4>Payment Method</h4>
+                    <p>Visa ending in 4242</p>
+                </div>
+                <button class="btn-action" style="border: 1px solid var(--card-border); background: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; color: var(--text-color);">Update</button>
+            </div>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h4>Billing History</h4>
+                    <p>View past invoices and payments</p>
+                </div>
+                <button class="btn-action" style="border: 1px solid var(--card-border); background: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; color: var(--text-color);">View</button>
+            </div>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="settings-section" style="border-color: #ef4444;">
+            <div class="settings-header" style="border-color: #ef4444;">
+                <h3 class="settings-title" style="color: #ef4444;">Danger Zone</h3>
+            </div>
+            <div class="setting-item" style="border-bottom: none;">
+                <div class="setting-info">
+                    <h4>Delete Account</h4>
+                    <p>Permanently delete your company account and all data</p>
+                </div>
+                <button class="btn-danger">Delete Account</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
