@@ -1,26 +1,20 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Credentials: true");
 
 include_once '../config/database.php';
-include_once '../utils/jwt.php';
+include_once '../utils/auth_check.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$jwt = JWT::getBearerToken();
+$userAuth = checkAuth();
 
-if (!$jwt) {
-    http_response_code(401);
-    echo json_encode(array("message" => "Access denied."));
-    exit;
-}
-
-$decoded = JWT::decode($jwt);
-if (!$decoded || $decoded['data']['role'] !== 'admin') {
+if ($userAuth['role'] !== 'admin') {
     http_response_code(403);
     echo json_encode(array("message" => "Access denied. Admin only."));
     exit;

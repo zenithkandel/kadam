@@ -1,8 +1,9 @@
 <?php
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Credentials: true");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -10,24 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 include_once '../config/database.php';
-require "../../vendor/autoload.php";
-use \Firebase\JWT\JWT;
-use \Firebase\JWT\Key;
+include_once '../utils/auth_check.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$headers = apache_request_headers();
-$authHeader = isset($headers['Authorization']) ? $headers['Authorization'] : '';
-
-if (!$authHeader) {
-    http_response_code(401);
-    echo json_encode(["success" => false, "message" => "No token provided."]);
-    exit;
-}
-
-$jwt = str_replace('Bearer ', '', $authHeader);
-$secret_key = "YOUR_SECRET_KEY"; // In production, use environment variable
+$userAuth = checkAuth();
+$user_id = $userAuth['id'];
+$role = $userAuth['role'];
 
 $task_id = isset($_GET['task_id']) ? $_GET['task_id'] : null;
 
@@ -37,16 +28,11 @@ if (!$task_id) {
     exit;
 }
 
-try {
-    $decoded = JWT::decode($jwt, new Key($secret_key, 'HS256'));
-    $user_id = $decoded->data->id;
-    $role = $decoded->data->role;
-
-    if ($role !== 'employer') {
-        http_response_code(403);
-        echo json_encode(["success" => false, "message" => "Only employers can view applicants."]);
-        exit;
-    }
+if ($role !== 'employer') {
+    http_response_code(403);
+    echo json_encode(["success" => false, "message" => "Only employers can view applicants."]);
+    exit;
+}
 
     // Verify task belongs to employer
     $checkQuery = "SELECT id FROM tasks WHERE id = :task_id AND employer_id = :employer_id";
@@ -75,9 +61,4 @@ try {
     $applicants = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode(["success" => true, "data" => $applicants]);
-
-} catch (Exception $e) {
-    http_response_code(401);
-    echo json_encode(["success" => false, "message" => "Access denied.", "error" => $e->getMessage()]);
-}
 ?>

@@ -4,15 +4,11 @@
 include_once '../config/cors.php';
 include_once '../config/database.php';
 include_once '../utils/response.php';
-include_once '../utils/jwt.php';
+include_once '../utils/auth_check.php';
 
-$token = JWT::getBearerToken();
-if (!$token) sendError("Unauthorized.", 401);
-$decoded = JWT::decode($token);
-if (!$decoded) sendError("Invalid token.", 401);
-
-$user_id = $decoded['data']['id'];
-$role = $decoded['data']['role'];
+$userAuth = checkAuth();
+$user_id = $userAuth['id'];
+$role = $userAuth['role'];
 
 $database = new Database();
 $db = $database->getConnection();

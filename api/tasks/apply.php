@@ -1,8 +1,9 @@
 <?php
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Credentials: true");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
@@ -10,44 +11,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 include_once '../config/database.php';
-require "../../vendor/autoload.php";
-use \Firebase\JWT\JWT;
-use \Firebase\JWT\Key;
+include_once '../utils/auth_check.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
 $data = json_decode(file_get_contents("php://input"));
 
-$headers = apache_request_headers();
-$authHeader = isset($headers['Authorization']) ? $headers['Authorization'] : '';
+$userAuth = checkAuth();
+$user_id = $userAuth['id'];
+$role = $userAuth['role'];
 
-if (!$authHeader) {
-    http_response_code(401);
-    echo json_encode(["success" => false, "message" => "No token provided."]);
+if ($role !== 'student') {
+    http_response_code(403);
+    echo json_encode(["success" => false, "message" => "Only students can apply for tasks."]);
     exit;
 }
 
-$jwt = str_replace('Bearer ', '', $authHeader);
-$secret_key = "YOUR_SECRET_KEY"; // In production, use environment variable
-
-try {
-    $decoded = JWT::decode($jwt, new Key($secret_key, 'HS256'));
-    $user_id = $decoded->data->id;
-    $role = $decoded->data->role;
-
-    if ($role !== 'student') {
-        http_response_code(403);
-        echo json_encode(["success" => false, "message" => "Only students can apply for tasks."]);
-        exit;
-    }
-
-    if (
-        !empty($data->task_id) &&
-        !empty($data->message) &&
-        !empty($data->bid_amount)
-    ) {
-        // Check if already applied
+if (
+    !empty($data->task_id) &&
+    !empty($data->message) &&
+    !empty($data->bid_amount)
+) {
+    // Check if already applied
         $checkQuery = "SELECT id FROM task_applications WHERE task_id = :task_id AND student_id = :student_id";
         $checkStmt = $db->prepare($checkQuery);
         $checkStmt->bindParam(":task_id", $data->task_id);
@@ -83,9 +69,4 @@ try {
         http_response_code(400);
         echo json_encode(["success" => false, "message" => "Incomplete data."]);
     }
-
-} catch (Exception $e) {
-    http_response_code(401);
-    echo json_encode(["success" => false, "message" => "Access denied.", "error" => $e->getMessage()]);
-}
 ?>
