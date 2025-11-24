@@ -701,11 +701,7 @@
                 signupBtn.classList.add('loading');
                 signupBtn.textContent = '';
 
-                // Simulate API call
-                setTimeout(() => {
-                    // Success - redirect to verification
-                    window.location.href = 'verification.html';
-                }, 1500);
+                // API call is now handled by auth.js
             }
         });
 
@@ -726,5 +722,7 @@
             window.history.replaceState(null, null, window.location.href);
         }
     </script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/auth.js"></script>
 </body>
 </html>
