@@ -20,8 +20,8 @@
 <body>
     <!-- Welcome Banner -->
     <div class="welcome-banner">
-        <h2>Welcome back, John!</h2>
-        <p>You have 2 active tasks and 5 new job recommendations today.</p>
+        <h2>Welcome back, <span id="user-name">Student</span>!</h2>
+        <p>Here is your dashboard overview.</p>
         <i class="fa-solid fa-rocket banner-decoration"></i>
     </div>
 
@@ -32,7 +32,7 @@
                 <i class="fa-solid fa-wallet"></i>
             </div>
             <div class="stat-info">
-                <h3>Rs. 15,000</h3>
+                <h3 id="total-earnings">Rs. 0</h3>
                 <p>Total Earnings</p>
             </div>
         </div>
@@ -41,7 +41,7 @@
                 <i class="fa-solid fa-list-check"></i>
             </div>
             <div class="stat-info">
-                <h3>47</h3>
+                <h3 id="tasks-completed">0</h3>
                 <p>Tasks Completed</p>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 <i class="fa-solid fa-clock"></i>
             </div>
             <div class="stat-info">
-                <h3>2</h3>
+                <h3 id="active-tasks-count">0</h3>
                 <p>Active Tasks</p>
             </div>
         </div>
@@ -59,7 +59,7 @@
                 <i class="fa-solid fa-star"></i>
             </div>
             <div class="stat-info">
-                <h3>4.8</h3>
+                <h3 id="average-rating">0.0</h3>
                 <p>Average Rating</p>
             </div>
         </div>
@@ -71,36 +71,70 @@
         <a href="my-tasks.html" class="view-all">View All</a>
     </div>
 
-    <div class="task-list">
-        <div class="task-card">
-            <div class="task-header">
-                <span class="task-status status-active">In Progress</span>
-                <span style="color: var(--text-light); font-size: 0.8rem;">Due in 2 days</span>
-            </div>
-            <h4 class="task-title">E-commerce Website Design</h4>
-            <div class="task-progress">
-                <div class="progress-bar" style="width: 70%"></div>
-            </div>
-            <div class="task-meta">
-                <span><i class="fa-solid fa-building"></i> Tech Corp</span>
-                <span><i class="fa-solid fa-money-bill"></i> Rs. 25,000</span>
-            </div>
-        </div>
-
-        <div class="task-card">
-            <div class="task-header">
-                <span class="task-status status-pending">Pending Review</span>
-                <span style="color: var(--text-light); font-size: 0.8rem;">Submitted yesterday</span>
-            </div>
-            <h4 class="task-title">Logo Design for Startup</h4>
-            <div class="task-progress">
-                <div class="progress-bar" style="width: 100%"></div>
-            </div>
-            <div class="task-meta">
-                <span><i class="fa-solid fa-user"></i> Sarah Smith</span>
-                <span><i class="fa-solid fa-money-bill"></i> Rs. 5,000</span>
-            </div>
+    <div class="task-list" id="active-tasks-list">
+        <!-- Tasks will be loaded here -->
+        <div class="loading-spinner" style="text-align: center; padding: 20px;">
+            <i class="fa-solid fa-spinner fa-spin"></i> Loading tasks...
         </div>
     </div>
+
+    <script src="../../assets/js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // 1. Load User Profile & Stats
+                const profileResponse = await ApiHandler.get('auth/me.php');
+                if (profileResponse.success) {
+                    const user = profileResponse.data;
+                    document.getElementById('user-name').textContent = user.name.split(' ')[0];
+                    
+                    if (user.details) {
+                        document.getElementById('total-earnings').textContent = 'Rs. ' + (user.details.total_earned || 0);
+                        document.getElementById('tasks-completed').textContent = user.details.tasks_completed_count || 0;
+                        document.getElementById('average-rating').textContent = user.details.average_rating || '0.0';
+                    }
+                }
+
+                // 2. Load Active Tasks
+                // Note: We need an endpoint for "My Active Tasks". 
+                // For now, we'll use my_tasks.php and filter client-side or assume it returns relevant ones.
+                const tasksResponse = await ApiHandler.get('tasks/my_tasks.php');
+                const tasksList = document.getElementById('active-tasks-list');
+                tasksList.innerHTML = '';
+
+                if (tasksResponse.success && tasksResponse.data.length > 0) {
+                    // Filter for active tasks (open, in_progress)
+                    const activeTasks = tasksResponse.data.filter(t => ['open', 'in_progress'].includes(t.status));
+                    
+                    document.getElementById('active-tasks-count').textContent = activeTasks.length;
+
+                    if (activeTasks.length === 0) {
+                        tasksList.innerHTML = '<p style="text-align:center; color:var(--text-light);">No active tasks found.</p>';
+                    } else {
+                        activeTasks.slice(0, 3).forEach(task => {
+                            const html = `
+                                <div class="task-card">
+                                    <div class="task-header">
+                                        <span class="task-status status-${task.status}">${task.status.replace('_', ' ')}</span>
+                                        <span style="color: var(--text-light); font-size: 0.8rem;">Due: ${task.deadline}</span>
+                                    </div>
+                                    <h4 class="task-title">${task.title}</h4>
+                                    <div class="task-meta">
+                                        <span><i class="fa-solid fa-money-bill"></i> Rs. ${task.budget}</span>
+                                    </div>
+                                </div>
+                            `;
+                            tasksList.innerHTML += html;
+                        });
+                    }
+                } else {
+                    tasksList.innerHTML = '<p style="text-align:center; color:var(--text-light);">No tasks found.</p>';
+                }
+
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+            }
+        });
+    </script>
 </body>
 </html>
