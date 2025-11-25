@@ -314,7 +314,7 @@
             <div class="section-card">
                 <div class="section-header">
                     <h3 class="section-title">Portfolio</h3>
-                    <button class="edit-btn" onclick="alert('Portfolio management coming soon')"><i class="fa-solid fa-plus"></i></button>
+                    <button class="edit-btn" onclick="openModal('editProfileModal', 'portfolio')"><i class="fa-solid fa-pen"></i></button>
                 </div>
                 <div id="portfolio-container">
                     <p style="color: var(--text-light); font-size: 0.9rem;" id="profile-portfolio-url">No portfolio URL added.</p>
@@ -552,10 +552,11 @@
 
             // Define fields for each section
             const sectionFields = {
-                'about': ['edit-name', 'edit-title', 'edit-bio', 'edit-portfolio'],
+                'about': ['edit-name', 'edit-title', 'edit-bio'],
                 'education': ['edit-education', 'edit-institution', 'edit-grad-year'],
                 'contact': ['edit-phone', 'edit-address'],
-                'skills': ['edit-skills']
+                'skills': ['edit-skills'],
+                'portfolio': ['edit-portfolio']
             };
 
             const fieldsToShow = sectionFields[section] || [];
