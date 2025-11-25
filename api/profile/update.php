@@ -90,4 +90,3 @@ try {
     $db->rollBack();
     sendError("Error updating profile: " . $e->getMessage());
 }
-?>

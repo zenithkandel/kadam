@@ -33,4 +33,3 @@ if ($role == 'employer') {
     $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode(["success" => true, "data" => $tasks]);
-?>

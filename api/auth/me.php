@@ -43,4 +43,3 @@ if ($stmt->rowCount() > 0) {
 } else {
     sendError("User not found.", 404);
 }
-?>

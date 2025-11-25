@@ -18,4 +18,3 @@ function sendError($message, $statusCode = 400) {
 function sendSuccess($message, $data = null) {
     sendResponse(true, $message, $data, 200);
 }
-?>

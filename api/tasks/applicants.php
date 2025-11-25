@@ -51,4 +51,3 @@ if ($role !== 'employer') {
     $applicants = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode(["success" => true, "data" => $applicants]);
-?>

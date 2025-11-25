@@ -24,4 +24,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 header("Content-Type: application/json; charset=UTF-8");
-?>

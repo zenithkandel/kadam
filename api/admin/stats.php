@@ -63,4 +63,3 @@ try {
         "message" => "Error fetching admin stats: " . $e->getMessage()
     ));
 }
-?>

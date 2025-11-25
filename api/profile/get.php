@@ -49,4 +49,3 @@ try {
 } catch (Exception $e) {
     sendError("Error fetching profile: " . $e->getMessage());
 }
-?>

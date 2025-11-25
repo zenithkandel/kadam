@@ -97,4 +97,3 @@ try {
     $db->rollBack();
     sendError("System error: " . $e->getMessage());
 }
-?>

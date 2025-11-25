@@ -64,4 +64,3 @@ if (!empty($data->task_id) && !empty($data->message)) {
         http_response_code(400);
         echo json_encode(["success" => false, "message" => "Incomplete data."]);
     }
-?>
