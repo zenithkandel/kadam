@@ -4,10 +4,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check if user is logged in to update navigation
-    const token = localStorage.getItem('auth_token');
     const role = localStorage.getItem('user_role');
     
-    if (token && role) {
+    if (role) {
         updateNavForLoggedInUser(role);
     }
 });
@@ -17,14 +16,19 @@ function updateNavForLoggedInUser(role) {
     if (authLinks) {
         authLinks.innerHTML = `
             <a href="dashboard/${role}/dashboard.html" class="btn btn-primary">Dashboard</a>
-            <a href="#" onclick="logout()" class="btn btn-outline">Logout</a>
+            <a href="#" onclick="logout(event)" class="btn btn-outline">Logout</a>
         `;
     }
 }
 
-function logout() {
-    localStorage.removeItem('auth_token');
+async function logout(event) {
+    if(event) event.preventDefault();
+    try {
+        await ApiHandler.post('auth/logout.php');
+    } catch (error) {
+        console.error("Logout failed", error);
+    }
     localStorage.removeItem('user_role');
     localStorage.removeItem('user_data');
-    window.location.href = 'index.html';
+    window.location.href = '/projects/kadam/index.html';
 }

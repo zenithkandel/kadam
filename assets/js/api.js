@@ -34,7 +34,7 @@ class ApiHandler {
             if (response.status === 401) {
                 // Redirect to login if not already there
                 if (!window.location.href.includes('login.html')) {
-                    window.location.href = '/projects/kadam/login.html';
+                    window.location.href = '/projects/kadam/auth/login.html';
                 }
                 return;
             }

@@ -40,7 +40,7 @@ if (!empty($data->email) && !empty($data->password)) {
                 "success" => true,
                 "message" => "Login successful.",
                 "role" => $row['role'],
-                "redirect" => "dashboard/" . $row['role'] . "/dashboard.html"
+                "redirect" => "../dashboard/" . $row['role'] . "/dashboard.html"
             ]);
         } else {
             http_response_code(401);
