@@ -33,6 +33,17 @@ try {
         $stmt->bindParam(":id", $user_id);
         $stmt->execute();
         $details = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Fetch Skills
+        $skillsQuery = "SELECT s.name FROM skills s 
+                        JOIN student_skills ss ON s.id = ss.skill_id 
+                        WHERE ss.student_id = :id";
+        $skillsStmt = $db->prepare($skillsQuery);
+        $skillsStmt->bindParam(":id", $user_id);
+        $skillsStmt->execute();
+        $skills = $skillsStmt->fetchAll(PDO::FETCH_COLUMN);
+        $details['skills'] = $skills;
+
     } elseif ($role === 'employer') {
         $query = "SELECT * FROM employers WHERE user_id = :id";
         $stmt = $db->prepare($query);

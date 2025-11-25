@@ -83,6 +83,39 @@ try {
         }
     }
 
+    // 3. Update Skills (Student Only)
+    if ($role === 'student' && isset($data['skills']) && is_array($data['skills'])) {
+        // Clear existing skills
+        $deleteSkills = $db->prepare("DELETE FROM student_skills WHERE student_id = :id");
+        $deleteSkills->execute([':id' => $user_id]);
+
+        $insertSkill = $db->prepare("INSERT INTO skills (name) VALUES (:name) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)");
+        // Note: MySQL specific ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id) ensures we get the ID back correctly
+        // But standard SQL might be safer to just SELECT then INSERT.
+        // Let's use a safer approach for compatibility.
+        
+        $checkSkill = $db->prepare("SELECT id FROM skills WHERE name = :name");
+        $insertNewSkill = $db->prepare("INSERT INTO skills (name) VALUES (:name)");
+        $linkSkill = $db->prepare("INSERT INTO student_skills (student_id, skill_id) VALUES (:student_id, :skill_id)");
+
+        foreach ($data['skills'] as $skillName) {
+            $skillName = trim($skillName);
+            if (empty($skillName)) continue;
+
+            // Check if skill exists
+            $checkSkill->execute([':name' => $skillName]);
+            if ($checkSkill->rowCount() > 0) {
+                $skillId = $checkSkill->fetchColumn();
+            } else {
+                $insertNewSkill->execute([':name' => $skillName]);
+                $skillId = $db->lastInsertId();
+            }
+
+            // Link skill
+            $linkSkill->execute([':student_id' => $user_id, ':skill_id' => $skillId]);
+        }
+    }
+
     $db->commit();
     sendSuccess("Profile updated successfully.");
 

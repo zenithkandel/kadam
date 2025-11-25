@@ -283,7 +283,7 @@
             </div>
         </div>
         <div style="margin-left: auto;">
-            <button class="btn-primary" onclick="openModal('editProfileModal')">Edit Profile</button>
+            <button class="btn-primary" onclick="openModal('editProfileModal', 'all')">Edit Profile</button>
         </div>
     </div>
 
@@ -293,7 +293,7 @@
             <div class="section-card">
                 <div class="section-header">
                     <h3 class="section-title">About Me</h3>
-                    <button class="edit-btn" onclick="openModal('editProfileModal')"><i class="fa-solid fa-pen"></i></button>
+                    <button class="edit-btn" onclick="openModal('editProfileModal', 'about')"><i class="fa-solid fa-pen"></i></button>
                 </div>
                 <p style="color: var(--text-light); line-height: 1.6;" id="profile-bio">
                     No bio added yet.
@@ -303,7 +303,7 @@
             <div class="section-card">
                 <div class="section-header">
                     <h3 class="section-title">Education</h3>
-                    <button class="edit-btn" onclick="openModal('editProfileModal')"><i class="fa-solid fa-pen"></i></button>
+                    <button class="edit-btn" onclick="openModal('editProfileModal', 'education')"><i class="fa-solid fa-pen"></i></button>
                 </div>
                 <div class="info-group">
                     <div class="info-value" id="profile-education">Not specified</div>
@@ -327,7 +327,7 @@
             <div class="section-card">
                 <div class="section-header">
                     <h3 class="section-title">Skills</h3>
-                    <button class="edit-btn" onclick="alert('Skills management coming soon')"><i class="fa-solid fa-pen"></i></button>
+                    <button class="edit-btn" onclick="openModal('editProfileModal', 'skills')"><i class="fa-solid fa-pen"></i></button>
                 </div>
                 <div id="skills-container">
                     <!-- Skills loaded via JS -->
@@ -339,7 +339,7 @@
             <div class="section-card">
                 <div class="section-header">
                     <h3 class="section-title">Contact Info</h3>
-                    <button class="edit-btn" onclick="openModal('editProfileModal')"><i class="fa-solid fa-pen"></i></button>
+                    <button class="edit-btn" onclick="openModal('editProfileModal', 'contact')"><i class="fa-solid fa-pen"></i></button>
                 </div>
                 <div class="info-group">
                     <span class="info-label">Email</span>
@@ -407,6 +407,10 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="form-label">Skills (comma separated)</label>
+                        <input type="text" class="form-control" id="edit-skills" placeholder="e.g. HTML, CSS, JavaScript">
+                    </div>
+                    <div class="form-group">
                         <label class="form-label">Portfolio URL</label>
                         <input type="url" class="form-control" id="edit-portfolio">
                     </div>
@@ -457,6 +461,21 @@
                         document.getElementById('profile-portfolio-url').innerHTML = `<a href="${details.portfolio_url}" target="_blank" style="color: var(--primary-color);">${details.portfolio_url}</a>`;
                     }
 
+                    // Skills
+                    const skillsContainer = document.getElementById('skills-container');
+                    skillsContainer.innerHTML = '';
+                    const skills = details.skills || [];
+                    if (skills.length > 0) {
+                        skills.forEach(skill => {
+                            const span = document.createElement('span');
+                            span.className = 'skill-tag';
+                            span.textContent = skill;
+                            skillsContainer.appendChild(span);
+                        });
+                    } else {
+                        skillsContainer.innerHTML = '<span style="color: var(--text-light);">No skills added yet.</span>';
+                    }
+
                     // Populate Edit Form
                     document.getElementById('edit-name').value = user.name;
                     document.getElementById('edit-title').value = details.title || '';
@@ -467,6 +486,7 @@
                     document.getElementById('edit-phone').value = user.phone || '';
                     document.getElementById('edit-address').value = user.address || '';
                     document.getElementById('edit-portfolio').value = details.portfolio_url || '';
+                    document.getElementById('edit-skills').value = skills.join(', ');
                 }
             } catch (error) {
                 console.error('Error loading profile:', error);
@@ -490,7 +510,8 @@
                     institution: document.getElementById('edit-institution').value,
                     graduation_year: document.getElementById('edit-grad-year').value,
                     portfolio_url: document.getElementById('edit-portfolio').value
-                }
+                },
+                skills: document.getElementById('edit-skills').value.split(',').map(s => s.trim()).filter(s => s)
             };
 
             try {
@@ -512,10 +533,46 @@
         }
 
         // Modal Functions
-        function openModal(modalId) {
+        function openModal(modalId, section = 'all') {
             const modal = document.getElementById(modalId);
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // Handle sections
+            const form = document.getElementById('editProfileForm');
+            const allGroups = form.querySelectorAll('.form-group, .form-row');
+            
+            if (section === 'all') {
+                allGroups.forEach(el => el.style.display = '');
+                return;
+            }
+
+            // Hide all first
+            allGroups.forEach(el => el.style.display = 'none');
+
+            // Define fields for each section
+            const sectionFields = {
+                'about': ['edit-name', 'edit-title', 'edit-bio', 'edit-portfolio'],
+                'education': ['edit-education', 'edit-institution', 'edit-grad-year'],
+                'contact': ['edit-phone', 'edit-address'],
+                'skills': ['edit-skills']
+            };
+
+            const fieldsToShow = sectionFields[section] || [];
+
+            fieldsToShow.forEach(fieldId => {
+                const input = document.getElementById(fieldId);
+                if (input) {
+                    // Show the closest form-group
+                    const group = input.closest('.form-group');
+                    if (group) {
+                        group.style.display = '';
+                        // If inside a form-row, show the row too
+                        const row = group.closest('.form-row');
+                        if (row) row.style.display = 'flex';
+                    }
+                }
+            });
         }
 
         function closeModal(modalId) {

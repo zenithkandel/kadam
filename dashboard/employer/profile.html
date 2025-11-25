@@ -257,14 +257,14 @@
             </div>
         </div>
         <div style="margin-left: auto;">
-            <button class="btn-primary" onclick="openModal('editProfileModal')">Edit Profile</button>
+            <button class="btn-primary" onclick="openModal('editProfileModal', 'all')">Edit Profile</button>
         </div>
     </div>
 
     <div class="section-card">
         <div class="section-header">
             <h3 class="section-title">About Company</h3>
-            <button class="edit-btn" onclick="openModal('editProfileModal')"><i class="fa-solid fa-pen"></i></button>
+            <button class="edit-btn" onclick="openModal('editProfileModal', 'about')"><i class="fa-solid fa-pen"></i></button>
         </div>
         <p style="color: var(--text-light); line-height: 1.6;" id="profile-description">
             No description added yet.
@@ -274,7 +274,7 @@
     <div class="section-card">
         <div class="section-header">
             <h3 class="section-title">Company Details</h3>
-            <button class="edit-btn" onclick="openModal('editProfileModal')"><i class="fa-solid fa-pen"></i></button>
+            <button class="edit-btn" onclick="openModal('editProfileModal', 'details')"><i class="fa-solid fa-pen"></i></button>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
             <div class="info-group">
@@ -490,10 +490,45 @@
         }
 
         // Modal Functions
-        function openModal(modalId) {
+        function openModal(modalId, section = 'all') {
             const modal = document.getElementById(modalId);
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // Handle sections
+            const form = document.getElementById('editProfileForm');
+            const allGroups = form.querySelectorAll('.form-group, .form-row');
+            
+            if (section === 'all') {
+                allGroups.forEach(el => el.style.display = '');
+                return;
+            }
+
+            // Hide all first
+            allGroups.forEach(el => el.style.display = 'none');
+
+            // Define fields for each section
+            const sectionFields = {
+                'about': ['edit-name', 'edit-industry', 'edit-type', 'edit-description'],
+                'details': ['edit-website', 'edit-size', 'edit-founded'],
+                'contact': ['edit-phone', 'edit-address']
+            };
+
+            const fieldsToShow = sectionFields[section] || [];
+
+            fieldsToShow.forEach(fieldId => {
+                const input = document.getElementById(fieldId);
+                if (input) {
+                    // Show the closest form-group
+                    const group = input.closest('.form-group');
+                    if (group) {
+                        group.style.display = '';
+                        // If inside a form-row, show the row too
+                        const row = group.closest('.form-row');
+                        if (row) row.style.display = 'flex';
+                    }
+                }
+            });
         }
 
         function closeModal(modalId) {
