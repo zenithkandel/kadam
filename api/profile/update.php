@@ -95,7 +95,8 @@ try {
         // Let's use a safer approach for compatibility.
         
         $checkSkill = $db->prepare("SELECT id FROM skills WHERE name = :name");
-        $insertNewSkill = $db->prepare("INSERT INTO skills (name) VALUES (:name)");
+        $checkSlug = $db->prepare("SELECT id FROM skills WHERE slug = :slug");
+        $insertNewSkill = $db->prepare("INSERT INTO skills (name, slug) VALUES (:name, :slug)");
         $linkSkill = $db->prepare("INSERT INTO student_skills (student_id, skill_id) VALUES (:student_id, :skill_id)");
 
         foreach ($data['skills'] as $skillName) {
@@ -107,7 +108,27 @@ try {
             if ($checkSkill->rowCount() > 0) {
                 $skillId = $checkSkill->fetchColumn();
             } else {
-                $insertNewSkill->execute([':name' => $skillName]);
+                // Generate slug
+                $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9]+/', '-', $skillName), '-'));
+                if (empty($slug)) {
+                    $slug = 'skill-' . time() . rand(100,999);
+                }
+
+                // Check if slug exists
+                $checkSlug->execute([':slug' => $slug]);
+                if ($checkSlug->rowCount() > 0) {
+                    // Slug collision, append number
+                    $baseSlug = $slug;
+                    $counter = 1;
+                    while (true) {
+                        $slug = $baseSlug . '-' . $counter;
+                        $checkSlug->execute([':slug' => $slug]);
+                        if ($checkSlug->rowCount() == 0) break;
+                        $counter++;
+                    }
+                }
+
+                $insertNewSkill->execute([':name' => $skillName, ':slug' => $slug]);
                 $skillId = $db->lastInsertId();
             }
 
