@@ -62,3 +62,6 @@ if (!empty($data->application_id)) {
         http_response_code(400);
         echo json_encode(["success" => false, "message" => "Application ID is required."]);
     }
+
+
+    
